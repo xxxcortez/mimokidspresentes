@@ -120,6 +120,8 @@ dialog[open]{display:grid;grid-template-columns:1fr 1fr}dialog::backdrop{backgro
 .purchase{display:grid;grid-template-columns:1.25fr 1fr;align-items:end}.purchase label{min-width:0}.purchase button,.purchase #added{grid-column:1/-1}.purchase select{padding-left:7px;padding-right:7px;font-size:13px}.purchase input{text-align:center}
 .detail-sizes{margin:0 0 18px!important}.detail-sizes .size-chip{cursor:default;pointer-events:none}
 .detail-brand{display:flex;align-items:center;margin:0 0 22px}.detail-copy{min-width:0}.purchase{min-width:0}
+.detail-payment-note{color:var(--muted);font-size:12px}.detail-payment-note::before{content:'♡';margin-right:4px;color:#b06b88}
+dialog[open] .detail-copy>.detail-payment-note{margin-bottom:4px}dialog[open] .detail-copy .demo-note{padding-top:10px}
 dialog[open]{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 @media(max-width:480px){.product-sizes .size-label{min-width:38px;height:24px;padding-left:13px;padding-right:6px;font-size:9px}.product-sizes .size-label::before{left:5px;width:3px;height:3px}.price-line{gap:6px;margin:0 12px 14px}.price-label{font-size:10px}.price-line .product-price{font-size:17px}}
 @media(max-width:1000px) and (min-width:481px){.product-sizes{gap:4px}.product-sizes span:not(.size-label){min-width:23px;padding-left:3px;padding-right:3px}}
@@ -170,7 +172,7 @@ dialog[open] .detail-brand{margin-bottom:9px}
 dialog[open] .detail-copy h2{font-size:25px;margin-bottom:8px}
 dialog[open] .detail-copy>p{font-size:13px;line-height:1.35;margin-bottom:10px}
 dialog[open] .detail-copy h3{font-size:13px;margin-bottom:7px}.detail-sizes{gap:5px}.product-sizes .size-label,.product-sizes .size-chip{height:24px}.product-sizes .size-chip{min-width:29px}
-dialog[open] .purchase{margin-top:11px;row-gap:22px;column-gap:7px}.purchase select,.purchase input{height:38px;padding:5px 9px;font-size:13px}.detail-copy .purchase button{min-height:44px;padding:9px 15px;font-size:13px}.detail-copy>.back{min-height:42px;padding:10px 15px;font-size:13px}
+dialog[open] .purchase{margin-top:11px;row-gap:15px;column-gap:7px}.purchase select,.purchase input{height:38px;padding:5px 9px;font-size:13px}.detail-copy .purchase button{min-height:44px;padding:9px 15px;font-size:13px}.detail-copy>.back{min-height:42px;padding:10px 15px;font-size:13px}
 /* Fundo separado entre foto e informações, sem faixa branca excedente */
 dialog[open]{background:transparent}
 dialog[open] .detail-copy{background:#fff;border-radius:0 26px 26px 0}

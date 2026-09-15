@@ -101,12 +101,10 @@ footer p{margin:0;color:var(--muted);font-size:14px}
 .whatsapp-link{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}.whatsapp-link strong{font-size:16px;color:#3d8a5f}.whatsapp-link:hover strong{text-decoration:underline;text-underline-offset:4px}.whatsapp-link strong{display:inline-flex;align-items:center;gap:7px}.whatsapp-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .tiktok-link{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}.tiktok-link strong{font-size:16px;color:var(--ink)}.tiktok-link:hover strong{text-decoration:underline;text-underline-offset:4px}.tiktok-link strong{display:inline-flex;align-items:center;gap:7px}.tiktok-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .live-banner{background:linear-gradient(90deg,#2a2140,#48364b);text-align:center}
-.live-banner-inner{display:flex;align-items:center;justify-content:center;gap:10px;padding:11px 20px;max-width:1440px;margin:auto;color:#fff;font-size:13px;font-weight:600}
-.live-banner-link{display:flex;flex:none;color:#fff}
-.live-banner-link:hover{opacity:.8}
-.live-banner-icon{width:19px;height:19px;flex:none;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.live-banner-link:first-child .live-banner-icon{stroke:#25f4ee}
-.live-banner-link:last-child .live-banner-icon{stroke:#f9539a}
+.live-banner-inner{display:block;padding:11px 20px;max-width:1440px;margin:auto;color:#fff;font-size:13px;font-weight:600;line-height:1.6}
+.live-banner-handle{display:inline-flex;align-items:center;gap:5px;color:#fff;font-weight:800;white-space:nowrap;vertical-align:middle}
+.live-banner-handle:hover{opacity:.8}
+.live-banner-icon{width:16px;height:16px;flex:none;fill:none;stroke:#f9539a;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:600px){.live-banner-inner{padding:11px 16px;font-size:12px;text-align:left}}
 dialog{position:fixed;border:0;border-radius:26px;padding:0;width:min(850px,calc(100% - 32px));max-height:90vh;overflow:auto;color:var(--ink);background:#fff;box-shadow:0 25px 90px #38273833}
 dialog[open]{display:grid;grid-template-columns:1fr 1fr}dialog::backdrop{background:#33263880;backdrop-filter:blur(4px)}

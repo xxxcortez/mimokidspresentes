@@ -119,7 +119,7 @@ dialog[open]{display:grid;grid-template-columns:1fr 1fr}dialog::backdrop{backgro
 .product-sizes .size-chip{cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s}.product-sizes .size-chip:hover,.product-sizes .size-chip:focus-visible{transform:translateY(-2px);box-shadow:0 3px 8px #64385320}.product-sizes .size-chip.size-added{background:var(--rose)!important;border-color:var(--rose)!important;color:#fff!important;transform:scale(1.08)}
 .purchase{display:grid;grid-template-columns:1.25fr 1fr;align-items:end}.purchase label{min-width:0}.purchase button,.purchase #added{grid-column:1/-1}.purchase select{padding-left:7px;padding-right:7px;font-size:13px}.purchase input{text-align:center}
 .detail-sizes{margin:0 0 18px!important}.detail-sizes .size-chip{cursor:default;pointer-events:none}
-.detail-brand{display:flex;align-items:center;gap:0;margin:0 0 22px}.detail-brand .brand-mark{width:52px;height:55px}.detail-brand .brand-wordmark{width:132px;margin-left:-7px}.detail-brand .brand-wordmark strong{font-size:23px}.detail-brand .brand-wordmark small{font-size:8px;margin-top:4px}.detail-copy{min-width:0}.purchase{min-width:0}
+.detail-brand{display:flex;align-items:center;margin:0 0 22px}.detail-copy{min-width:0}.purchase{min-width:0}
 dialog[open]{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 @media(max-width:480px){.product-sizes .size-label{min-width:38px;height:24px;padding-left:13px;padding-right:6px;font-size:9px}.product-sizes .size-label::before{left:5px;width:3px;height:3px}.price-line{gap:6px;margin:0 12px 14px}.price-label{font-size:10px}.price-line .product-price{font-size:17px}}
 @media(max-width:1000px) and (min-width:481px){.product-sizes{gap:4px}.product-sizes span:not(.size-label){min-width:23px;padding-left:3px;padding-right:3px}}
@@ -166,7 +166,7 @@ dialog[open]>.back{min-height:48px}
 dialog[open]>.product-photo{height:auto;aspect-ratio:1/1;align-self:start;background-size:200% 200%}
 /* Compactação do detalhe para acompanhar a altura da imagem */
 dialog[open] .detail-copy{padding:22px 24px 20px}
-dialog[open] .detail-brand{margin-bottom:9px}.detail-brand .brand-mark{width:44px;height:46px}.detail-brand .brand-wordmark strong{font-size:21px}.detail-brand .brand-wordmark small{font-size:7px;margin-top:2px}
+dialog[open] .detail-brand{margin-bottom:9px}
 dialog[open] .detail-copy h2{font-size:25px;margin-bottom:8px}
 dialog[open] .detail-copy>p{font-size:13px;line-height:1.35;margin-bottom:10px}
 dialog[open] .detail-copy h3{font-size:13px;margin-bottom:7px}.detail-sizes{gap:5px}.product-sizes .size-label,.product-sizes .size-chip{height:24px}.product-sizes .size-chip{min-width:29px}

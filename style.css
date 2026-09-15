@@ -269,7 +269,7 @@ dialog[open]>.product-photo{aspect-ratio:3/4;background-color:#fff}
 @media(max-width:800px){dialog[open]>.product-photo{aspect-ratio:3/4}}
 .product .product-photo,dialog[open]>.product-photo{background-color:#eee3da}
 /* A altura do modal acompanha a proporção real das fotos (~4/5), evitando zoom/corte excessivo */
-@media(min-width:801px){dialog[open]{height:auto;aspect-ratio:1.6;max-height:calc(100vh - 24px)}dialog[open] .detail-copy{height:100%;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}dialog[open] .detail-copy::-webkit-scrollbar{display:none;width:0;height:0}}
+@media(min-width:801px){dialog#detail[open]{height:auto;aspect-ratio:1.6;max-height:calc(100vh - 24px)}dialog[open] .detail-copy{height:100%;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}dialog[open] .detail-copy::-webkit-scrollbar{display:none;width:0;height:0}}
 /* A foto sempre preenche a altura total do painel, sem faixa vazia embaixo */
 @media(min-width:801px){dialog[open]>.product-photo{align-self:stretch;height:100%;aspect-ratio:auto}}
 /* Retorno ao formato compacto dos cards */

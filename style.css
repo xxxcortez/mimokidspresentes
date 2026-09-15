@@ -236,22 +236,14 @@ dialog[open] .detail-copy>.back{margin-top:6px}
 @media(max-width:480px){.payment-note{margin:-6px 12px 6px;font-size:9px}.shipping-note{margin:0 12px 11px;font-size:9px}.payment-note,.shipping-note{max-width:calc(100% - 24px)}}
 .bag-dialog{background:#fff!important;overflow:hidden}.bag-content{max-height:calc(100vh - 48px);overflow:auto}.order-observation{display:block;margin:22px 0 14px;font-size:15px;color:var(--ink)}.order-observation textarea{display:block;box-sizing:border-box;width:100%;margin:8px 0 0;min-height:78px;resize:vertical;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--ink)}#prepare-order{display:block;width:100%;min-height:48px;text-align:center}
 /* Cabeçalho e controles refinados do carrinho */
-.bag-brand{display:flex;align-items:center;justify-content:flex-start;gap:0;margin:0 0 18px}.bag-brand .brand-mark{width:46px;height:48px}.bag-brand .brand-wordmark{width:130px;margin-left:-5px}.bag-brand .brand-wordmark strong{font-size:22px}.bag-brand .brand-wordmark small{font-size:8px;margin-top:2px}
+.bag-brand{display:flex;align-items:center;justify-content:flex-start;margin:0 0 22px}
 .bag-item-info{position:relative;padding-right:78px}.bag-item-price{position:absolute;right:0;top:0;margin:0;font-size:15px}.bag-controls button{text-decoration:none!important;display:inline-flex;align-items:center;justify-content:center;line-height:1}
 .bag-total{padding-top:18px}.bag-total strong{font-size:23px}
 /* Ajustes finais do carrinho */
-.bag-content{position:relative}.bag-brand{position:absolute;top:28px;right:30px;margin:0}.bag-content>.eyebrow,.bag-content>#bag-title{padding-right:190px}
-.bag-item-price{left:98px;right:auto;top:42px}
+.bag-item-price{left:220px;right:auto;top:47px}
 #prepare-order{width:min(100%,360px);margin:0 auto;min-height:44px;padding:10px 18px;border-radius:22px}
-@media(max-width:520px){.bag-brand{top:24px;right:22px}.bag-content>.eyebrow,.bag-content>#bag-title{padding-right:150px}.bag-brand .brand-mark{width:40px;height:42px}.bag-brand .brand-wordmark{width:108px}.bag-brand .brand-wordmark strong{font-size:19px}.bag-item-price{left:84px;top:40px}}
-/* Correção de alinhamento no carrinho */
-.bag-brand{width:190px;right:30px}.bag-brand .brand-wordmark{width:145px;flex:none;overflow:visible}.bag-brand .brand-wordmark strong,.bag-brand .brand-wordmark small{white-space:nowrap}
-.bag-item-price{left:220px;top:47px}
-@media(max-width:520px){.bag-brand{width:160px;right:20px}.bag-brand .brand-wordmark{width:122px}.bag-item-price{left:170px;top:45px}}
+@media(max-width:520px){.bag-brand{margin:0 0 18px}.bag-brand .brand-mark{width:66px;height:70px}.bag-brand .brand-wordmark strong{font-size:26px}.bag-item-price{left:170px;right:auto;top:45px}}
 .instagram-link strong{display:inline-flex;align-items:center;gap:7px}.instagram-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-/* Área segura para o logotipo do carrinho */
-.bag-brand{right:72px;width:215px}.bag-brand .brand-wordmark{width:160px}
-@media(max-width:520px){.bag-brand{right:58px;width:185px}.bag-brand .brand-wordmark{width:140px}}
 .product-photo{background-color:#f6eee9}
 /* Enquadramento editorial para fotos verticais */
 .product .product-photo{aspect-ratio:3/4;background-color:#fff}

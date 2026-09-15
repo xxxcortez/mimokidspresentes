@@ -97,7 +97,7 @@ footer{max-width:1440px;margin:auto;display:flex;justify-content:space-between;a
 footer .brand-mark{width:60px;height:63px}footer .brand-wordmark{margin-left:-9px}footer .brand-wordmark strong{font-size:24px}
 footer p{margin:0;color:var(--muted);font-size:14px}
 .footer-tagline{margin:0;font-size:15px;font-weight:700;color:var(--rose);max-width:240px;line-height:1.4}
-.footer-contacts{display:flex;gap:32px;flex-wrap:wrap}
+.footer-contacts{display:flex;gap:32px;flex-wrap:wrap;justify-content:center}
 .whatsapp-link{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}.whatsapp-link strong{font-size:16px;color:#3d8a5f}.whatsapp-link:hover strong{text-decoration:underline;text-underline-offset:4px}.whatsapp-link strong{display:inline-flex;align-items:center;gap:7px}.whatsapp-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .tiktok-link{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}.tiktok-link strong{font-size:16px;color:var(--ink)}.tiktok-link:hover strong{text-decoration:underline;text-underline-offset:4px}.tiktok-link strong{display:inline-flex;align-items:center;gap:7px}.tiktok-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .live-banner{background:linear-gradient(90deg,#2a2140,#48364b);text-align:center}

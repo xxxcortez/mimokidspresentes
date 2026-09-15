@@ -236,7 +236,9 @@ dialog[open] .detail-copy>.back{margin-top:6px}
 @media(max-width:480px){.payment-note{margin:-6px 12px 6px;font-size:9px}.shipping-note{margin:0 12px 11px;font-size:9px}.payment-note,.shipping-note{max-width:calc(100% - 24px)}}
 .bag-dialog{background:#fff!important;overflow:hidden}.bag-content{max-height:calc(100vh - 48px);overflow:auto}.order-observation{display:block;margin:22px 0 14px;font-size:15px;color:var(--ink)}.order-observation textarea{display:block;box-sizing:border-box;width:100%;margin:8px 0 0;min-height:78px;resize:vertical;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--ink)}#prepare-order{display:block;width:100%;min-height:48px;text-align:center}
 /* Cabeçalho e controles refinados do carrinho */
-.bag-brand{display:flex;align-items:center;justify-content:flex-start;margin:0 0 22px}
+.bag-header-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 22px;padding-right:46px}
+.bag-header-text{min-width:0}.bag-header-text .eyebrow{margin:0 0 6px}.bag-content .bag-header-text h2{margin:0}
+.bag-brand{display:flex;align-items:center;justify-content:flex-start;flex:none}
 .bag-item-info{position:relative;padding-right:78px}.bag-item-price{position:absolute;right:0;top:0;margin:0;font-size:15px}.bag-controls button{text-decoration:none!important;display:inline-flex;align-items:center;justify-content:center;line-height:1}
 .bag-total{padding-top:18px}.bag-total strong{font-size:23px}
 /* Ajustes finais do carrinho */
@@ -250,6 +252,10 @@ dialog[open] .detail-copy>.back{margin-top:6px}
 dialog[open]>.product-photo{aspect-ratio:3/4;background-color:#fff}
 @media(max-width:800px){dialog[open]>.product-photo{aspect-ratio:3/4}}
 .product .product-photo,dialog[open]>.product-photo{background-color:#eee3da}
+/* A altura do modal acompanha a proporção real das fotos (~4/5), evitando zoom/corte excessivo */
+@media(min-width:801px){dialog[open]{height:auto;aspect-ratio:1.6;max-height:calc(100vh - 24px)}dialog[open] .detail-copy{height:100%;overflow-y:auto}}
+/* A foto sempre preenche a altura total do painel, sem faixa vazia embaixo */
+@media(min-width:801px){dialog[open]>.product-photo{align-self:stretch;height:100%;aspect-ratio:auto}}
 /* Retorno ao formato compacto dos cards */
 .product .product-photo{width:calc(100% - 18px);margin:10px 9px 0;aspect-ratio:1/1;border-radius:18px 18px 4px 4px;background-color:#eee3da}
 /* Preenchimento candy suave por coleção */

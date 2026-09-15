@@ -91,7 +91,9 @@ h1 em{font-style:normal;color:var(--rose)}
 .brand-note .eyebrow{color:#745388}
 footer{max-width:1440px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:30px;padding:35px 48px}
 footer .brand-mark{width:60px;height:63px}footer .brand-wordmark{margin-left:-9px}footer .brand-wordmark strong{font-size:24px}
-footer p{margin:0;color:var(--muted);font-size:14px}footer>small{font-size:12px;color:var(--muted);max-width:210px}
+footer p{margin:0;color:var(--muted);font-size:14px}footer>small{font-size:12px;color:var(--muted);max-width:260px}
+.footer-contacts{display:flex;gap:32px;flex-wrap:wrap}
+.whatsapp-link{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}.whatsapp-link strong{font-size:16px;color:#3d8a5f}.whatsapp-link:hover strong{text-decoration:underline;text-underline-offset:4px}.whatsapp-link strong{display:inline-flex;align-items:center;gap:7px}.whatsapp-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 dialog{position:fixed;border:0;border-radius:26px;padding:0;width:min(850px,calc(100% - 32px));max-height:90vh;overflow:auto;color:var(--ink);background:#fff;box-shadow:0 25px 90px #38273833}
 dialog[open]{display:grid;grid-template-columns:1fr 1fr}dialog::backdrop{background:#33263880;backdrop-filter:blur(4px)}
 .close{position:absolute;z-index:1;top:12px;right:12px;border:0;border-radius:50%;width:40px;height:40px;background:white;color:var(--ink);font-size:26px;line-height:1}

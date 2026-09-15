@@ -269,6 +269,7 @@ dialog[open] .detail-copy>.back{margin-top:3px}
 /* Cabeçalho e controles refinados do carrinho */
 .bag-header-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 22px;padding-right:46px}
 .bag-header-text{min-width:0}.bag-header-text .eyebrow{margin:0 0 6px}.bag-content .bag-header-text h2{margin:0}
+@media(max-width:560px){.bag-header-row{flex-direction:column;align-items:flex-start;padding-right:0;gap:10px}.bag-header-row .bag-brand{order:-1}}
 .bag-brand{display:flex;align-items:center;justify-content:flex-start;flex:none}
 .bag-item-info{position:relative;padding-right:78px}.bag-item-price{position:absolute;right:0;top:0;margin:0;font-size:15px}.bag-controls button{text-decoration:none!important;display:inline-flex;align-items:center;justify-content:center;line-height:1}
 .bag-total{padding-top:18px}.bag-total strong{font-size:23px}
@@ -281,7 +282,7 @@ dialog[open] .detail-copy>.back{margin-top:3px}
 /* Enquadramento editorial para fotos verticais */
 .product .product-photo{aspect-ratio:3/4;background-color:#fff}
 dialog[open]>.product-photo{aspect-ratio:3/4;background-color:#fff}
-@media(max-width:800px){dialog[open]>.product-photo{aspect-ratio:3/4}}
+@media(max-width:800px){dialog[open]>.product-photo{aspect-ratio:3/4;max-height:none}}
 .product .product-photo,dialog[open]>.product-photo{background-color:#eee3da}
 /* A altura do modal acompanha a proporção real das fotos (~4/5), evitando zoom/corte excessivo */
 @media(min-width:801px){dialog#detail[open]{height:auto;aspect-ratio:1.6;max-height:calc(100vh - 24px)}dialog[open] .detail-copy{height:100%;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}dialog[open] .detail-copy::-webkit-scrollbar{display:none;width:0;height:0}}

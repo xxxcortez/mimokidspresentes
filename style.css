@@ -170,7 +170,7 @@ dialog[open] .detail-brand{margin-bottom:9px}
 dialog[open] .detail-copy h2{font-size:25px;margin-bottom:8px}
 dialog[open] .detail-copy>p{font-size:13px;line-height:1.35;margin-bottom:10px}
 dialog[open] .detail-copy h3{font-size:13px;margin-bottom:7px}.detail-sizes{gap:5px}.product-sizes .size-label,.product-sizes .size-chip{height:24px}.product-sizes .size-chip{min-width:29px}
-dialog[open] .purchase{margin-top:11px;gap:7px}.purchase select,.purchase input{height:38px;padding:5px 9px;font-size:13px}.detail-copy .purchase button{min-height:44px;padding:9px 15px;font-size:13px}.detail-copy>.back{min-height:42px;padding:10px 15px;font-size:13px}
+dialog[open] .purchase{margin-top:11px;row-gap:22px;column-gap:7px}.purchase select,.purchase input{height:38px;padding:5px 9px;font-size:13px}.detail-copy .purchase button{min-height:44px;padding:9px 15px;font-size:13px}.detail-copy>.back{min-height:42px;padding:10px 15px;font-size:13px}
 /* Fundo separado entre foto e informações, sem faixa branca excedente */
 dialog[open]{background:transparent}
 dialog[open] .detail-copy{background:#fff;border-radius:0 26px 26px 0}

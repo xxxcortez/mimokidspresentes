@@ -1,11 +1,42 @@
 {
-  "config": {
-    "whatsapp": "5567981542208",
-    "instagram": "mimokidspresentes",
-    "tiktok": "mimokidspresentes",
-    "freteGratisAcima": 30,
-    "brinde": { "acima": 199, "texto": "1 par de meias malucas" },
-    "parcelasCartao": 12
+ "config": {
+  "whatsapp": "5567981542208",
+  "instagram": "mimokidspresentes",
+  "tiktok": "mimokidspresentes",
+  "freteGratisAcima": 30,
+  "brinde": {
+   "acima": 199,
+   "texto": "1 par de meias malucas"
   },
-  "produtos": []
+  "parcelasCartao": 12
+ },
+ "produtos": [
+  {
+   "id": "v01",
+   "codigo": "V01",
+   "nome": "Vestido rosa de corações",
+   "categoria": "Vestidos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Vestido rosa com listras e corações vermelhos, com alças coloridas e babado na barra, perfeito para um look alegre e cheio de charme. ✨",
+   "criado": "2026-10-12",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#da717b",
+     "fotos": [
+      "assets/produtos/v01-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO"
+     ],
+     "esgotados": []
+    }
+   ]
+  }
+ ]
 }

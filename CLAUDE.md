@@ -11,12 +11,12 @@ Loja de moda bebê e infantil (RN ao tamanho 4). Site **estático** (sem build, 
 - `assets/logo.png` (logo oficial), `assets/fontes/` (Encode Sans Condensed, OFL; Ubuntu, Ubuntu Font Licence; woff2 só com latim).
 
 ## Modelo de dados de uma peça
-`{id, codigo, nome, categoria, genero, preco, promo:{qtd,total,grupo?}|null, descricao, criado, ia?, cores:[{nome, hex, fotos[], tamanhos[], esgotados[]}]}`
+`{id, codigo, nome, categoria, genero, preco, promo:{qtd,total,grupo?}|null, descricao, criado, cores:[{nome, hex, fotos[], tamanhos[], esgotados[], ia?[]}]}`
 - **Tamanhos**: exatamente o texto que a loja digitou ("6 MESES A 1 ANO", "P", "2"). Sem tabela de conversão. O filtro de tamanho é montado
   com o que existe no catálogo; a ordem é natural (RN, P, M, G, GG, depois por idade em meses; número puro = anos).
 - **Cores**: várias cores por peça (bolinhas no cartão e na página). Cada cor tem as suas fotos e os seus tamanhos.
 - **promo**: "leve N por R$ T". Sem `grupo`, vale por peça (soma de todas as cores e tamanhos); com `grupo`, mistura peças da mesma linha.
-- **ia**: `true` mostra "Foto ilustrativa com modelo criado por inteligência artificial" na página da peça.
+- **ia** (dentro da cor): índices das fotos criadas por IA (criança fictícia). Ao ver uma delas, a página mostra "Foto ilustrativa com modelo criado por inteligência artificial".
 - Foto padrão: a do **cabide** (feed 3:4 do bot). Ordem da vitrine: `criado` mais recente primeiro; as 8 primeiras viram o trilho "Chegou agora".
 
 ## Visual (identidade do logo)

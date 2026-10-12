@@ -1,7 +1,7 @@
 'use strict';
 /* Mimo Kids Presentes: catálogo lido de produtos.json (alimentado pelo bot do Instagram).
-   Peça: {id, codigo, nome, categoria, genero, preco, promo:{qtd,total,grupo?}|null, descricao, criado, ia?,
-          cores:[{nome, hex, fotos:[...], tamanhos:[...], esgotados:[...]}]}
+   Peça: {id, codigo, nome, categoria, genero, preco, promo:{qtd,total,grupo?}|null, descricao, criado,
+          cores:[{nome, hex, fotos:[...], tamanhos:[...], esgotados:[...], ia?:[indices das fotos criadas por IA]}]}
    Os tamanhos são exatamente os que a loja digitou (ex.: "6 MESES A 1 ANO", "P", "2"). */
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -155,7 +155,6 @@ function abrirPeca(p) {
   promo.hidden = !p.promo;
   if (p.promo) promo.textContent = `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` + (p.promo.grupo ? ' (pode misturar modelos da mesma linha)' : '');
   $('#p-desc').textContent = p.descricao || '';
-  $('#p-ia').hidden = !p.ia;
   $('#p-cores-bloco').hidden = p.cores.length < 2;
   $('#p-erro').textContent = '';
   $('#q-valor').textContent = 1;
@@ -182,6 +181,7 @@ function desenharGaleria(i) {
   const fotos = corSel.fotos;
   const img = $('#g-foto');
   img.src = fotos[i]; img.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '');
+  $('#p-ia').hidden = !(corSel.ia || []).includes(i);
   $('#g-mini').replaceChildren(...(fotos.length > 1 ? fotos.map((f, k) => el('button', { type: 'button', 'aria-pressed': String(k === i), 'aria-label': 'Foto ' + (k + 1), onclick: () => desenharGaleria(k) }, el('img', { src: f, alt: '', loading: 'lazy' }))) : []));
 }
 $('#q-menos').addEventListener('click', () => { qtdSel = Math.max(1, qtdSel - 1); $('#q-valor').textContent = qtdSel; });

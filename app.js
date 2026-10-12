@@ -93,6 +93,7 @@ function montarFiltros() {
   grupo('#f-cat', [...new Set(PECAS.map(p => p.categoria).filter(Boolean))], 'cat');
   grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g);
   $('#limpar').hidden = !Object.values(filtro).some(Boolean);
+  $('#filtros').hidden = !['#f-tam', '#f-cat', '#f-gen'].some(id => !$(id).hidden) && !Object.values(filtro).some(Boolean);
 }
 $('#limpar').addEventListener('click', () => { Object.keys(filtro).forEach(k => filtro[k] = ''); $('#busca').value = ''; montarFiltros(); desenhar(); });
 $('#busca').addEventListener('input', e => { filtro.busca = e.target.value; $('#limpar').hidden = !Object.values(filtro).some(Boolean); desenhar(); });
@@ -122,7 +123,6 @@ function filtrar() {
 
 function desenhar() {
   const lista = filtrar();
-  $('#filtros').hidden = !PECAS.length;
   const filtrando = Object.values(filtro).some(Boolean);
   $('#grade').replaceChildren(...lista.map(p => cartao(p)));
   $('#contagem').textContent = PECAS.length ? `${lista.length} ${lista.length === 1 ? 'peça' : 'peças'}` : '';

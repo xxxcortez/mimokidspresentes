@@ -109,9 +109,7 @@ function cartao(p, { selo = false } = {}) {
       onclick: ev => { foto.src = capa(p, c); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
     }))) : null;
   const tams = tamanhosDaPeca(p);
-  return el('article', { class: 'peca' },
-    el('p', { class: 'peca-cab' }, el('span', { text: p.codigo ? p.codigo.toUpperCase() : 'MIMO' }), el('span', { text: p.categoria ? String(p.categoria).toUpperCase() : '' })),
-    abrir, cores,
+  return el('article', { class: 'peca' }, abrir, cores,
     el('h3', { class: 'peca-nome', text: p.nome }),
     el('p', { class: 'peca-meta', text: [p.codigo ? 'cod. ' + p.codigo.toLowerCase() : '', tams.length ? 'tam. ' + tams.map(capitaliza).join(' · ') : 'esgotado'].filter(Boolean).join(' · ') }),
     p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null);

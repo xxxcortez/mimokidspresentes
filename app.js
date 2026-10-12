@@ -1,32 +1,284 @@
 'use strict';
-const items=[{id:0,code:'V01',gender:'menina',name:'Vestido Cereja Jardim',category:'Vestidos',sizes:['1'],collection:'cereja',price:89.9,image:'assets/products-real/produto-1.jpg',description:'Vestido delicado com listras suaves, cerejas e acabamento em renda.'},{id:1,code:'V02',gender:'menina',name:'Vestido Cereja Azul',category:'Vestidos',sizes:['1'],collection:'cereja',price:89.9,image:'assets/products-real/produto-2.jpg',description:'Vestido azul candy com laços, cerejas e mangas com babados.'},{id:2,code:'V03',gender:'menina',name:'Vestido Gola Peter Pan',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-real/produto-3.jpg',description:'Vestido azul com gola clássica, saia rodada e estampa de cerejas.'},{id:3,code:'V04',gender:'menina',name:'Vestido Jardim Azul',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-real/produto-4.jpg',description:'Vestido azul listrado com laço lateral e detalhes delicados.'},{id:4,code:'V05',gender:'menina',name:'Vestido Jardim Rosa',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-real/produto-5.jpg',description:'Vestido rosa candy com laço e estampa de cerejinhas.'},{id:5,code:'V06',gender:'menina',name:'Vestido Jardim Verde',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-real/produto-6.jpg',description:'Vestido verde suave com laço e estampa de cerejas.'},{id:6,code:'V07',gender:'menina',name:'Vestido Gola Branca',category:'Vestidos',sizes:['1'],collection:'cereja',price:109.9,image:'assets/products-real/produto-7.jpg',description:'Vestido verde com gola branca, acabamento delicado e laço frontal.'},{id:7,code:'V08',gender:'menina',name:'Vestido Cereja Rose',category:'Vestidos',sizes:['1'],collection:'cereja',price:109.9,image:'assets/products-real/produto-8.jpg',description:'Vestido rose com estampa de cerejas e laço delicado.'},{id:8,code:'V09',gender:'menina',name:'Vestido Cereja Pocos',category:'Vestidos',sizes:['1'],collection:'cereja',price:109.9,image:'assets/products-real/produto-9.jpg',description:'Vestido rosa listrado com gola branca, cerejas e acabamento clássico.'},{id:9,code:'C01',gender:'menina',name:'Conjunto Borboletas Candy',category:'Conjuntos',sizes:['1'],collection:'limao',price:99.9,image:'assets/products-new/produto-1.jpg',description:'Conjunto colorido com borboletas, flores e alças com laços.'},{id:10,code:'C02',gender:'menina',name:'Conjunto Floral Pink',category:'Conjuntos',sizes:['1'],collection:'limao',price:99.9,image:'assets/products-new/produto-2.jpg',description:'Conjunto pink estampado com flores, borboletas e shorts confortável.'},{id:11,code:'C03',gender:'menina',name:'Conjunto Borboletas Rosa',category:'Conjuntos',sizes:['1'],collection:'limao',price:99.9,image:'assets/products-new/produto-3.jpg',description:'Conjunto rosa com borboletas, flores e modelagem leve para brincar.'},{id:12,code:'C04',gender:'menina',name:'Conjunto Borboletas Amarelo',category:'Conjuntos',sizes:['1'],collection:'limao',price:99.9,image:'assets/products-new/produto-4.jpg',description:'Conjunto amarelo com estampa delicada, alças de amarrar e shorts.'},{id:13,code:'V10',gender:'menina',name:'Vestido Cereja Baby',category:'Vestidos',sizes:['1'],collection:'cereja',price:89.9,image:'assets/products-new/produto-5.jpg',description:'Vestido de bebê em rosa com cerejas e saia rodada em camadas.'},{id:14,code:'V11',gender:'menina',name:'Vestido Laços Rosa',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-new/produto-6.jpg',description:'Vestido pink com listras, laços brancos e babado na barra.'},{id:15,code:'C05',gender:'menina',name:'Conjunto Floral Laranja',category:'Conjuntos',sizes:['1'],collection:'limao',price:99.9,image:'assets/products-new/produto-7.jpg',description:'Conjunto com listras quentes, flores e shorts soltinho.'},{id:16,code:'V12',gender:'menina',name:'Vestido Bichinhos Coloridos',category:'Vestidos',sizes:['1'],collection:'limao',price:109.9,image:'assets/products-new/produto-8.jpg',description:'Vestido alegre com bichinhos, blocos coloridos e mangas com babados.'},{id:17,code:'V13',gender:'menina',name:'Vestido Panda Love',category:'Vestidos',sizes:['1'],collection:'limao',price:109.9,image:'assets/products-new/produto-9.jpg',description:'Vestido branco e rosa com pandas, corações e saia em camadas.'},{id:18,code:'V14',gender:'menina',name:'Vestido Girassol',category:'Vestidos',sizes:['1'],collection:'limao',price:99.9,image:'assets/products-new/produto-10.jpg',description:'Vestido amarelo com flores sorridentes e alças delicadas.'},{id:19,code:'V15',gender:'menina',name:'Vestido Cerejinha com Gola',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-new/produto-11.jpg',description:'Vestido rosa listrado com gola ampla, laço e pequenas cerejas.'},{id:20,code:'V16',gender:'menina',name:'Vestido Cerejinha Azul',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-new/produto-12.jpg',description:'Vestido azul claro listrado com gola de babados e cerejinhas.'},{id:21,code:'P01',gender:'unissex',name:'Kit Naninhas Azul',category:'Presentes',sizes:['1'],collection:'aconchego',price:119.9,image:'assets/products-new/produto-13.jpg',description:'Kit aconchegante com mantas macias e naninhas de bichinhos.'},{id:22,code:'V17',gender:'menina',name:'Vestido Laços Rosa',category:'Vestidos',sizes:['1'],collection:'cereja',price:99.9,image:'assets/products-new/produto-14.jpg',description:'Vestido rosa com laços, modelagem delicada e acabamento de festa.'},{id:23,code:'C11',gender:'menino',name:'Conjunto Little Dino\'s',category:'Conjuntos',sizes:['1','2','3'],collection:'',price:49,promo:'jack',image:'assets/products-jack/conjunto-dino-frente.jpg',description:'Conjunto regata azul-marinho com dinossauros e bermuda verde estampada.'},{id:24,code:'C12',gender:'menino',name:'Conjunto Nice to Sea',category:'Conjuntos',sizes:['1','2','3'],collection:'',price:49,promo:'jack',image:'assets/products-jack/conjunto-nice-to-sea-frente.jpg',description:'Conjunto regata laranja com caranguejo e bermuda azul-marinho estampada.'},{id:25,code:'C13',gender:'menino',name:'Conjunto Ready to Race',category:'Conjuntos',sizes:['1','2','3'],collection:'',price:49,promo:'jack',image:'assets/products-jack/conjunto-ready-to-race-frente.jpg',description:'Conjunto regata cinza com caminhão monster e bermuda amarela estampada.'},{id:26,code:'C14',gender:'menino',name:'Conjunto Panda Skate',category:'Conjuntos',sizes:['1','2','3'],collection:'',price:49,promo:'jack',image:'assets/products-jack/conjunto-panda-frente.jpg',description:'Conjunto regata verde com panda de skate e bermuda azul estampada.'},{id:27,code:'C15',gender:'menino',name:'Conjunto Campus Boy League',category:'Conjuntos',sizes:['1','2','3'],collection:'',price:49,promo:'jack',image:'assets/products-jack/conjunto-campus-frente.jpg',description:'Conjunto regata bege com animais da savana e bermuda estampada verde-musgo.'},{id:28,code:'C16',gender:'menino',name:'Conjunto Game Over',category:'Conjuntos',sizes:['1','2','3'],collection:'',price:49,promo:'jack',image:'assets/products-jack/conjunto-game-over-frente.jpg',description:'Conjunto regata azul com estampa de videogame e bermuda cinza mesclada com controles.'},{id:29,code:'C17',gender:'menino',name:'Jardineira Verde Água',category:'Conjuntos',sizes:['P','M','G'],collection:'',price:109,image:'assets/products-jardineira/jardineira-verde-agua.jpg',description:'Jardineira verde água com bolso frontal, usada sobre camisa polo branca.'},{id:30,code:'C18',gender:'menino',name:'Jardineira Verde Militar',category:'Conjuntos',sizes:['P','M','G'],collection:'',price:109,image:'assets/products-jardineira/jardineira-verde-militar.jpg',description:'Jardineira verde militar com bolsos frontais, usada sobre camisa polo branca.'},{id:31,code:'C19',gender:'menino',name:'Jardineira Marrom',category:'Conjuntos',sizes:['P','M','G'],collection:'',price:109,image:'assets/products-jardineira/jardineira-marrom.jpg',description:'Jardineira marrom com bolsos em recorte, usada sobre camisa polo branca.'},{id:32,code:'C20',gender:'menino',name:'Jardineira Bege Canelada',category:'Conjuntos',sizes:['P','M','G'],collection:'',price:109,image:'assets/products-jardineira/jardineira-bege-canelada.jpg',description:'Jardineira bege em tecido canelado com bolsos frontais, usada sobre camiseta azul.'}];
-const ALL_SIZES=['RN','P','M','G','1','2','3','4'];
-const state={size:'',category:'',collection:'',gender:'',search:''};const grid=document.querySelector('#products');const dialog=document.querySelector('#detail');let previousFocus;
-const lazyPhotoObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;el.style.backgroundImage='url('+el.dataset.src+')';el.removeAttribute('data-src');lazyPhotoObserver.unobserve(el)})},{rootMargin:'400px 0px'});
-const availableSizes=new Set(items.flatMap(p=>p.sizes));document.querySelectorAll('.sizes [data-size]').forEach(b=>{if(b.dataset.size&&!availableSizes.has(b.dataset.size))b.hidden=true});
-const availableGenders=new Set(items.map(p=>p.gender));document.querySelectorAll('.genders [data-gender]').forEach(b=>{if(b.dataset.gender&&!availableGenders.has(b.dataset.gender))b.hidden=true});
-function normalize(value){return value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
-function render(){const shown=items.filter(p=>(!state.size||p.sizes.includes(state.size))&&(!state.category||p.category===state.category)&&(!state.collection||p.collection===state.collection)&&(!state.gender||p.gender===state.gender)&&normalize(p.name).includes(normalize(state.search)));grid.replaceChildren();shown.forEach(p=>{const article=document.createElement('article');article.className='product';const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',`Ver detalhes de ${p.name}`);const photo=document.createElement('div');photo.className=`product-photo photo-${p.id}`;photo.setAttribute('role','img');photo.setAttribute('aria-label',p.name);photo.dataset.src=p.image;photo.style.backgroundSize='contain';photo.style.backgroundRepeat='no-repeat';photo.style.backgroundPosition='center';const title=document.createElement('h3');title.textContent=p.name;const codeLine=document.createElement('p');codeLine.className='product-code';codeLine.textContent='cod. '+p.code.toLowerCase();const sizes=document.createElement('p');sizes.className='product-sizes';const sizeLabel=document.createElement('span');sizeLabel.className='size-label';sizeLabel.textContent='Tam.';sizeLabel.setAttribute('aria-hidden','true');sizeLabel.style.pointerEvents='none';sizes.append(sizeLabel);sizes.addEventListener('click',event=>{if(!event.target.classList.contains('size-chip')){event.preventDefault();event.stopPropagation()}});ALL_SIZES.forEach(size=>{const available=p.sizes.includes(size);const chip=document.createElement('span');chip.className=available?'size-chip':'size-chip size-unavailable';chip.textContent=size;if(available){chip.setAttribute('role','button');chip.setAttribute('tabindex','0');chip.setAttribute('aria-label','Adicionar '+p.name+' tamanho '+size+' ao carrinho');const addSelectedSize=event=>{event.preventDefault();event.stopPropagation();window.addToBag?.(p,size);chip.classList.add('size-added');setTimeout(()=>chip.classList.remove('size-added'),650)};chip.addEventListener('click',addSelectedSize);chip.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){addSelectedSize(event)}})}else{chip.setAttribute('aria-label',size+' esgotado');chip.setAttribute('aria-disabled','true')}sizes.append(chip)});const priceLine=document.createElement('div');priceLine.className='price-line price-tag';const price=document.createElement('strong');price.className='product-price';price.textContent=p.price.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});priceLine.append(price);const more=document.createElement('span');more.className='more';more.textContent='Escolher tamanho →';const shipping=document.createElement("span");shipping.className="shipping-note";shipping.textContent="Entrega grátis para compras acima de R$ 30 reais.";const bundleNote=document.createElement('span');bundleNote.className='payment-note';bundleNote.hidden=p.promo!=='jack';bundleNote.textContent='Leve 3 (pode misturar modelos) por R$ 125 reais.';button.append(photo,title,codeLine,sizes,priceLine,bundleNote,shipping,more);button.addEventListener('click',event=>{if(event.target.closest('.size-chip,.size-label'))return;openDetail(p)});article.append(button);grid.append(article);lazyPhotoObserver.observe(photo)});document.querySelector('#count').textContent=`${shown.length} ${shown.length===1?'modelo':'modelos'}${state.size?' · Tamanho '+state.size:''}${state.collection?' · Coleção '+(state.collection==='limao'?'Doce limão':'Dias de aconchego'):''+(state.gender?' · '+state.gender.charAt(0).toUpperCase()+state.gender.slice(1):'')}`;document.querySelector('#empty').hidden=shown.length>0;document.querySelector('#clear').hidden=!Object.values(state).some(Boolean);document.querySelectorAll('[data-size]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.size===state.size)));document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===state.category)));document.querySelectorAll('[data-gender]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.gender===state.gender)))}
-function reset(){Object.keys(state).forEach(k=>state[k]='');document.querySelector('#search').value='';render()}
-function openDetail(p){previousFocus=document.activeElement;document.querySelector('#detail-title').textContent=p.name;document.querySelector('#detail-description').textContent=p.description;document.querySelector('#detail-code').textContent='cod. '+p.code.toLowerCase();document.querySelector('#detail-price-value').textContent=p.price.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});document.querySelector('#detail-bundle-note').hidden=p.promo!=='jack';const sizeBox=document.querySelector('#detail-sizes');sizeBox.className='product-sizes detail-sizes';sizeBox.replaceChildren();const sizeLabel=document.createElement('span');sizeLabel.className='size-label';sizeLabel.textContent='Tam.';sizeBox.append(sizeLabel);ALL_SIZES.forEach(size=>{const available=p.sizes.includes(size);const chip=document.createElement('span');chip.className=available?'size-chip':'size-chip size-unavailable';chip.textContent=size;if(!available)chip.setAttribute('aria-label',size+' esgotado');sizeBox.append(chip)});const photo=document.querySelector('#detail-photo');photo.className=`product-photo photo-${p.id}`;photo.setAttribute('role','img');photo.setAttribute('aria-label',p.name);photo.style.backgroundImage='url('+p.image+')';photo.style.backgroundSize='cover';photo.style.backgroundRepeat='no-repeat';photo.style.backgroundPosition='center';dialog.showModal()}
-document.querySelectorAll('[data-size]').forEach(b=>b.addEventListener('click',()=>{state.size=b.dataset.size;render()}));document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>{state.category=b.dataset.category;render()}));document.querySelectorAll('[data-gender]').forEach(b=>b.addEventListener('click',()=>{state.gender=b.dataset.gender;render()}));document.querySelectorAll('[data-collection]').forEach(b=>b.addEventListener('click',()=>{reset();state.collection=b.dataset.collection;render()}));document.querySelector('#search').addEventListener('input',e=>{state.search=e.target.value;render()});document.querySelector('#clear').addEventListener('click',reset);document.querySelector('#empty-clear').addEventListener('click',reset);document.querySelectorAll('.close,.back').forEach(b=>b.addEventListener('click',()=>dialog.close()));dialog.addEventListener('close',()=>previousFocus?.focus());render();
+/* Mimo Kids Presentes: catálogo lido de produtos.json (alimentado pelo bot do Instagram).
+   Peça: {id, codigo, nome, categoria, genero, preco, promo:{qtd,total,grupo?}|null, descricao, criado, ia?,
+          cores:[{nome, hex, fotos:[...], tamanhos:[...], esgotados:[...]}]}
+   Os tamanhos são exatamente os que a loja digitou (ex.: "6 MESES A 1 ANO", "P", "2"). */
 
-document.querySelector('#search').addEventListener('keydown',event=>{
-  if(event.key==='Enter'){
-    document.querySelector('#catalogo').scrollIntoView({behavior:'smooth'});
+const $ = (s, r = document) => r.querySelector(s);
+const BRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+function el(tag, props = {}, ...filhos) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k === 'style') e.style.cssText = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (k === 'text') e.textContent = v;
+    else e.setAttribute(k, v === true ? '' : v);
   }
+  e.append(...filhos.flat().filter(f => f !== null && f !== undefined && f !== false));
+  return e;
+}
+
+let CFG = {}, PECAS = [];
+const filtro = { tam: '', cat: '', gen: '', busca: '' };
+const GENEROS = { menina: 'Menina', menino: 'Menino', unissex: 'Unissex' };
+
+/* ---------- tamanhos: ordem natural, sem converter o que a loja digitou ---------- */
+const FIXOS = ['RN', 'P', 'M', 'G', 'GG', 'XG'];
+function chaveTamanho(t) {
+  const u = String(t).toUpperCase().trim();
+  const i = FIXOS.indexOf(u);
+  if (i >= 0) return [0, i];
+  const n = u.match(/\d+(?:[.,]\d+)?/);
+  if (!n) return [2, 0];
+  const v = parseFloat(n[0].replace(',', '.'));
+  return [1, /MES/.test(u) ? v : v * 12];         // "6 meses" = 6; "2" ou "2 anos" = 24 meses
+}
+const comparaTam = (a, b) => { const x = chaveTamanho(a), y = chaveTamanho(b); return x[0] - y[0] || x[1] - y[1] || String(a).localeCompare(b, 'pt-BR'); };
+const capitaliza = t => t.replace(/\bMESES\b/g, 'meses').replace(/\bANOS\b/g, 'anos').replace(/\bANO\b/g, 'ano').replace(/\bMES\b/g, 'mês').replace(/\bA\b/g, 'a').replace(/\bE\b/g, 'e');
+
+const tamanhosDaPeca = p => [...new Set(p.cores.flatMap(c => c.tamanhos.filter(t => !(c.esgotados || []).includes(t))))].sort(comparaTam);
+const todosTamanhos = p => [...new Set(p.cores.flatMap(c => c.tamanhos))].sort(comparaTam);
+const capa = (p, cor = p.cores[0]) => cor.fotos[0];
+const porId = new Map();
+
+/* ---------- carga ---------- */
+async function carregar() {
+  let dados;
+  try {
+    const r = await fetch('produtos.json', { cache: 'no-cache' });
+    dados = await r.json();
+  } catch { dados = { config: {}, produtos: [] }; }
+  CFG = dados.config || {};
+  PECAS = (dados.produtos || []).filter(p => p && p.cores && p.cores.length && p.cores[0].fotos && p.cores[0].fotos.length)
+    .sort((a, b) => String(b.criado || '').localeCompare(String(a.criado || '')) || String(b.id).localeCompare(String(a.id)));
+  PECAS.forEach(p => porId.set(String(p.id), p));
+  configurar();
+  montarFiltros();
+  desenhar();
+  atualizarSacola();
+}
+
+function configurar() {
+  const fmt = v => BRL(Number(v)).replace(',00', '');
+  const avisos = [];
+  if (CFG.freteGratisAcima) avisos.push(`Entrega grátis acima de ${fmt(CFG.freteGratisAcima)}`);
+  if (CFG.brinde) avisos.push(`Compras acima de ${fmt(CFG.brinde.acima)} ganham ${CFG.brinde.texto}`);
+  const aviso = $('#aviso');
+  if (avisos.length) { aviso.replaceChildren(...avisos.map(a => el('span', { text: a }))); aviso.hidden = false; }
+  document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30));
+  document.querySelectorAll('.parcelas-valor, #parcelas').forEach(n => n.textContent = CFG.parcelasCartao || 12);
+  if (CFG.whatsapp) $('#l-whats').href = 'https://wa.me/' + CFG.whatsapp;
+  if (CFG.instagram) $('#l-insta').href = 'https://www.instagram.com/' + CFG.instagram + '/';
+  if (CFG.tiktok) $('#l-tiktok').href = 'https://www.tiktok.com/@' + CFG.tiktok;
+}
+
+/* ---------- filtros ---------- */
+function chip(rotulo, ativo, aoClicar) {
+  return el('button', { class: 'chip', type: 'button', 'aria-pressed': String(ativo), onclick: aoClicar, text: rotulo });
+}
+function montarFiltros() {
+  const grupo = (id, valores, chave, rotular = v => v) => {
+    const box = $(id);
+    box.replaceChildren();
+    if (valores.length < 2) { box.hidden = true; return; }
+    box.hidden = false;
+    box.append(chip('Todos', !filtro[chave], () => { filtro[chave] = ''; montarFiltros(); desenhar(); }),
+      ...valores.map(v => chip(rotular(v), filtro[chave] === v, () => { filtro[chave] = filtro[chave] === v ? '' : v; montarFiltros(); desenhar(); })));
+  };
+  const tams = [...new Set(PECAS.flatMap(todosTamanhos))].sort(comparaTam);
+  grupo('#f-tam', tams, 'tam', t => 'Tam. ' + capitaliza(t));
+  grupo('#f-cat', [...new Set(PECAS.map(p => p.categoria).filter(Boolean))], 'cat');
+  grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g);
+  $('#limpar').hidden = !Object.values(filtro).some(Boolean);
+}
+$('#limpar').addEventListener('click', () => { Object.keys(filtro).forEach(k => filtro[k] = ''); $('#busca').value = ''; montarFiltros(); desenhar(); });
+$('#busca').addEventListener('input', e => { filtro.busca = e.target.value; $('#limpar').hidden = !Object.values(filtro).some(Boolean); desenhar(); });
+
+/* ---------- cartão da peça ---------- */
+function cartao(p, { selo = false } = {}) {
+  const foto = el('img', { src: capa(p), alt: p.nome, width: 720, height: 960, loading: 'lazy', decoding: 'async' });
+  const abrir = el('button', { class: 'peca-foto', type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p) },
+    foto, selo ? el('span', { class: 'selo-novo', text: 'NOVO' }) : null, el('span', { class: 'etiqueta', text: BRL(p.preco) }));
+  const cores = p.cores.length > 1 ? el('div', { class: 'cores', role: 'group', 'aria-label': 'Cores de ' + p.nome },
+    p.cores.map((c, i) => el('button', {
+      class: 'cor', type: 'button', style: '--c:' + (c.hex || '#ccc'), 'aria-label': c.nome, title: c.nome, 'aria-pressed': String(i === 0),
+      onclick: ev => { foto.src = capa(p, c); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
+    }))) : null;
+  const tams = tamanhosDaPeca(p);
+  return el('article', { class: 'peca' }, abrir, cores,
+    el('h3', { class: 'peca-nome', text: p.nome }),
+    el('p', { class: 'peca-meta', text: [p.codigo ? 'cod. ' + p.codigo.toLowerCase() : '', tams.length ? 'tam. ' + tams.map(capitaliza).join(' · ') : 'esgotado'].filter(Boolean).join(' · ') }),
+    p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null);
+}
+
+function filtrar() {
+  const b = norm(filtro.busca.trim());
+  return PECAS.filter(p => (!filtro.tam || todosTamanhos(p).includes(filtro.tam)) && (!filtro.cat || p.categoria === filtro.cat) &&
+    (!filtro.gen || p.genero === filtro.gen) && (!b || norm(p.nome + ' ' + (p.codigo || '') + ' ' + p.cores.map(c => c.nome).join(' ')).includes(b)));
+}
+
+function desenhar() {
+  const lista = filtrar();
+  $('#filtros').hidden = !PECAS.length;
+  const filtrando = Object.values(filtro).some(Boolean);
+  $('#grade').replaceChildren(...lista.map(p => cartao(p)));
+  $('#contagem').textContent = PECAS.length ? `${lista.length} ${lista.length === 1 ? 'peça' : 'peças'}` : '';
+  const novos = PECAS.slice(0, 8);
+  $('#novidades').hidden = filtrando || PECAS.length < 3;
+  $('#trilho').replaceChildren(...novos.map((p, i) => cartao(p, { selo: i < 3 })));
+  const vazio = $('#vazio');
+  vazio.hidden = lista.length > 0;
+  if (!lista.length) {
+    const zero = !PECAS.length;
+    $('#vazio-titulo').textContent = zero ? 'Novidades chegando' : 'Nada por aqui ainda';
+    $('#vazio-texto').textContent = zero ? 'Estamos preparando as primeiras peças. Acompanhe os lançamentos no Instagram ou peça pelo WhatsApp.' : 'Nenhuma peça combina com esses filtros. Que tal tirar um deles?';
+    const acao = $('#vazio-acao');
+    acao.textContent = zero ? 'Ver no Instagram' : 'Limpar filtros';
+    acao.href = zero ? 'https://www.instagram.com/' + (CFG.instagram || '') + '/' : '#';
+    acao.onclick = zero ? null : e => { e.preventDefault(); $('#limpar').click(); };
+  }
+}
+
+/* ---------- página da peça ---------- */
+const dlgPeca = $('#peca');
+let atual = null, corSel = null, tamSel = '', qtdSel = 1;
+
+function abrirPeca(p) {
+  atual = p; corSel = p.cores[0]; tamSel = ''; qtdSel = 1;
+  $('#peca-nome').textContent = p.nome;
+  $('#p-codigo').textContent = p.codigo ? 'cod. ' + p.codigo.toLowerCase() : '';
+  $('#p-preco').textContent = BRL(p.preco);
+  const promo = $('#p-promo');
+  promo.hidden = !p.promo;
+  if (p.promo) promo.textContent = `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` + (p.promo.grupo ? ' (pode misturar modelos da mesma linha)' : '');
+  $('#p-desc').textContent = p.descricao || '';
+  $('#p-ia').hidden = !p.ia;
+  $('#p-cores-bloco').hidden = p.cores.length < 2;
+  $('#p-erro').textContent = '';
+  $('#q-valor').textContent = 1;
+  desenharCor();
+  dlgPeca.showModal();
+  dlgPeca.scrollTop = 0;
+}
+
+function desenharCor() {
+  const c = corSel, p = atual;
+  $('#p-cor-nome').textContent = c.nome || '';
+  $('#p-cores').replaceChildren(...p.cores.map(x => el('button', {
+    class: 'cor', type: 'button', style: '--c:' + (x.hex || '#ccc'), title: x.nome, 'aria-label': x.nome, 'aria-pressed': String(x === c),
+    onclick: () => { corSel = x; if (!x.tamanhos.includes(tamSel) || (x.esgotados || []).includes(tamSel)) tamSel = ''; desenharCor(); }
+  })));
+  $('#p-tamanhos').replaceChildren(...[...c.tamanhos].sort(comparaTam).map(t => el('button', {
+    class: 'tam', type: 'button', 'aria-pressed': String(t === tamSel), disabled: (c.esgotados || []).includes(t),
+    title: (c.esgotados || []).includes(t) ? 'Esgotado' : null, text: capitaliza(t),
+    onclick: () => { tamSel = t; $('#p-erro').textContent = ''; desenharCor(); }
+  })));
+  desenharGaleria(0);
+}
+function desenharGaleria(i) {
+  const fotos = corSel.fotos;
+  const img = $('#g-foto');
+  img.src = fotos[i]; img.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '');
+  $('#g-mini').replaceChildren(...(fotos.length > 1 ? fotos.map((f, k) => el('button', { type: 'button', 'aria-pressed': String(k === i), 'aria-label': 'Foto ' + (k + 1), onclick: () => desenharGaleria(k) }, el('img', { src: f, alt: '', loading: 'lazy' }))) : []));
+}
+$('#q-menos').addEventListener('click', () => { qtdSel = Math.max(1, qtdSel - 1); $('#q-valor').textContent = qtdSel; });
+$('#q-mais').addEventListener('click', () => { qtdSel = Math.min(20, qtdSel + 1); $('#q-valor').textContent = qtdSel; });
+$('#p-add').addEventListener('click', () => {
+  if (!tamSel) { $('#p-erro').textContent = 'Escolha um tamanho para continuar.'; return; }
+  adicionar(atual, corSel, tamSel, qtdSel);
+  dlgPeca.close();
+  abrirSacola();
 });
-document.querySelectorAll('.sizes [data-size]').forEach(button=>button.addEventListener('click',()=>{
-  document.querySelector('#catalogo').scrollIntoView({behavior:'smooth'});
-}));
+$('#peca-fechar').addEventListener('click', () => dlgPeca.close());
+dlgPeca.addEventListener('click', e => { if (e.target === dlgPeca) dlgPeca.close(); });
 
+/* ---------- sacola ---------- */
+let sacola = [];
+try { sacola = JSON.parse(localStorage.getItem('mimo-sacola-v2') || '[]'); if (!Array.isArray(sacola)) sacola = []; } catch { sacola = []; }
+const salvar = () => { try { localStorage.setItem('mimo-sacola-v2', JSON.stringify(sacola)); } catch { /* sem armazenamento: segue em memória */ } };
 
+function adicionar(p, cor, tam, qtd) {
+  const ex = sacola.find(x => x.id === String(p.id) && x.cor === cor.nome && x.tam === tam);
+  if (ex) ex.qtd = Math.min(20, ex.qtd + qtd); else sacola.push({ id: String(p.id), cor: cor.nome, tam, qtd });
+  atualizarSacola();
+}
 
+function calcular() {
+  let subtotal = 0, desconto = 0;
+  const grupos = new Map();
+  sacola.forEach(x => {
+    const p = porId.get(x.id); if (!p) return;
+    subtotal += x.qtd * p.preco;
+    if (p.promo) { const k = p.promo.grupo || 'p' + p.id; const g = grupos.get(k) || { promo: p.promo, qtd: 0, valor: 0 }; g.qtd += x.qtd; g.valor += x.qtd * p.preco; grupos.set(k, g); }
+  });
+  grupos.forEach(g => { const unit = g.valor / g.qtd; const pago = Math.floor(g.qtd / g.promo.qtd) * g.promo.total + (g.qtd % g.promo.qtd) * unit; desconto += Math.max(0, g.valor - pago); });
+  return { subtotal, desconto, total: subtotal - desconto };
+}
 
+function atualizarSacola() {
+  sacola = sacola.filter(x => porId.has(x.id));
+  salvar();
+  const n = sacola.reduce((s, x) => s + x.qtd, 0);
+  $('#sacola-qtd').textContent = n;
+  $('#sacola-qtd').hidden = n === 0;
+  $('#sacola-btn').setAttribute('aria-label', `Abrir sacola, ${n} ${n === 1 ? 'item' : 'itens'}`);
+  $('#sacola-vazia').hidden = n > 0;
+  $('#sacola-itens').replaceChildren(...sacola.map((x, i) => {
+    const p = porId.get(x.id); const cor = p.cores.find(c => c.nome === x.cor) || p.cores[0];
+    const muda = d => () => { x.qtd = Math.min(20, Math.max(1, x.qtd + d)); atualizarSacola(); };
+    return el('div', { class: 'item' },
+      el('img', { src: capa(p, cor), alt: p.nome, loading: 'lazy' }),
+      el('div', {}, el('strong', { text: p.nome }), el('small', { text: [x.cor, 'tam. ' + capitaliza(x.tam), p.codigo ? 'cod. ' + p.codigo.toLowerCase() : ''].filter(Boolean).join(' · ') }),
+        el('div', { class: 'qtd' }, el('button', { type: 'button', 'aria-label': 'Diminuir', disabled: x.qtd <= 1, onclick: muda(-1), text: '−' }), el('output', { text: x.qtd }), el('button', { type: 'button', 'aria-label': 'Aumentar', disabled: x.qtd >= 20, onclick: muda(1), text: '+' }))),
+      el('div', { class: 'item-fim' }, el('strong', { text: BRL(x.qtd * p.preco) }), el('br'), el('button', { class: 'remover', type: 'button', 'aria-label': 'Remover ' + p.nome, onclick: () => { sacola.splice(i, 1); atualizarSacola(); }, text: 'Remover' })));
+  }));
+  const { desconto, total } = calcular();
+  $('#sacola-totais').hidden = n === 0;
+  $('#sacola-desconto').hidden = desconto <= 0;
+  $('#sacola-desconto').textContent = 'Promoção aplicada: −' + BRL(desconto);
+  $('#sacola-total').textContent = BRL(total);
+  const brinde = $('#sacola-brinde');
+  if (CFG.brinde && n) {
+    brinde.hidden = false;
+    brinde.textContent = total >= CFG.brinde.acima ? `Você ganhou ${CFG.brinde.texto}!` : `Faltam ${BRL(CFG.brinde.acima - total)} para ganhar ${CFG.brinde.texto}.`;
+  } else brinde.hidden = true;
+  $('#obs-rotulo').hidden = n === 0;
+  $('#pedido').hidden = n === 0;
+  $('#previa').hidden = true;
+}
 
+const dlgSacola = $('#sacola');
+function abrirSacola() { atualizarSacola(); dlgSacola.showModal(); }
+$('#sacola-btn').addEventListener('click', abrirSacola);
+$('#sacola-fechar').addEventListener('click', () => dlgSacola.close());
+dlgSacola.addEventListener('click', e => { if (e.target === dlgSacola) dlgSacola.close(); });
 
+function mensagem() {
+  const { desconto, total } = calcular();
+  const linhas = sacola.map(x => { const p = porId.get(x.id); return `• ${p.nome} (cod. ${(p.codigo || '').toLowerCase()})${x.cor ? ' | Cor: ' + x.cor : ''} | Tamanho: ${capitaliza(x.tam)} | Quantidade: ${x.qtd}`; });
+  let m = 'Olá, Mimo Kids Presentes! Já escolhi os meus mimos pelo site.\n\nPedido:\n' + linhas.join('\n');
+  if (desconto > 0) m += `\n\nPromoção aplicada: desconto de ${BRL(desconto)}.`;
+  m += `\nTotal: ${BRL(total)}`;
+  if (CFG.brinde && total >= CFG.brinde.acima) m += `\n\nPromoção: compras acima de ${BRL(CFG.brinde.acima).replace(',00', '')} ganham ${CFG.brinde.texto}.`;
+  const obs = $('#obs').value.trim();
+  if (obs) m += '\n\nObservações: ' + obs;
+  return m + '\n\nPor favor, me confirme a disponibilidade e o pagamento do meu pedido.';
+}
+$('#pedido').addEventListener('click', () => {
+  const texto = mensagem();
+  $('#pedido-texto').value = texto;
+  $('#previa').hidden = false;
+  const valido = /^55\d{10,11}$/.test(CFG.whatsapp || '');
+  $('#whats').hidden = !valido;
+  if (valido) $('#whats').href = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(texto);
+  $('#previa').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+$('#copiar').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('#pedido-texto').value); $('#previa-nota').textContent = 'Mensagem copiada.'; }
+  catch { $('#pedido-texto').select(); $('#previa-nota').textContent = 'Selecione e copie o texto acima.'; }
+});
 
-
-
-
-
+carregar();

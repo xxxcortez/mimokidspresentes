@@ -415,7 +415,7 @@ function mensagem() {
   if (CFG.brinde && total >= CFG.brinde.acima) m += `\n\nPromoção: compras acima de ${BRL(CFG.brinde.acima).replace(',00', '')} ganham ${CFG.brinde.texto}.`;
   const obs = $('#obs').value.trim();
   if (obs) m += '\n\nObservações: ' + obs;
-  return m + '\n\nPor favor, me confirme a disponibilidade e o pagamento do meu pedido.';
+  return m + '\n\nPor favor, confirme a disponibilidade, tamanho e valor do meu pedido.';
 }
 $('#pedido').addEventListener('click', () => {
   const texto = mensagem();

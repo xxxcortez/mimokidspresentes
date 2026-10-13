@@ -66,11 +66,12 @@ async function carregar() {
 function configurar() {
   const fmt = v => BRL(Number(v)).replace(',00', '');
   const avisos = [];
-  if (CFG.freteGratisAcima) avisos.push(`Entrega grátis acima de ${fmt(CFG.freteGratisAcima)}`);
+  if (CFG.freteGratisAcima) avisos.push(`Entrega grátis${CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : ''} acima de ${fmt(CFG.freteGratisAcima)}`);
   if (CFG.brinde) avisos.push(`Compras acima de ${fmt(CFG.brinde.acima)} ganham ${CFG.brinde.texto}`);
   const aviso = $('#aviso');
   if (avisos.length) { aviso.replaceChildren(...avisos.map(a => el('span', { text: a }))); aviso.hidden = false; }
   document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30));
+  document.querySelectorAll('.frete-cidade').forEach(n => n.textContent = CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : '');
   document.querySelectorAll('.parcelas-valor, #parcelas').forEach(n => n.textContent = CFG.parcelasCartao || 12);
   if (CFG.whatsapp) { $('#l-whats').href = 'https://wa.me/' + CFG.whatsapp; $('#l-whats-presente').href = 'https://wa.me/' + CFG.whatsapp; }
   if (CFG.instagram) $('#l-insta').href = 'https://www.instagram.com/' + CFG.instagram + '/';

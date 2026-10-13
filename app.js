@@ -314,4 +314,8 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
   new MutationObserver(() => document.querySelectorAll('.peca:not([data-obs]),.cat-quadro:not([data-obs]),.fato:not([data-obs])').forEach(n => { n.dataset.obs = '1'; io.observe(n); }))
     .observe(document.body, { childList: true, subtree: true });
 }
+/* botão flutuante de voltar ao topo: aparece depois de rolar */
+const vt = $('#voltar-topo');
+addEventListener('scroll', () => vt.classList.toggle('mostra', scrollY > 700), { passive: true });
+vt.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
 carregar();

@@ -342,3 +342,26 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .girafinha{bottom:14px}
 @media(min-width:1100px){.rodape-fim{padding-right:clamp(150px,13vw,200px)}}
 .rodape .rede{color:#fff}.nowrap{white-space:nowrap}
+
+/* ---- revisão 13/10 (2): sacola com arte, logo maior, rodapé sem nuvem/girafa, voltar ao topo flutuante ---- */
+.sacola-btn,.sacola-btn[class]{width:auto;height:52px;border-radius:999px;padding:0 18px 0 8px;display:flex;align-items:center;gap:8px;background:var(--rosa-bebe);box-shadow:0 6px 14px -8px rgba(51,38,74,.45);transition:transform .2s,background .2s}
+.sacola-btn:hover{background:#FFC6E2;transform:translateY(-2px)}
+.sacola-btn img{width:40px;height:40px;object-fit:contain;margin-top:-4px}
+.sacola-txt{font:600 17px/1 var(--display);color:var(--tinta);white-space:nowrap}
+.sacola-qtd,.sacola-qtd[class]{position:static;min-width:24px;height:24px;line-height:24px;border-radius:12px;font-size:13.5px}
+@media(max-width:899px){.sacola-txt{display:none}.sacola-btn,.sacola-btn[class]{padding:0 10px 0 6px;height:48px;gap:2px}.sacola-btn img{width:36px;height:36px}}
+@media(min-width:900px){.marca{height:150px}.topo{padding-top:14px}}
+@media(min-width:1200px){.topo::before,.topo::after{top:34px;width:220px;height:130px}.topo::before{right:calc(50% + 170px)}.topo::after{left:calc(50% + 170px)}}
+@media(max-width:420px){.marca{height:64px}}
+.girafinha{display:none}
+.rodape-logo-bloco{display:flex;align-items:center;gap:6px;margin:0 0 12px -6px}
+.rodape-logo{width:min(230px,58vw);height:auto;margin:0}
+.rodape-enfeite{width:110px;height:auto;margin-top:-30px}
+.rodape-fim{padding-right:0!important}
+.voltar-topo{position:fixed;right:clamp(14px,3vw,32px);bottom:clamp(14px,3vw,32px);z-index:40;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:0 10px 22px -8px rgba(51,38,74,.5);border:2px solid var(--rosa-bebe);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s}
+.voltar-topo.mostra{opacity:1;transform:none;pointer-events:auto}
+.voltar-topo:hover{background:var(--rosa-bebe)}
+.voltar-topo svg{width:24px;height:24px;fill:none;stroke:var(--rosa-texto);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:899px){.topo{gap:10px}.busca{padding:0 12px;gap:6px}.busca input{font-size:15px}.busca svg{width:17px;height:17px}}
+.rodape-enfeite{width:150px;margin:-56px 0 0 -14px}
+@media(max-width:420px){.rodape-enfeite{width:120px}}

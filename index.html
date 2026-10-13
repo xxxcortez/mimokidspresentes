@@ -21,10 +21,11 @@
   </a>
   <label class="busca">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-    <input id="busca" type="search" placeholder="Buscar peça" autocomplete="off" aria-label="Buscar peça">
+    <input id="busca" type="search" placeholder="Buscar Mimos" autocomplete="off" aria-label="Buscar Mimos">
   </label>
   <button class="sacola-btn" id="sacola-btn" type="button" aria-label="Abrir sacola">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+    <img src="assets/arte/ilus-comprar.webp" alt="" width="260" height="233" aria-hidden="true">
+    <span class="sacola-txt">Minha sacola</span>
     <span class="sacola-qtd" id="sacola-qtd">0</span>
   </button>
 </header>
@@ -88,10 +89,9 @@
 </main>
 
 <footer class="rodape">
-  <img class="bicho girafinha" src="assets/arte/girafinha.webp" alt="" width="420" height="452" aria-hidden="true">
   <div class="rodape-grade">
     <div class="rodape-marca">
-      <div class="logo-nuvem"><img src="assets/logo.png" alt="Mimo Kids Presentes" width="1000" height="565" class="rodape-logo"></div>
+      <div class="rodape-logo-bloco"><img src="assets/logo.png" alt="Mimo Kids Presentes" width="1000" height="565" class="rodape-logo"><img class="rodape-enfeite" src="assets/arte/enfeite-logo.webp" alt="" width="420" height="249" aria-hidden="true"></div>
       <p>Moda bebê e infantil, do RN ao tamanho 4, e presentes que viram memória.</p>
       <p class="cidade">Aparecida do Taboado-MS</p>
       <ul class="redes" aria-label="Redes sociais">
@@ -131,7 +131,6 @@
   <div class="rodape-fim">
     <p>© 2026 Mimo Kids Presentes. Pedidos confirmados pelo WhatsApp; não há pagamento pelo site.</p>
     <p>Fotos marcadas com “IA” usam modelos criados por inteligência artificial.</p>
-    <a class="topo-link" href="#">Voltar ao topo</a>
   </div>
 </footer>
 
@@ -197,6 +196,8 @@
     </div>
   </div>
 </dialog>
+
+<a class="voltar-topo" id="voltar-topo" href="#" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></a>
 
 <script src="app.js"></script>
 </body>

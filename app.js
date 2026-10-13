@@ -101,7 +101,6 @@ function configurar() {
   const fmt = v => BRL(Number(v)).replace(',00', '');
   const avisos = [];
   if (CFG.freteGratisAcima) avisos.push(`Entrega grátis${CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : ''} acima de ${fmt(CFG.freteGratisAcima)} reais`);
-  if (CFG.brinde) avisos.push(`Compras acima de ${fmt(CFG.brinde.acima)} ganham ${CFG.brinde.texto}`);
   const aviso = $('#aviso');
   if (avisos.length) { aviso.replaceChildren(...avisos.map(a => el('span', { text: a }))); aviso.hidden = false; }
   document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30) + ' reais');
@@ -321,11 +320,6 @@ function atualizarSacola() {
   $('#sacola-desconto').hidden = desconto <= 0;
   $('#sacola-desconto').textContent = 'Promoção aplicada: −' + BRL(desconto);
   $('#sacola-total').textContent = BRL(total);
-  const brinde = $('#sacola-brinde');
-  if (CFG.brinde && n) {
-    brinde.hidden = false;
-    brinde.textContent = total >= CFG.brinde.acima ? `Você ganhou ${CFG.brinde.texto}!` : `Faltam ${BRL(CFG.brinde.acima - total)} para ganhar ${CFG.brinde.texto}.`;
-  } else brinde.hidden = true;
   $('#obs-rotulo').hidden = n === 0;
   $('#pedido').hidden = n === 0;
   $('#previa').hidden = true;
@@ -343,7 +337,6 @@ function mensagem() {
   let m = 'Olá, Mimo Kids Presentes! Já escolhi os meus mimos pelo site.\n\nPedido:\n' + linhas.join('\n');
   if (desconto > 0) m += `\n\nPromoção aplicada: desconto de ${BRL(desconto)}.`;
   m += `\nTotal: ${BRL(total)}`;
-  if (CFG.brinde && total >= CFG.brinde.acima) m += `\n\nPromoção: compras acima de ${BRL(CFG.brinde.acima).replace(',00', '')} ganham ${CFG.brinde.texto}.`;
   const obs = $('#obs').value.trim();
   if (obs) m += '\n\nObservações: ' + obs;
   return m + '\n\nPor favor, confirme a disponibilidade, tamanho e valor do meu pedido.';

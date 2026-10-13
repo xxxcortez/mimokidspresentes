@@ -242,7 +242,7 @@ Pastéis de bebê em grandes áreas e nos botões em repouso, rosa da marca fort
 - **Button** (600, 20px): botões de ação; 18px no celular. "Minha sacola" no botão do cabeçalho: 600, 17px, Tinta Ameixa.
 - **Label** (500, 16–18px): menu, filtros, tamanhos, rótulos de bloco, nome da peça no cartão (19px), placeholder "Buscar Mimos".
 - **Body** (400, 16px/1.55 Ubuntu): texto corrido; descrição limitada a 62ch.
-- **Note** (400, 13.5–14.5px Ubuntu, Tinta Suave): aviso de IA, condições de entrega e pagamento, rodapé final.
+- **Note** (400, 13.5–14.5px Ubuntu, Tinta Suave): condições de entrega e pagamento, rodapé final.
 
 ### Named Rules
 **The Round Voice Rule.** Tudo o que se clica ou se escaneia (título, botão, controle, menu, preço) fala em Fredoka; tudo o que se lê com calma fala em Ubuntu. Sem caixa-alta forçada e sem tracking aberto.
@@ -260,7 +260,7 @@ Coluna única de vitrine, centralizada, com margens laterais fluidas (`lado`). C
 - **Grade de peças:** 2 colunas no celular, 3 a partir de 720px, 4 a partir de 1100px; uma peça sozinha fica centrada em até 320px.
 - **Diálogo da peça:** tela cheia no celular; a partir de 900px, cartão de até 1000px em duas colunas (galeria 1.05fr sobre o cenário azul, informação 1fr). A barra de ação fica presa ao pé no celular.
 - **Sacola:** gaveta lateral à direita, até 440px.
-- **Rodapé:** céu de papel com as nuvens, em grade de 1 coluna, 2 a partir de 760px e 4 a partir de 1100px (marca, Como comprar, Pagamento e entrega, Fale com a gente), até 1300px; linha final com direitos, aviso de IA e o botão "Voltar ao topo" em pílula.
+- **Rodapé:** céu de papel com as nuvens, em grade de 1 coluna, 2 a partir de 760px e 4 a partir de 1100px (marca, Como comprar, Pagamento e entrega, Fale com a gente), até 1300px; abaixo das colunas vêm a faixa de selos, as duas pílulas de política e a linha final com o ©; o botão "Voltar ao topo" é uma pílula flutuante.
 - **Voltar ao topo flutuante:** botão redondo fixo no canto inferior direito, só aparece depois de 700px de rolagem.
 - **Divisor ilustrado** (fileira de nuvenzinhas e lua, até 460px) separa os blocos do meio da página.
 
@@ -330,8 +330,17 @@ Três círculos de 44px com o glifo oficial em branco sobre a cor da marca (What
 ### Rodapé: marca
 Logo oficial (até 230px) com o enfeite de papel (nuvens, lua, balão) ao lado e levemente acima, sem nuvem por trás, sobre o céu de papel de `rodape.webp`. Abaixo: frase da loja e cidade.
 
-### Aviso de foto com IA
-Pílula branca translúcida (94%) no canto inferior esquerdo da foto, "Foto ilustrativa (IA)" em Ubuntu 12.5px; no diálogo vira nota completa. Obrigatória sempre que a foto estiver marcada como IA.
+### Faixa de selos (rodapé)
+Quatro painéis em creme a 82% com borda branca de 2px e sombra "Papel assentado" (canto 20px), em grade que se ajusta à largura: **Site seguro** (cadeado), **Sem pagamento no site** (escudo com visto), **Pix ou cartão** (cartãozinho com moeda) e **Atendimento direto** (balão de conversa). Cada um tem a sua peça de papel (`ic-seguro`, `ic-escudo`, `ic-pix-cartao`, `ic-atendimento`, 46px; 42px no celular) com sombra suave, título em Fredoka e frase em Ubuntu. **Só selos verdadeiros**; nunca selos de terceiros (Reclame Aqui, Ebit, Google) sem cadastro real.
+
+### Pílulas de política e ©
+`Trocas e devoluções` e `Política de privacidade` são pílulas de papel (mesma receita dos selos, 999px) com peça de papel de 34px à esquerda (`ic-trocas`, `ic-privacidade`), centralizadas sob os selos; o `© 2026 Mimo Kids Presentes.` leva o coraçãozinho de papel `ic-coracao` (28px). As mesmas pílulas e o © repetem-se no pé das páginas `trocas-e-devolucoes.html` e `privacidade.html`.
+
+### Páginas de política
+Cartão creme de até 780px (canto 32px) sobre o céu de papel, logo à esquerda e botão "Voltar para a loja" no topo. A ilustração da página (`ic-trocas` ou `ic-privacidade`, até 104px, girada 6°) fica pendurada na quina superior direita do cartão e o título reserva espaço para ela.
+
+### Ícones das listas do rodapé
+Cartão de crédito (`ic-pix-cartao`), cartões aceitos (`ic-cartao`), entrega (`ic-van`) e e-mail (`ic-email`) usam peças de papel de 34px com saturação levemente reforçada. Pix e as redes sociais mantêm o glifo oficial (marca de terceiro). As bandeiras (Visa, Mastercard, Elo, American Express) seguem como glifos oficiais.
 
 ### Bichinhos e artes de apoio
 Elefantinho e balões ao lado de "Nossas peças" (flutuando devagar, 7–8s), coelhinho sobre a faixa de presente, ursinho no estado vazio, ovelhinha na sacola vazia. São decorativos (`aria-hidden`, sem clique) e encolhem ou somem no celular estreito.
@@ -345,7 +354,7 @@ Elefantinho e balões ao lado de "Nossas peças" (flutuando devagar, 7–8s), co
 - **Do** fazer todo novo controle clicável como botão de papel pastel com costura tracejada, e só o selecionado em papel rosa forte.
 - **Do** manter o anel de foco de 3px em Tinta Ameixa, afastado 2 a 3px, em todo elemento interativo (vence a costura).
 - **Do** usar a curva `cubic-bezier(.2,.8,.2,1)` para movimentos de papel e desligar animações com movimento reduzido.
-- **Do** desenhar ícones de interface sem arte própria como SVG de traço (1.7–2.2px, pontas redondas) em Tinta Ameixa ou Rosa Carimbo, e usar glifos oficiais nas cores originais para marcas de terceiros.
+- **Do** dar a todo painel, selo ou link de rodapé uma peça de papel própria (mesma família `ic-*`), para o site inteiro ficar homogêneo; usar SVG de traço só onde não há arte (ex.: seta de voltar ao topo) e desenhar esses ícones como SVG de traço (1.7–2.2px, pontas redondas) em Tinta Ameixa ou Rosa Carimbo, e usar glifos oficiais nas cores originais para marcas de terceiros.
 - **Do** manter o frete grátis como regra do catálogo (`freteGratisAcima`, `freteGratisCidade`), só na cidade configurada, sem brinde.
 
 ### Don't:

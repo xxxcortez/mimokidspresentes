@@ -27,5 +27,11 @@ Rosa do logo `#E80088` (botão de papel `#D6007E`, texto `#BC006A`), pastéis de
 Cartão da peça: moldura colorida pelo gênero, preço abaixo do nome. Botões clicáveis são papel pastel com costura tracejada; selecionado = papel rosa. Frete grátis só em Aparecida do Taboado-MS; sem brinde.
 Sistema completo: `DESIGN.md`. Sem peças cadastradas, aparece "Novidades chegando".
 
+## Páginas e confiança (13/10/2026)
+- `trocas-e-devolucoes.html` e `privacidade.html` (mesmo estilo; link no rodapé). Trocas: defeito de fabricação (combinado pelo WhatsApp) + **direito de arrependimento de 7 dias (CDC art. 49)**, obrigatório em venda à distância (o dono falou só de defeito; eu acrescentei o arrependimento por exigência legal; revisar com contador/advogado se quiser).
+  Privacidade (LGPD): o site não coleta nada, sem cookies/rastreadores, só contata o próprio domínio (conferido); hospedagem no GitHub Pages (pode registrar IP). Sem CNPJ nas páginas (o dono não passou).
+- Rodapé: só "© 2026 Mimo Kids Presentes." + links das políticas + faixa de confiança (HTTPS válido, sem pagamento no site, Pix ou cartão, WhatsApp) + bandeiras **Visa, Mastercard, Elo, American Express** (Stone; Hipercard só aparece num artigo da Stone, ficou de fora até confirmar).
+  **Não usar selos de terceiros** (Reclame Aqui, Ebit, Google Safe Browsing, Norton...) sem cadastro real: seria propaganda enganosa.
+
 ## Testar
 `python3 -m http.server 8843` na raiz. Conferir em 1440 px e 390 px. Depois de publicar (`git push origin main`), o Pages leva ~1-2 min.

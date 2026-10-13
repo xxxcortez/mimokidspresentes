@@ -437,3 +437,35 @@ dialog#sacola .fechar{right:14px;top:16px}
 .selo-ic svg.zap{fill:#25D366}
 .rodape-fim{margin-top:22px!important;justify-content:center;text-align:center}
 .rodape-fim p{font-size:14.5px}
+
+/* ---- bandeiras de cartão e links do rodapé ---- */
+.bandeiras{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.bandeira{display:grid;place-items:center;height:30px;min-width:52px;padding:0 10px;background:#fff;border:1px solid var(--linha);border-radius:8px;box-shadow:0 2px 6px -3px rgba(51,38,74,.35)}
+.bandeira svg{height:16px;width:auto;max-width:44px}
+.bandeira .elo{font:700 17px/1 var(--display);letter-spacing:-.02em;color:#111}
+.lista-ic .bandeiras-item{grid-template-columns:30px 1fr}
+.rodape-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;max-width:1300px;margin:22px auto 0;position:relative;z-index:2}
+.rodape-links a{font:500 16px var(--display);color:var(--tinta);text-underline-offset:4px}
+.rodape-links a:hover{color:var(--rosa-texto)}
+.rodape-fim{margin-top:14px!important}
+
+/* ---- páginas de texto (trocas, privacidade) ---- */
+.pagina-doc{min-height:100vh;background:var(--ceu) url(assets/arte/hero-celular.webp) center/cover no-repeat}
+.doc-topo{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px var(--lado)}
+.doc-topo .marca{height:74px}
+.doc{padding:10px var(--lado) 40px}
+.doc-cartao{max-width:780px;margin:0 auto;background:rgba(255,253,248,.95);border-radius:32px;padding:clamp(24px,5vw,48px);box-shadow:var(--sombra)}
+.doc-cartao h1{margin:0 0 4px;font:600 clamp(32px,5vw,46px)/1.05 var(--display)}
+.doc-data{margin:0 0 20px;font-size:14px;color:var(--tinta-suave)}
+.doc-cartao h2{margin:28px 0 8px;font:600 clamp(22px,3vw,27px)/1.15 var(--display)}
+.doc-cartao p,.doc-cartao li{max-width:68ch}
+.doc-cartao ol,.doc-cartao ul{padding-left:22px}
+.doc-cartao li{margin:5px 0}
+.doc-cartao a{color:var(--rosa-texto);font-weight:500}
+.doc-rodape{text-align:center;padding:10px var(--lado) 34px;font-size:14px}
+.doc-rodape .rodape-links{margin:0 auto 8px}
+@media(max-width:520px){.doc-topo .botao{padding:10px 16px;font-size:16px}.doc-topo .marca{height:60px}}
+.bandeira{height:38px;min-width:62px}
+.bandeira svg{height:26px;width:40px;max-width:none}
+.bandeira .elo{font-size:21px}
+.doc-cartao p,.doc-cartao li{max-width:none}

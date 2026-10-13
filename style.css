@@ -511,3 +511,8 @@ dialog#sacola .fechar{right:14px;top:16px}
 .rodape-marca .frase{margin:0;max-width:none;font-family:"Ubuntu Site",system-ui,sans-serif;font-size:16px;line-height:1.4;font-weight:400;color:var(--tinta-suave)}
 .rodape-marca .frase strong{display:block;font:600 23px/1.15 var(--display);color:var(--rosa-texto);margin-bottom:3px}
 .sobre-loja .cidade{background:var(--rosa-bebe);border:0;box-shadow:none;padding:5px 14px 5px 8px;font-size:15px}
+
+/* ---- cidade numa placa de papel pendurada (arte própria, sem pílula rosa) ---- */
+.sobre-loja .cidade{position:relative;width:260px;aspect-ratio:var(--placa,700/ 450);background:url(assets/arte/placa-cidade.webp) center/100% 100% no-repeat;border:0;border-radius:0;box-shadow:none;padding:0 0 0 14%;display:flex;align-items:center;justify-content:center;align-self:center;filter:drop-shadow(0 6px 8px rgba(51,38,74,.16));margin:-4px 0 -2px}
+.sobre-loja .cidade span{display:block;padding-top:22%;text-align:center;font:600 18px/1.15 var(--display);color:var(--tinta);max-width:11ch}
+.sobre-loja .cidade img{display:none}

@@ -72,7 +72,7 @@ function configurar() {
   if (avisos.length) { aviso.replaceChildren(...avisos.map(a => el('span', { text: a }))); aviso.hidden = false; }
   document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30));
   document.querySelectorAll('.parcelas-valor, #parcelas').forEach(n => n.textContent = CFG.parcelasCartao || 12);
-  if (CFG.whatsapp) $('#l-whats').href = 'https://wa.me/' + CFG.whatsapp;
+  if (CFG.whatsapp) { $('#l-whats').href = 'https://wa.me/' + CFG.whatsapp; $('#l-whats-presente').href = 'https://wa.me/' + CFG.whatsapp; }
   if (CFG.instagram) $('#l-insta').href = 'https://www.instagram.com/' + CFG.instagram + '/';
   if (CFG.tiktok) $('#l-tiktok').href = 'https://www.tiktok.com/@' + CFG.tiktok;
 }
@@ -133,7 +133,7 @@ function desenharVitrine() {
   }) : []));
   const ovos = $('#ovos');
   if (!ovos.childElementCount) ovos.replaceChildren(...PECAS.slice(0, 2).map((p, i) =>
-    el('div', { class: 'ovo ovo' + (i + 1) }, el('img', { src: capa(p), alt: '', width: 720, height: 960 }))));
+    el('div', { class: 'foto-topo ft' + (i + 1) }, el('img', { src: capa(p), alt: '', width: 720, height: 960 }))));
 }
 function irParaCategoria(c) {
   filtro.cat = c; montarFiltros(); desenhar();
@@ -304,4 +304,11 @@ $('#copiar').addEventListener('click', async () => {
   catch { $('#pedido-texto').select(); $('#previa-nota').textContent = 'Selecione e copie o texto acima.'; }
 });
 
+/* entrada suave dos cartões ao rolar (conteúdo visível por padrão; só anima se o navegador permitir) */
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.classList.add('anima');
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  new MutationObserver(() => document.querySelectorAll('.peca:not([data-obs]),.cat-quadro:not([data-obs]),.fato:not([data-obs])').forEach(n => { n.dataset.obs = '1'; io.observe(n); }))
+    .observe(document.body, { childList: true, subtree: true });
+}
 carregar();

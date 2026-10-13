@@ -128,9 +128,8 @@ function configurar() {
   const pres = $('#l-whats-presente');
   pres.href = zap('Olá, Mimo Kids Presentes! Quero ajuda para escolher um presente.');
   if (pres.href !== location.href + '#') { pres.target = '_blank'; pres.rel = 'noopener noreferrer'; }
-  const live = $('#fato-live');
-  live.hidden = !CFG.proximaLive;
-  if (CFG.proximaLive) $('#live-texto').textContent = CFG.proximaLive;
+  /* as lives não têm dia fixo (são avisadas antes no Instagram); se a loja informar uma data, ela vira "Próxima live" */
+  if (CFG.proximaLive) { $('#live-titulo').textContent = 'Próxima live'; $('#live-texto').textContent = CFG.proximaLive; }
   if (CFG.instagram) $('#l-insta').href = 'https://www.instagram.com/' + CFG.instagram + '/';
   if (CFG.tiktok) $('#l-tiktok').href = 'https://www.tiktok.com/@' + CFG.tiktok;
 }
@@ -161,7 +160,7 @@ function montarFiltros() {
   const tams = [...new Set(PECAS.flatMap(tamanhosDaPeca))].sort(comparaTam);
   grupo('#f-tam', tams, 'tam', t => 'Tam. ' + capitaliza(t), 'Tamanho');
   grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g, 'Para', g => ({ ic: ICONE_GEN[g], tom: TOM_GEN[g] || 'azul' }), { ic: 'tudo', tom: 'sol' });
-  const lim = Number(CFG.precoAte) || 50;
+  const lim = Number(CFG.precoAte) || 100;
   const boxP = $('#f-preco');
   boxP.replaceChildren();
   boxP.hidden = !(PECAS.some(p => p.preco <= lim) && PECAS.some(p => p.preco > lim));

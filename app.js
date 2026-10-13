@@ -257,9 +257,7 @@ function desenharCor() {
   $('#tam-dica').textContent = dicas.length ? 'Tamanhos por idade: ' + dicas.join(' · ') : '';
   desenharGaleria(0);
 }
-let galIdx = 0;
 function desenharGaleria(i) {
-  galIdx = i;
   const fotos = corSel.fotos;
   const img = $('#g-foto');
   img.src = fotos[i]; img.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '');
@@ -275,73 +273,6 @@ $('#p-add').addEventListener('click', () => {
 });
 $('#peca-fechar').addEventListener('click', () => dlgPeca.close());
 dlgPeca.addEventListener('click', e => { if (e.target === dlgPeca) dlgPeca.close(); });
-
-/* ---------- zoom da foto (tela cheia, ampliar, arrastar, trocar de foto) ---------- */
-const dlgZoom = $('#zoom'), zImg = $('#zoom-img'), zPalco = $('#zoom-palco');
-let zFotos = [], zIdx = 0, zEsc = 1, zx = 0, zy = 0;
-const ZMAX = 4;
-function zAplicar() {
-  const w = zPalco.clientWidth, h = zPalco.clientHeight, fw = zImg.clientWidth, fh = zImg.clientHeight;
-  const mx = Math.max(0, (fw * zEsc - w) / 2), my = Math.max(0, (fh * zEsc - h) / 2);
-  zx = Math.min(mx, Math.max(-mx, zx)); zy = Math.min(my, Math.max(-my, zy));
-  zImg.style.transform = `translate(${zx}px, ${zy}px) scale(${zEsc})`;
-  zPalco.classList.toggle('ampliado', zEsc > 1.01);
-  $('#zoom-nivel').textContent = Math.round(zEsc * 100) + '%';
-  $('#zoom-menos').disabled = zEsc <= 1.01; $('#zoom-mais').disabled = zEsc >= ZMAX - 0.01;
-}
-function zZoom(novo, cx = 0, cy = 0) {
-  novo = Math.min(ZMAX, Math.max(1, novo));
-  zx = cx - (cx - zx) * (novo / zEsc); zy = cy - (cy - zy) * (novo / zEsc);
-  zEsc = novo; if (zEsc <= 1.01) { zEsc = 1; zx = zy = 0; }
-  zAplicar();
-}
-function zMostrar(i) {
-  zIdx = (i + zFotos.length) % zFotos.length; zEsc = 1; zx = zy = 0;
-  zImg.src = zFotos[zIdx]; zImg.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '') + ', foto ' + (zIdx + 1);
-  $('#zoom-leg').textContent = zFotos.length > 1 ? `${zIdx + 1} de ${zFotos.length}` : '';
-  $('#zoom-ant').hidden = $('#zoom-prox').hidden = zFotos.length < 2;
-  zAplicar();
-}
-function abrirZoom() {
-  zFotos = corSel.fotos; if (!zFotos.length) return;
-  dlgZoom.showModal(); zMostrar(galIdx);
-}
-$('#g-principal').addEventListener('click', abrirZoom);
-$('#zoom-fechar').addEventListener('click', () => dlgZoom.close());
-dlgZoom.addEventListener('close', () => { if (atual && dlgPeca.open) desenharGaleria(zIdx); });
-$('#zoom-ant').addEventListener('click', () => zMostrar(zIdx - 1));
-$('#zoom-prox').addEventListener('click', () => zMostrar(zIdx + 1));
-$('#zoom-mais').addEventListener('click', () => zZoom(zEsc * 1.5));
-$('#zoom-menos').addEventListener('click', () => zZoom(zEsc / 1.5));
-dlgZoom.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') zMostrar(zIdx - 1); else if (e.key === 'ArrowRight') zMostrar(zIdx + 1);
-  else if (e.key === '+' || e.key === '=') zZoom(zEsc * 1.5); else if (e.key === '-') zZoom(zEsc / 1.5);
-});
-const ptrs = new Map(); let arrasto = null, dist0 = 0, esc0 = 1;
-const centro = ev => { const r = zPalco.getBoundingClientRect(); return [ev.clientX - r.left - r.width / 2, ev.clientY - r.top - r.height / 2]; };
-zPalco.addEventListener('pointerdown', e => {
-  zPalco.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, e);
-  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; dist0 = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); esc0 = zEsc; arrasto = null; }
-  else arrasto = { x: e.clientX, y: e.clientY, zx, zy, mexeu: false };
-});
-zPalco.addEventListener('pointermove', e => {
-  if (!ptrs.has(e.pointerId)) return; ptrs.set(e.pointerId, e);
-  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; zZoom(esc0 * Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) / dist0); return; }
-  if (!arrasto) return;
-  const dx = e.clientX - arrasto.x, dy = e.clientY - arrasto.y;
-  if (Math.hypot(dx, dy) > 6) arrasto.mexeu = true;
-  if (zEsc > 1.01) { zx = arrasto.zx + dx; zy = arrasto.zy + dy; zAplicar(); }
-});
-zPalco.addEventListener('pointerup', e => {
-  const era = arrasto; ptrs.delete(e.pointerId); if (ptrs.size) return; arrasto = null;
-  if (!era) return;
-  const dx = e.clientX - era.x;
-  if (zEsc <= 1.01 && Math.abs(dx) > 60 && zFotos.length > 1) { zMostrar(zIdx + (dx < 0 ? 1 : -1)); return; }   // deslizar troca de foto
-  if (!era.mexeu) { const [cx, cy] = centro(e); zZoom(zEsc > 1.01 ? 1 : 2.5, cx, cy); }                             // toque alterna 100% / 250%
-});
-zPalco.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); arrasto = null; });
-zPalco.addEventListener('wheel', e => { e.preventDefault(); const [cx, cy] = centro(e); zZoom(zEsc * (e.deltaY < 0 ? 1.2 : 1 / 1.2), cx, cy); }, { passive: false });
-addEventListener('resize', () => { if (dlgZoom.open) zAplicar(); });
 
 /* ---------- sacola ---------- */
 let sacola = [];

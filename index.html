@@ -150,7 +150,7 @@
   <button class="fechar" id="peca-fechar" type="button" aria-label="Fechar"><img src="assets/arte/ic-fechar.webp" alt="" width="96" height="96" aria-hidden="true"></button>
   <div class="peca-corpo">
     <div class="galeria">
-      <div class="galeria-principal" id="g-principal"><img id="g-foto" alt="" width="720" height="960"><button class="ampliar" id="ampliar" type="button" aria-label="Ampliar foto"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5M10.5 8v5M8 10.5h5"/></svg><span>Ampliar</span></button></div>
+      <div class="galeria-principal"><img id="g-foto" alt="" width="720" height="960"></div>
       <div class="galeria-mini" id="g-mini"></div>
     </div>
     <div class="peca-info">
@@ -207,19 +207,6 @@
       <p class="nota" id="previa-nota" role="status">O WhatsApp abre com a mensagem pronta para você revisar e enviar.</p>
     </div>
   </div>
-</dialog>
-
-<dialog id="zoom" aria-label="Foto ampliada">
-  <div class="zoom-palco" id="zoom-palco"><img id="zoom-img" alt="" draggable="false"></div>
-  <button class="zoom-btn zoom-fechar" id="zoom-fechar" type="button" aria-label="Fechar foto ampliada"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  <button class="zoom-btn zoom-ant" id="zoom-ant" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-  <button class="zoom-btn zoom-prox" id="zoom-prox" type="button" aria-label="Próxima foto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-  <div class="zoom-barra" role="group" aria-label="Zoom">
-    <button class="zoom-btn" id="zoom-menos" type="button" aria-label="Diminuir zoom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
-    <output id="zoom-nivel" aria-live="polite">100%</output>
-    <button class="zoom-btn" id="zoom-mais" type="button" aria-label="Aumentar zoom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button>
-  </div>
-  <p class="zoom-leg" id="zoom-leg"></p>
 </dialog>
 
 <a class="voltar-topo" id="voltar-topo" href="#" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></a>

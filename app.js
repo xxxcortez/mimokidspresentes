@@ -129,8 +129,8 @@ function desenharVitrine() {
   $('#categorias').hidden = !temCats;
   cg.replaceChildren(...(temCats ? cats.slice(0, 4).map((c, i) => {
     const p = PECAS.find(x => x.categoria === c);
-    return el('button', { type: 'button', class: 'cat-quadro', 'data-i': i % 4, onclick: () => irParaCategoria(c) },
-      el('img', { src: capa(p), alt: '', loading: 'lazy', width: 720, height: 960 }), el('span', { text: c }));
+    return el('button', { type: 'button', class: 'cat-quadro cq' + (i % 4), onclick: () => irParaCategoria(c) },
+      el('span', { class: 'cat-foto' }, el('img', { src: capa(p), alt: '', loading: 'lazy', width: 720, height: 960 })), el('span', { class: 'cat-nome', text: c }));
   }) : []));
   const ovos = $('#ovos');
   if (!ovos.childElementCount) ovos.replaceChildren(...PECAS.slice(0, 2).map((p, i) =>

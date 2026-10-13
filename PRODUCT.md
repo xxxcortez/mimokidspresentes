@@ -26,7 +26,7 @@ Preço acessível (peças a partir de R$ 35, promoções por quantidade como "3 
 
 - O pedido é sempre confirmado pelo WhatsApp (+55 67 98154-2208); não há checkout nem pagamento no site.
 - Pagamento: Pix com o preço do site; cartão de crédito em até 12x com juros por conta do cliente.
-- Entrega grátis acima de R$ 30; brinde (1 par de meias malucas) em compras acima de R$ 199. Prazo de entrega é combinado no WhatsApp.
+- Entrega grátis acima de R$ 30 somente em Aparecida do Taboado-MS (outras cidades: frete combinado no WhatsApp). Não há mais brinde (as meias malucas acabaram em 13/10/2026). Prazo de entrega é combinado no WhatsApp.
 - Fotos das peças são geradas pelo pipeline da loja: foto de cabide (padrão) e, às vezes, foto com criança fictícia criada por IA, sempre com aviso.
 - Redes: Instagram e TikTok @mimokidspresentes (lives com horários avisados nos Stories).
 

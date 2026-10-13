@@ -13,7 +13,7 @@
   --ceu:#CDEEF4; --rosa-bebe:#FFD6EA; --sol:#FFEDA8; --lilas:#E4DBFF;
   --fundo:#FFFDF8; --papel:#FFFFFF; --tinta:#33264A; --tinta-suave:#5E5275; --linha:#E8DFEF; --linha-suave:#F3EDF7;
   --display:"Fredoka Site","Arial Rounded MT Bold",system-ui,sans-serif; --texto:"Ubuntu Site",system-ui,sans-serif;
-  --lado:clamp(16px,4.5vw,56px); --topo-h:78px;
+  --lado:clamp(16px,4.5vw,56px); --topo-h:92px;
   --sombra:0 2px 4px rgba(51,38,74,.08),0 14px 26px -14px rgba(51,38,74,.35);
 }
 *{box-sizing:border-box}
@@ -33,7 +33,7 @@ a{color:inherit;text-underline-offset:3px}
 .aviso span+span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--sol);margin:0 12px;vertical-align:middle}
 
 .topo{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;height:var(--topo-h);padding:0 var(--lado);background:var(--fundo)}
-.marca{display:block;height:60px;flex:none}
+.marca{display:block;height:76px;flex:none}
 .marca img{height:100%;width:auto}
 .busca{display:flex;align-items:center;gap:8px;flex:1;max-width:340px;margin-left:auto;background:#fff;border:2px solid var(--linha);border-radius:999px;padding:0 16px;height:44px}
 .busca svg{width:19px;height:19px;flex:none;fill:none;stroke:var(--tinta);stroke-width:1.9;stroke-linecap:round}
@@ -76,13 +76,16 @@ a{color:inherit;text-underline-offset:3px}
 .secao-cab h2{margin:0;font:600 clamp(32px,4.6vw,46px)/1.05 var(--display)}
 .secao-cab p{margin:0;color:var(--tinta-suave)}
 
-/* quadros de categoria */
+/* quadros de categoria: cenário ilustrado + foto emoldurada */
 .categorias{padding:8px var(--lado) 0;max-width:1400px;margin:0 auto}
-.cat-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:18px}
-.cat-quadro{position:relative;border:0;padding:0;border-radius:28px;overflow:hidden;aspect-ratio:16/10;background:var(--ceu);box-shadow:var(--sombra)}
-.cat-quadro img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.cat-quadro:hover img{transform:scale(1.05)}
-.cat-quadro span{position:absolute;left:16px;bottom:14px;background:#fff;border-radius:999px;padding:7px 20px;font:600 21px/1.1 var(--display);box-shadow:0 4px 10px rgba(51,38,74,.18)}
+.cat-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.cat-quadro{position:relative;border:0;padding:0;border-radius:28px;overflow:hidden;aspect-ratio:3/2;background:var(--ceu) center/cover no-repeat;box-shadow:var(--sombra);display:block}
+.cq0{background-image:url(assets/arte/cat-rosa.webp)}.cq1{background-image:url(assets/arte/cat-azul.webp)}.cq2{background-image:url(assets/arte/cat-sol.webp)}.cq3{background-image:url(assets/arte/cat-lilas.webp)}
+.cat-foto{position:absolute;left:50%;top:14%;width:38%;aspect-ratio:3/4;transform:translateX(-50%) rotate(-3deg);background:#fff;padding:6px;border-radius:6px;box-shadow:0 2px 3px rgba(51,38,74,.12),0 16px 24px -12px rgba(51,38,74,.45);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.cat-foto img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.cq1 .cat-foto{transform:translateX(-50%) rotate(3deg)}
+.cat-quadro:hover .cat-foto{transform:translateX(-50%) rotate(0) scale(1.05)}
+.cat-nome{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);white-space:nowrap;background:#fff;border-radius:999px;padding:7px 22px;font:600 21px/1.1 var(--display);box-shadow:0 4px 10px rgba(51,38,74,.18)}
 
 /* filtros */
 .catalogo{padding:30px 0 24px;max-width:1400px;margin:0 auto}
@@ -210,8 +213,9 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .previa-acoes{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 .previa-acoes .botao{flex:1;min-width:150px}
 
-.rodape{position:relative;background:#DCEBF3 url(assets/arte/rodape.webp) center top/cover no-repeat;color:var(--tinta);padding:56px var(--lado) clamp(150px,18vw,260px)}
-.rodape-logo{height:88px;width:auto;background:rgba(255,253,248,.9);border-radius:24px;padding:8px 16px}
+.rodape{position:relative;background:#DCEBF3 url(assets/arte/rodape.webp) center bottom/cover no-repeat;color:var(--tinta);padding:56px var(--lado) clamp(150px,18vw,260px)}
+.logo-nuvem{width:clamp(230px,24vw,300px);aspect-ratio:700/574;background:url(assets/arte/nuvem-logo.webp) center/contain no-repeat;display:grid;place-items:center;margin:-30px 0 -40px -18px}
+.rodape-logo{width:62%;height:auto;margin-top:6%}
 .rodape-cols{display:grid;gap:28px;margin-top:28px}
 @media(min-width:800px){.rodape-cols{grid-template-columns:repeat(3,1fr);gap:44px}}
 .rodape h3{margin:0 0 8px;font:600 23px/1.1 var(--display);color:var(--tinta)}
@@ -220,23 +224,22 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .rodape-fim{margin-top:34px!important;padding-top:18px;border-top:1px solid rgba(51,38,74,.22);font-size:13.5px}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-@media(max-width:420px){:root{--topo-h:68px}.marca{height:52px}.busca{height:40px}.menu-item{padding:8px 14px;font-size:17px}.bolha{font-size:17px;right:14px;top:14px}}
+@media(max-width:420px){:root{--topo-h:74px}.marca{height:60px}.busca{height:40px}.menu-item{padding:8px 14px;font-size:17px}.bolha{font-size:17px;right:14px;top:14px}}
 
 /* faixa: para presentear */
 .presente{position:relative;margin:30px auto 0;max-width:1300px;width:calc(100% - 2*var(--lado));border-radius:32px;overflow:hidden;min-height:clamp(300px,34vw,420px);display:flex;align-items:center;background:#CFE2EE url(assets/arte/presente.webp) right center/cover no-repeat;box-shadow:var(--sombra)}
 .presente-texto{padding:clamp(28px,5vw,64px);max-width:560px}
 .presente h2{margin:0 0 10px;font:600 clamp(32px,4.6vw,52px)/1.05 var(--display)}
 .presente p{margin:0 0 22px;color:var(--tinta-suave);font-size:18px;max-width:34ch}
-@media(max-width:700px){.presente{background-position:62% center}.presente-texto{background:linear-gradient(90deg,rgba(220,235,243,.9),rgba(220,235,243,.6) 70%,transparent)}}
+@media(max-width:700px){.presente{background-position:68% center}.presente::after{content:"";position:absolute;inset:0;border-radius:32px;background:linear-gradient(90deg,rgba(220,235,243,.92),rgba(220,235,243,.7) 62%,rgba(220,235,243,.1));z-index:0}.coelhinho{left:auto;right:18px;width:72px;top:-58px}}
 .fato{box-shadow:var(--sombra);border:2px solid #fff}
 /* entrada suave */
 .anima .peca:not(.visto),.anima .cat-quadro:not(.visto),.anima .fato:not(.visto){opacity:0;transform:translateY(22px)}
 .anima .peca,.anima .cat-quadro,.anima .fato{transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 
 /* ilustrações de apoio (fundo branco das imagens some com multiply) */
-.bandeirinhas,.baloes,.ursinho{mix-blend-mode:multiply;pointer-events:none}
-.bandeirinhas{display:block;width:min(560px,86%);height:auto;margin:0 auto -34px;position:relative;z-index:2}
-.bandeirinhas.inv{transform:scaleX(-1);margin:40px auto -34px}
+.baloes,.ursinho,.bicho,.divisor{pointer-events:none}
+.divisor{display:block;width:min(460px,78%);height:auto;margin:6px auto 14px}
 .catalogo{position:relative}
 .baloes{position:absolute;width:clamp(120px,15vw,220px);height:auto;right:max(2%,calc(50% - 650px));top:-18px;animation:flutua 7s ease-in-out infinite}
 @keyframes flutua{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1.5deg)}}
@@ -244,3 +247,32 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .ursinho{display:block;width:min(220px,60%);height:auto;margin:0 auto 6px}
 .sacola-vazia{text-align:center}.sacola-vazia p{margin:0}
 @media(max-width:700px){.fato img{width:70px}}
+
+/* bichinhos de papel */
+.bicho{position:absolute;height:auto;z-index:3}
+.elefantinho{width:clamp(96px,11vw,160px);left:max(2%,calc(50% - 660px));top:30px;animation:flutua 8s ease-in-out infinite reverse}
+.coelhinho{width:clamp(84px,9vw,128px);left:clamp(18px,4vw,60px);top:clamp(-96px,-8vw,-66px)}
+.presente{overflow:visible}
+.presente::before{content:"";position:absolute;inset:0;border-radius:32px;background:inherit;z-index:0}
+.presente-texto{position:relative;z-index:1}
+.rodape{overflow:hidden}
+.girafinha{width:clamp(110px,12vw,180px);right:clamp(12px,5vw,90px);bottom:clamp(40px,5vw,80px)}
+@media(max-width:760px){.elefantinho{width:84px;left:2%;top:20px}.girafinha{width:96px;bottom:24px}}
+
+/* acabamento em papel: botões, etiqueta de preço, selo */
+.botao{position:relative;background:#D6007E url(assets/arte/papel-rosa.webp) center/260px;outline:1.5px dashed rgba(255,255,255,.7);outline-offset:-6px;text-shadow:0 1px 2px rgba(120,0,60,.35)}
+.botao:hover{background-color:#D6007E;filter:brightness(.93)}
+.botao.secundario{background:#fff url(assets/arte/papel-creme.webp) center/260px;outline-color:rgba(51,38,74,.35)}
+.chip[aria-pressed="true"],.tam[aria-pressed="true"]{background:#D6007E url(assets/arte/papel-rosa.webp) center/260px;border-color:#D6007E;text-shadow:0 1px 2px rgba(120,0,60,.35)}
+.bolha{right:8px;top:10px;width:120px;height:83px;padding:0 8px 0 40px;display:flex;align-items:center;justify-content:center;background:url(assets/arte/etiqueta.webp) center/100% 100% no-repeat;color:var(--tinta);border-radius:0;box-shadow:none;font:600 18px/1 var(--display);transform:rotate(5deg);transform-origin:20% 50%;filter:drop-shadow(0 5px 6px rgba(51,38,74,.22))}
+.peca-foto:hover .bolha{transform:rotate(-2deg)}
+.bolha{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.selo-novo{left:8px;top:8px;width:64px;height:64px;padding:0;display:grid;place-items:center;background:url(assets/arte/selo.webp) center/contain no-repeat;box-shadow:none;border-radius:0;font:600 14px/1 var(--display);transform:rotate(-10deg);filter:drop-shadow(0 4px 5px rgba(51,38,74,.2))}
+@media(max-width:520px){.bolha{width:94px;height:65px;padding-left:31px;padding-right:4px;font-size:14.5px;right:4px;top:8px}.selo-novo{width:46px;height:46px;font-size:11px;left:4px;top:4px}.elefantinho{display:none}.baloes{width:70px;top:-4px}}
+@media(max-width:700px){.presente .coelhinho{left:auto;right:16px;width:70px;top:-56px}}
+.peca-info .cores{justify-content:flex-start}
+@media(min-width:900px){.galeria{display:flex;flex-direction:column}.galeria-principal{flex:1;aspect-ratio:auto;min-height:0}.galeria-principal img{height:100%}}
+.botao,.chip[aria-pressed="true"],.tam[aria-pressed="true"]{background-image:linear-gradient(rgba(214,0,126,.5),rgba(214,0,126,.5)),url(assets/arte/papel-rosa.webp)}
+.galeria{background:#CDEEF4 url(assets/arte/cat-azul.webp) center/cover no-repeat}
+@media(max-width:899px){.acao .botao{padding:14px 14px;font-size:18px;white-space:nowrap}}
+.grade:has(.peca:only-child){grid-template-columns:minmax(0,320px);justify-content:center}

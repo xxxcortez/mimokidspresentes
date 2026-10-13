@@ -523,3 +523,10 @@ dialog#sacola .fechar{right:14px;top:16px}
 .rodape-marca .redes{width:100%;max-width:340px;justify-content:center;gap:16px;margin-top:16px}
 .rede{width:46px;height:46px}
 .sobre-loja .cidade span{max-width:130px;padding:14% 0 0;margin:0 auto;font-size:18px}
+
+/* ---- placa da cidade v2: letras de papel recortado centradas no miolo azul (balão e nuvem ficam nos cantos) ---- */
+.sobre-loja .cidade{width:100%;max-width:310px;aspect-ratio:620/505;padding:0;margin:0 auto;display:block;background:url(assets/arte/placa-cidade.webp) center/100% 100% no-repeat}
+.sobre-loja .cidade span{position:absolute;left:52.1%;top:55.8%;transform:translate(-50%,-50%) rotate(-1.5deg);width:70%;max-width:none;margin:0;padding:0;text-align:center;
+  font:700 25px/1.08 var(--display);letter-spacing:.01em;color:#fff;-webkit-text-stroke:8px #F4A9CB;paint-order:stroke fill;
+  text-shadow:0 3px 0 #D9739F,0 8px 10px rgba(51,38,74,.28)}
+@media(max-width:380px){.sobre-loja .cidade span{font-size:22px}}

@@ -325,10 +325,10 @@ Papel rosa costurado, alegre e firme.
 - **Voltar ao topo:** botão redondo de 52px, papel branco, borda de 2px em rosa-bebê, seta em traço Rosa Carimbo; fixo no canto inferior direito, entra com fade e subida de 12px depois de 700px de rolagem; hover em rosa-bebê.
 
 ### Redes sociais (rodapé)
-Três círculos de 44px com o glifo oficial em branco sobre a cor da marca (WhatsApp, Instagram, TikTok; glifos Simple Icons, CC0), sombra curta e subida de 3px no hover. Aparecem sob o logo; as mesmas três marcas voltam em 30px na coluna Fale com a gente.
+Três peças de papel de 52px, sem círculo, com a metáfora e a cor de cada rede (`ic-whatsapp` balão verde com telefone, `ic-instagram` câmera em degradê aquarela, `ic-tiktok` nota musical em papel grafite), sombra suave e subida de 3px com leve giro no hover. Aparecem sob o logo; as mesmas peças voltam em 34px na coluna Fale com a gente. O logo oficial de cada rede não é redesenhado: a arte é uma releitura de papel, não o glifo da marca.
 
 ### Rodapé: marca
-Logo oficial (até 230px) com o enfeite de papel (nuvens, lua, balão) ao lado e levemente acima, sem nuvem por trás, sobre o céu de papel de `rodape.webp`. Abaixo: frase da loja e cidade.
+Logo oficial (até 230px) com o enfeite de papel (nuvens, lua, balão) ao lado e levemente acima, sem nuvem por trás, sobre o céu de papel de `rodape.webp`. Abaixo: a frase da loja em Fredoka 19px (máx. 24 caracteres de largura), a cidade numa pílula de papel com o pino `ic-local` e as redes. "Como comprar" tem 4 passos (escolha, sacola, envio pelo WhatsApp, confirmação e combinação de pagamento e entrega).
 
 ### Faixa de selos (rodapé)
 Quatro painéis em creme a 82% com borda branca de 2px e sombra "Papel assentado" (canto 20px), em grade que se ajusta à largura: **Site seguro** (cadeado), **Sem pagamento no site** (escudo com visto), **Pix ou cartão** (cartãozinho com moeda) e **Atendimento direto** (balão de conversa). Cada um tem a sua peça de papel (`ic-seguro`, `ic-escudo`, `ic-pix-cartao`, `ic-atendimento`, 46px; 42px no celular) com sombra suave, título em Fredoka e frase em Ubuntu. **Só selos verdadeiros**; nunca selos de terceiros (Reclame Aqui, Ebit, Google) sem cadastro real.

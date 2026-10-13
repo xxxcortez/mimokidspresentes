@@ -6,6 +6,8 @@
 
 const $ = (s, r = document) => r.querySelector(s);
 const BRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const limpaTexto = s => String(s || '').replace(/[\p{Extended_Pictographic}\uFE0F\u200D]/gu, '').replace(/\s{2,}/g, ' ').trim();
+const corUtil = (p, nome) => (p.cores.length > 1 && nome && norm(nome) !== 'unica') ? nome : '';
 const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 function el(tag, props = {}, ...filhos) {
   const e = document.createElement(tag);
@@ -80,18 +82,18 @@ function chip(rotulo, ativo, aoClicar) {
   return el('button', { class: 'chip', type: 'button', 'aria-pressed': String(ativo), onclick: aoClicar, text: rotulo });
 }
 function montarFiltros() {
-  const grupo = (id, valores, chave, rotular = v => v) => {
+  const grupo = (id, valores, chave, rotular = v => v, nome = '') => {
     const box = $(id);
     box.replaceChildren();
     if (valores.length < 2) { box.hidden = true; return; }
     box.hidden = false;
-    box.append(chip('Todos', !filtro[chave], () => { filtro[chave] = ''; montarFiltros(); desenhar(); }),
+    box.append(el('span', { class: 'grupo-rotulo', text: nome }), chip('Todos', !filtro[chave], () => { filtro[chave] = ''; montarFiltros(); desenhar(); }),
       ...valores.map(v => chip(rotular(v), filtro[chave] === v, () => { filtro[chave] = filtro[chave] === v ? '' : v; montarFiltros(); desenhar(); })));
   };
   const tams = [...new Set(PECAS.flatMap(todosTamanhos))].sort(comparaTam);
-  grupo('#f-tam', tams, 'tam', t => 'Tam. ' + capitaliza(t));
-  grupo('#f-cat', [...new Set(PECAS.map(p => p.categoria).filter(Boolean))], 'cat');
-  grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g);
+  grupo('#f-tam', tams, 'tam', t => 'Tam. ' + capitaliza(t), 'Tamanho');
+  grupo('#f-cat', [...new Set(PECAS.map(p => p.categoria).filter(Boolean))], 'cat', v => v, 'Tipo');
+  grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g, 'Para');
   $('#limpar').hidden = !Object.values(filtro).some(Boolean);
   $('#filtros').hidden = !['#f-tam', '#f-cat', '#f-gen'].some(id => !$(id).hidden) && !Object.values(filtro).some(Boolean);
 }
@@ -101,12 +103,13 @@ $('#busca').addEventListener('input', e => { filtro.busca = e.target.value; $('#
 /* ---------- cartão da peça ---------- */
 function cartao(p, { selo = false } = {}) {
   const foto = el('img', { src: capa(p), alt: p.nome, width: 720, height: 960, loading: 'lazy', decoding: 'async' });
+  const selo_ia = el('span', { class: 'ia-selo', text: 'Foto ilustrativa (IA)', hidden: !(p.cores[0].ia || []).includes(0) });
   const abrir = el('button', { class: 'peca-foto', type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p) },
-    foto, selo ? el('span', { class: 'selo-novo', text: 'NOVO' }) : null, el('span', { class: 'etiqueta', text: BRL(p.preco) }));
+    foto, selo ? el('span', { class: 'selo-novo', text: 'NOVO' }) : null, el('span', { class: 'etiqueta' }, el('span', { class: 'etiqueta-papel', text: BRL(p.preco) })), selo_ia);
   const cores = p.cores.length > 1 ? el('div', { class: 'cores', role: 'group', 'aria-label': 'Cores de ' + p.nome },
     p.cores.map((c, i) => el('button', {
       class: 'cor', type: 'button', style: '--c:' + (c.hex || '#ccc'), 'aria-label': c.nome, title: c.nome, 'aria-pressed': String(i === 0),
-      onclick: ev => { foto.src = capa(p, c); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
+      onclick: ev => { foto.src = capa(p, c); selo_ia.hidden = !(c.ia || []).includes(0); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
     }))) : null;
   const tams = tamanhosDaPeca(p);
   return el('article', { class: 'peca', 'data-genero': p.genero || '' }, abrir, cores,
@@ -154,7 +157,7 @@ function abrirPeca(p) {
   const promo = $('#p-promo');
   promo.hidden = !p.promo;
   if (p.promo) promo.textContent = `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` + (p.promo.grupo ? ' (pode misturar modelos da mesma linha)' : '');
-  $('#p-desc').textContent = p.descricao || '';
+  $('#p-desc').textContent = limpaTexto(p.descricao);
   $('#p-cores-bloco').hidden = p.cores.length < 2;
   $('#p-erro').textContent = '';
   $('#q-valor').textContent = 1;
@@ -231,7 +234,7 @@ function atualizarSacola() {
     const muda = d => () => { x.qtd = Math.min(20, Math.max(1, x.qtd + d)); atualizarSacola(); };
     return el('div', { class: 'item' },
       el('img', { src: capa(p, cor), alt: p.nome, loading: 'lazy' }),
-      el('div', {}, el('strong', { text: p.nome }), el('small', { text: [x.cor, 'tam. ' + capitaliza(x.tam), p.codigo ? 'cod. ' + p.codigo.toLowerCase() : ''].filter(Boolean).join(' · ') }),
+      el('div', {}, el('strong', { text: p.nome }), el('small', { text: [corUtil(p, x.cor), 'tam. ' + capitaliza(x.tam), p.codigo ? 'cod. ' + p.codigo.toLowerCase() : ''].filter(Boolean).join(' · ') }),
         el('div', { class: 'qtd' }, el('button', { type: 'button', 'aria-label': 'Diminuir', disabled: x.qtd <= 1, onclick: muda(-1), text: '−' }), el('output', { text: x.qtd }), el('button', { type: 'button', 'aria-label': 'Aumentar', disabled: x.qtd >= 20, onclick: muda(1), text: '+' }))),
       el('div', { class: 'item-fim' }, el('strong', { text: BRL(x.qtd * p.preco) }), el('br'), el('button', { class: 'remover', type: 'button', 'aria-label': 'Remover ' + p.nome, onclick: () => { sacola.splice(i, 1); atualizarSacola(); }, text: 'Remover' })));
   }));
@@ -258,7 +261,7 @@ dlgSacola.addEventListener('click', e => { if (e.target === dlgSacola) dlgSacola
 
 function mensagem() {
   const { desconto, total } = calcular();
-  const linhas = sacola.map(x => { const p = porId.get(x.id); return `• ${p.nome} (cod. ${(p.codigo || '').toLowerCase()})${x.cor ? ' | Cor: ' + x.cor : ''} | Tamanho: ${capitaliza(x.tam)} | Quantidade: ${x.qtd}`; });
+  const linhas = sacola.map(x => { const p = porId.get(x.id); return `• ${p.nome} (cod. ${(p.codigo || '').toLowerCase()})${corUtil(p, x.cor) ? ' | Cor: ' + corUtil(p, x.cor) : ''} | Tamanho: ${capitaliza(x.tam)} | Quantidade: ${x.qtd}`; });
   let m = 'Olá, Mimo Kids Presentes! Já escolhi os meus mimos pelo site.\n\nPedido:\n' + linhas.join('\n');
   if (desconto > 0) m += `\n\nPromoção aplicada: desconto de ${BRL(desconto)}.`;
   m += `\nTotal: ${BRL(total)}`;

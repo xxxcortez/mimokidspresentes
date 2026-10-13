@@ -198,7 +198,7 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .grupo-rotulo{align-self:center;padding-right:6px;font:500 14px var(--texto);color:var(--tinta-suave)}
 .grupo-rotulo:empty{display:none}
 .filtros{padding-right:56px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
-.peca .cores{gap:12px}.cor{position:relative}.cor::after{content:"";position:absolute;inset:-8px}
+.peca .cores{gap:18px}.cor{position:relative}.cor::after{content:"";position:absolute;inset:-10px}
 .cores .cor{width:34px;height:34px}.peca .cores .cor{width:22px;height:22px}
 .remover{font-size:14.5px;padding:12px 4px 12px 12px}
 .item .qtd{transform:none}.item .qtd button{width:44px;height:40px}

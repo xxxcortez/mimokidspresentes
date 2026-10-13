@@ -411,3 +411,14 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .remover img{filter:saturate(2) brightness(.85)}
 .fechar{width:46px;height:46px}.fechar img{width:30px;height:30px}
 .qtd button img{width:22px;height:22px}
+
+/* ---- cartão clicável por inteiro + botão de adicionar ---- */
+.peca-nome,.peca-preco,.peca-meta,.peca-promo{cursor:pointer}
+.peca-add{margin:12px auto 0;padding:10px 20px;font-size:17px;align-self:center;min-width:min(100%,200px)}
+.peca-add.feito{filter:saturate(.6) brightness(1.1)}
+.peca-add:disabled{cursor:not-allowed;filter:grayscale(.6) opacity(.7)}
+@media(max-width:520px){.peca-add{padding:9px 12px;font-size:15.5px;min-width:0;width:100%}}
+/* fechar proporcional */
+.fechar,.fechar[class]{width:40px;height:40px}
+.fechar img{width:22px;height:22px}
+dialog#sacola .fechar{right:14px;top:16px}

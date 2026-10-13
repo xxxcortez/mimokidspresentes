@@ -120,11 +120,19 @@ function cartao(p, { selo = false } = {}) {
       onclick: ev => { foto.src = capa(p, c); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
     }))) : null;
   const tams = tamanhosDaPeca(p);
-  return el('article', { class: 'peca', 'data-genero': p.genero || '' }, abrir, cores,
+  /* atalho: peça com 1 cor e 1 tamanho entra direto na sacola; as demais abrem a página para escolher */
+  const direto = p.cores.length === 1 && tams.length === 1;
+  const add = el('button', { class: 'peca-add botao', type: 'button', 'aria-label': 'Adicionar ' + p.nome + ' à sacola', disabled: !tams.length, onclick: ev => {
+    if (!direto) { abrirPeca(p); return; }
+    adicionar(p, p.cores[0], tams[0], 1);
+    const b = ev.currentTarget; b.textContent = 'Adicionada à sacola'; b.classList.add('feito');
+    setTimeout(() => { b.textContent = 'Adicionar à sacola'; b.classList.remove('feito'); }, 1800);
+  }, text: tams.length ? 'Adicionar à sacola' : 'Esgotado' });
+  return el('article', { class: 'peca', 'data-genero': p.genero || '', onclick: ev => { if (ev.target.closest('.peca-nome,.peca-preco,.peca-meta,.peca-promo')) abrirPeca(p); } }, abrir, cores,
     el('h3', { class: 'peca-nome', text: p.nome }),
     el('p', { class: 'peca-preco', text: BRL(p.preco) }),
     el('p', { class: 'peca-meta', text: [p.codigo ? 'cod. ' + p.codigo.toLowerCase() : '', tams.length ? 'tam. ' + tams.map(capitaliza).join(' · ') : 'esgotado'].filter(Boolean).join(' · ') }),
-    p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null);
+    p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null, add);
 }
 
 function desenharVitrine() {
@@ -199,6 +207,8 @@ function abrirPeca(p) {
 
 function desenharCor() {
   const c = corSel, p = atual;
+  const livres = c.tamanhos.filter(t => !(c.esgotados || []).includes(t));
+  if (!tamSel && livres.length === 1) tamSel = livres[0];
   $('#p-cor-nome').textContent = c.nome || '';
   $('#p-cores').replaceChildren(...p.cores.map(x => el('button', {
     class: 'cor', type: 'button', style: '--c:' + (x.hex || '#ccc'), title: x.nome, 'aria-label': x.nome, 'aria-pressed': String(x === c),

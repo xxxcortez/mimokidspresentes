@@ -257,7 +257,9 @@ function atualizarSacola() {
   sacola = sacola.filter(x => porId.has(x.id));
   salvar();
   const n = sacola.reduce((s, x) => s + x.qtd, 0);
-  $('#sacola-qtd').textContent = n;
+  const qtdEl = $('#sacola-qtd');
+  if (String(n) !== qtdEl.textContent && n > Number(qtdEl.textContent || 0)) { qtdEl.classList.remove('pula'); void qtdEl.offsetWidth; qtdEl.classList.add('pula'); }
+  qtdEl.textContent = n;
   $('#sacola-qtd').hidden = n === 0;
   $('#sacola-btn').setAttribute('aria-label', `Abrir sacola, ${n} ${n === 1 ? 'item' : 'itens'}`);
   $('#sacola-vazia').hidden = n > 0;

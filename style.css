@@ -398,3 +398,5 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
   .busca{padding:0 10px 0 6px}.busca input{font-size:15px}
 }
 @media(max-width:380px){.busca input{font-size:14px}.ic-lupa{width:15px;height:26px;margin:0 0 0 2px}.marca{height:56px}}
+.sacola-qtd.pula{animation:pula .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pula{0%{transform:scale(1)}35%{transform:scale(1.45)}100%{transform:scale(1)}}

@@ -141,21 +141,21 @@ dialog[open]{animation:entra .28s cubic-bezier(.2,.8,.2,1)}
 @keyframes entra{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
 .fechar{position:absolute;right:12px;top:12px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:#fff;font:400 28px/1 var(--texto);display:grid;place-items:center;box-shadow:var(--sombra)}
 dialog#peca{width:min(1000px,100vw);height:100dvh;overflow:auto;margin:auto}
-@media(min-width:900px){dialog#peca{height:auto;max-height:92dvh;border-radius:32px}}
+@media(min-width:700px){dialog#peca{height:fit-content;max-height:92dvh;border-radius:32px}}
 .peca-corpo{display:grid}
-@media(min-width:900px){.peca-corpo{grid-template-columns:1.05fr 1fr}}
+@media(min-width:700px){.peca-corpo{grid-template-columns:1.05fr 1fr}}
 .galeria{background:var(--ceu)}
 .galeria-principal{height:min(110vw,46dvh)}
 .galeria-principal img{width:100%;height:100%;object-fit:contain}
-@media(min-width:900px){.galeria-principal{height:auto;aspect-ratio:3/4}.galeria-principal img{object-fit:cover}}
+@media(min-width:700px){.galeria-principal{height:auto;aspect-ratio:3/4}.galeria-principal img{object-fit:cover}}
 .galeria-mini:empty{display:none}
 .galeria-mini{display:flex;gap:8px;padding:10px var(--lado);overflow-x:auto}
-@media(min-width:900px){.galeria-mini{padding:10px 16px}}
+@media(min-width:700px){.galeria-mini{padding:10px 16px}}
 .galeria-mini button{flex:none;width:58px;aspect-ratio:3/4;padding:0;border:3px solid transparent;border-radius:12px;overflow:hidden;background:#fff}
 .galeria-mini button[aria-pressed="true"]{border-color:var(--rosa)}
 .galeria-mini img{width:100%;height:100%;object-fit:cover}
 .peca-info{padding:24px var(--lado) 30px}
-@media(min-width:900px){.peca-info{padding:38px 36px 32px}}
+@media(min-width:700px){.peca-info{padding:38px 36px 32px}}
 .codigo{margin:0 0 10px;font:400 14px var(--texto);color:var(--tinta-suave)}
 .peca-info h2{margin:2px 0 2px;font:600 clamp(30px,4.2vw,40px)/1.05 var(--display)}
 .preco-grande{margin:0;font:600 38px/1.1 var(--display);color:var(--rosa-texto)}
@@ -178,7 +178,7 @@ dialog#peca{width:min(1000px,100vw);height:100dvh;overflow:auto;margin:auto}
 .qtd output{min-width:28px;text-align:center;font:600 18px var(--display)}
 .descricao{margin:24px 0 0;max-width:62ch}
 .nota{margin:12px 0 0;font-size:13.5px;color:var(--tinta-suave)}
-@media(max-width:899px){.acao{position:sticky;bottom:0;background:var(--fundo);padding:12px 0 calc(12px + env(safe-area-inset-bottom));margin-top:6px;box-shadow:0 -10px 12px -10px rgba(51,38,74,.25)}}
+@media(max-width:699px){.acao{position:sticky;bottom:0;background:var(--fundo);padding:12px 0 calc(12px + env(safe-area-inset-bottom));margin-top:6px;box-shadow:0 -10px 12px -10px rgba(51,38,74,.25)}}
 
 dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:-12px 0 30px -12px rgba(51,38,74,.4)}
 .sacola-corpo{padding:24px var(--lado) 30px}
@@ -203,7 +203,7 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 
 .rodape{position:relative;background:#DCEBF3 url(assets/arte/rodape.webp) center bottom/cover no-repeat;color:var(--tinta);padding:56px var(--lado) clamp(150px,18vw,260px)}
 .rodape-logo{width:62%;height:auto;margin-top:6%}
-.rodape h3{margin:0 0 8px;font:600 23px/1.1 var(--display);color:var(--tinta)}
+.rodape h2{margin:0 0 8px;font:600 23px/1.1 var(--display);color:var(--tinta)}
 .rodape p{margin:0 0 6px}
 .rodape a{color:var(--tinta);font-weight:500}
 .rodape-fim{margin-top:34px!important;padding-top:18px;border-top:1px solid rgba(51,38,74,.22);font-size:13.5px}
@@ -250,10 +250,10 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .chip[aria-pressed="true"],.tam[aria-pressed="true"]{background:var(--rosa-papel) url(assets/arte/papel-rosa.webp) center/260px;border-color:var(--rosa-papel);text-shadow:0 1px 2px rgba(120,0,60,.35)}
 @media(max-width:520px){.elefantinho{display:none}.baloes{width:70px;top:-4px}}
 .peca-info .cores{justify-content:flex-start}
-@media(min-width:900px){.galeria{display:flex;flex-direction:column}.galeria-principal{flex:1;aspect-ratio:auto;min-height:0}.galeria-principal img{height:100%}}
+@media(min-width:700px){.galeria{display:flex;flex-direction:column}.galeria-principal{flex:1;aspect-ratio:auto;min-height:0}.galeria-principal img{height:100%}}
 .botao,.chip[aria-pressed="true"],.tam[aria-pressed="true"]{background-image:linear-gradient(rgba(214,0,126,.5),rgba(214,0,126,.5)),url(assets/arte/papel-rosa.webp)}
 .galeria{background:#CDEEF4 url(assets/arte/cat-azul.webp) center/cover no-repeat}
-@media(max-width:899px){.acao .botao{padding:14px 14px;font-size:18px;white-space:nowrap}}
+@media(max-width:699px){.acao .botao{padding:14px 14px;font-size:18px;white-space:nowrap}}
 .grade:has(.peca:only-child){grid-template-columns:minmax(0,320px);justify-content:center}
 
 /* foco visível vence a costura dos botões */
@@ -298,7 +298,7 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .r-tiktok{background:#000}
 .rodape-col{background:rgba(255,253,248,.78);border:2px solid #fff;border-radius:28px;padding:22px 22px 20px;box-shadow:var(--sombra);position:relative}
 .rodape-ilus{width:76px;height:76px;object-fit:contain;display:block;margin:-52px 0 4px auto}
-.rodape h3{margin:0 0 10px;font:600 22px/1.15 var(--display);color:var(--tinta)}
+.rodape h2{margin:0 0 10px;font:600 22px/1.15 var(--display);color:var(--tinta)}
 .passos{margin:0;padding:0;list-style:none;counter-reset:p;display:grid;gap:10px}
 .passos li{counter-increment:p;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;line-height:1.4}
 .passos li::before{content:counter(p);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--rosa-bebe);font:600 15px var(--display);color:var(--rosa-texto)}
@@ -619,3 +619,82 @@ dialog#peca>.fechar,dialog#sacola>.fechar{position:sticky;top:10px;right:auto;ma
 .passos li{grid-template-columns:30px 1fr;align-items:center;gap:10px}
 .passos li::before{content:counter(p);display:block;width:28px;height:28px;margin:0 auto;border-radius:0;font-size:0;color:transparent;background:center/contain no-repeat;
   filter:saturate(2.6) brightness(.8) contrast(1.15) hue-rotate(-16deg) drop-shadow(0 1px 1.5px rgba(51,38,74,.28))}
+
+/* =====================================================================
+   Acabamento final (13/10/2026): correções da 2ª revisão
+   ===================================================================== */
+/* botão flutuante da sacola (computador): a sacola não some mais ao rolar */
+.sacola-flutuante{position:fixed;right:clamp(14px,3vw,32px);bottom:calc(clamp(14px,3vw,32px) + 66px);z-index:40;width:56px;height:56px;border:0;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(rgba(255,255,255,.72),rgba(255,255,255,.72)),url(assets/arte/papel-rosinha.webp) center/240px #fff;outline:1.5px dashed rgba(214,0,126,.35);outline-offset:-5px;box-shadow:0 10px 22px -8px rgba(51,38,74,.5);
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
+.sacola-flutuante.mostra{opacity:1;transform:none;pointer-events:auto}
+.sacola-flutuante img{width:40px;height:40px;object-fit:contain}
+.sacola-flutuante .sacola-qtd{top:-4px;right:-4px}
+.sacola-flutuante .sacola-qtd.pula{animation:pula .55s cubic-bezier(.3,1.6,.5,1)}
+.sacola-flutuante:focus-visible{outline:3px solid var(--tinta);outline-offset:3px}
+
+/* rodapé: caixas com a altura do próprio conteúdo; tablet com a marca em uma linha só */
+.rodape-grade{align-items:start}
+@media(min-width:760px) and (max-width:899px){.rodape-marca{grid-column:1/-1;align-items:center}.rodape-grade>.rodape-col:last-child{grid-column:1/-1}}
+@media(min-width:900px) and (max-width:1099px){.rodape-grade{grid-template-columns:repeat(3,1fr)}.rodape-marca{grid-column:1/-1;align-items:center}}
+.contatos li,.contatos a{grid-template-columns:1fr}
+
+/* alinhamento: fatos e selos na mesma largura da faixa "Para presentear" */
+.fatos{width:calc(100% - 2*var(--lado));max-width:1300px;padding-inline:0;grid-template-columns:1fr}
+@media(min-width:600px){.fatos{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.fatos{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:700px){.selos{grid-template-columns:repeat(3,1fr)}}
+
+/* quadros de categoria: 2 colunas até 999px e o último, se sobrar, fica centrado */
+@media(max-width:999px){.cat-grade{grid-template-columns:repeat(2,1fr)}.cat-quadro:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 10px)}}
+
+/* menu no celular: cabem 4 botões; com mais categorias, a borda direita esmaece para indicar que rola */
+@media(max-width:520px){
+  .menu{gap:7px;padding-left:12px;padding-right:12px}
+  .menu-item{font-size:15px;padding:6px 11px 6px 6px}
+  .menu-item .ic{width:26px;height:26px;margin:-5px 0 -5px -2px}
+}
+@media(max-width:899px){.menu{-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);mask-image:linear-gradient(90deg,#000 90%,transparent)}}
+
+/* hero em tablet: as fotos não encostam no botão; texto legível sobre o fundo manchado */
+@media(min-width:600px) and (max-width:879px){.ft1{width:min(36%,200px)}.ft2{width:min(32%,180px)}.vitrine-topo{padding-bottom:clamp(300px,52vw,380px)}}
+.vitrine-topo p{text-shadow:0 0 14px rgba(255,255,255,.9),0 0 5px rgba(255,255,255,.8)}
+
+/* "Para presentear": coelhinho acima do título, texto sem palavra solta, atalhos em grade 2x2 */
+.coelhinho{top:clamp(-124px,-10vw,-92px)}
+.presente p{text-wrap:pretty}
+.faixas{display:grid;grid-template-columns:repeat(2,max-content);gap:8px;max-width:none}
+.faixas-rotulo{grid-column:1/-1}
+.faixas [hidden]{display:none}
+
+/* cartões: o botão fica sempre na mesma linha, mesmo com promoção em alguns cartões */
+.peca>:nth-last-child(2){margin-bottom:12px}
+.peca .peca-add{margin-top:auto}
+
+/* ícones de papel mais firmes (cartões aceitos, fatos, fechar) */
+.ic-lista{filter:saturate(1.8) contrast(1.15) brightness(.9) drop-shadow(0 2px 3px rgba(51,38,74,.22))}
+.fato img{filter:saturate(1.45) contrast(1.1) drop-shadow(0 3px 4px rgba(51,38,74,.18))}
+.fechar img{filter:saturate(2.4) brightness(.86) contrast(1.1) hue-rotate(-14deg)}
+
+/* galeria da peça acompanha o gênero (cenário rosa, azul, sol ou lilás) */
+#peca[data-genero=menina] .galeria{background:#FFD6EA url(assets/arte/cat-rosa.webp) center/cover no-repeat}
+#peca[data-genero=unissex] .galeria{background:#FFEDA8 url(assets/arte/cat-sol.webp) center/cover no-repeat}
+#peca[data-genero=""] .galeria{background:#E4DBFF url(assets/arte/cat-lilas.webp) center/cover no-repeat}
+
+/* sacola: link das peças em promoção, linha de confiança e "Continuar escolhendo" */
+.ver-promo{border:0;background:transparent;color:var(--rosa-texto);text-decoration:underline;text-underline-offset:3px;font:600 15px var(--display);min-height:36px;padding:4px 2px;cursor:pointer}
+.confianca{margin:10px 0 0;font-size:13.5px;line-height:1.35;color:var(--tinta-suave);text-align:center}
+.continuar{display:block;margin:8px auto 0;border:0;background:transparent;color:var(--rosa-texto);text-decoration:underline;text-underline-offset:4px;font:500 17px var(--display);min-height:44px;padding:8px 12px;cursor:pointer}
+
+/* políticas: botão de voltar no fim e link da página atual discreto */
+.voltar-fim{margin:0 0 14px;text-align:center}
+.doc-rodape .rodape-links a[aria-current="page"]{opacity:.6;pointer-events:none;box-shadow:none}
+/* números do "Como comprar": mais firmes */
+.passos li::before{filter:saturate(3.4) brightness(.7) contrast(1.2) hue-rotate(-14deg) drop-shadow(0 1px 1.5px rgba(51,38,74,.3))}
+/* fatos: 4 colunas só em telas largas (em 1024 o texto ficava espremido); botões dentro dos documentos mantêm a própria cor */
+@media(min-width:1000px) and (max-width:1219px){.fatos{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1220px){.fatos{grid-template-columns:repeat(4,1fr)}}
+.doc-cartao a.botao{color:#fff;font-weight:600}
+.doc-cartao a.botao.secundario,.doc-topo a.botao.secundario{color:var(--tinta)}
+.doc-cartao .foto-peca{display:block;margin:0 auto 18px}
+.doc-cartao .centro{text-align:center}

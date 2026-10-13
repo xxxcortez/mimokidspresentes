@@ -41,9 +41,9 @@ const guardarFoco = () => { const a = document.activeElement; return a && a.data
 const devolverFoco = f => { if (f) { const n = [...document.querySelectorAll('[data-foco]')].find(x => x.dataset.foco === f && !x.disabled); if (n) n.focus({ preventScroll: true }); } };
 
 let CFG = {}, PECAS = [], ERRO = false;
-const filtro = { tam: '', cat: '', gen: '', busca: '', faixa: null, ate: 0 };
+const filtro = { tam: '', cat: '', gen: '', busca: '', faixa: null, ate: 0, promo: false };
 const ordem = { v: '' };
-const temFiltro = () => Boolean(filtro.tam || filtro.cat || filtro.gen || filtro.busca.trim() || filtro.faixa || filtro.ate);
+const temFiltro = () => Boolean(filtro.tam || filtro.cat || filtro.gen || filtro.busca.trim() || filtro.faixa || filtro.ate || filtro.promo);
 const GENEROS = { menina: 'Menina', menino: 'Menino', unissex: 'Unissex' };
 
 /* ---------- tamanhos: lista fixa RN, P, M, G, 1, 2, 3, 4 ----------
@@ -172,13 +172,27 @@ function montarFiltros() {
   boxP.replaceChildren();
   boxP.hidden = !(PECAS.some(p => p.preco <= lim) && PECAS.some(p => p.preco > lim));
   if (!boxP.hidden) boxP.append(chip('Até ' + BRL(lim).replace(',00', ''), filtro.ate === lim, () => { filtro.ate = filtro.ate === lim ? 0 : lim; aplicar(); }, { tom: 'rosa', foco: 'preco' }));
-  $('#ordem').hidden = PECAS.length < 3;
+  const boxPr = $('#f-promo');
+  boxPr.replaceChildren();
+  boxPr.hidden = !PECAS.some(p => p.promo);
+  if (!boxPr.hidden) boxPr.append(chip('Promoções', filtro.promo, () => { filtro.promo = !filtro.promo; aplicar(); }, { tom: 'sol', foco: 'promo' }));
+  /* com poucas peças os filtros só atrapalham: aparecem a partir de 4 peças (ou se já há algum filtro ativo) */
+  const poucas = PECAS.length < 4 && !temFiltro();
+  ['#f-tam', '#f-gen', '#f-preco', '#f-promo'].forEach(id => { if (poucas) $(id).hidden = true; });
+  $('#ordem').hidden = PECAS.length < 4;
   $('#limpar').hidden = !temFiltro();
-  $('#filtros').hidden = !['#f-tam', '#f-cat', '#f-gen', '#f-preco'].some(id => !$(id).hidden) && !temFiltro() && PECAS.length < 3;
+  $('#filtros').hidden = poucas || (!['#f-tam', '#f-cat', '#f-gen', '#f-preco', '#f-promo'].some(id => !$(id).hidden) && !temFiltro());
+  /* atalhos de idade (Para presentear) só aparecem se existe peça disponível naquela faixa */
+  let algum = false;
+  document.querySelectorAll('[data-faixa]').forEach(b => {
+    const tem = PECAS.some(p => b.dataset.faixa.split(',').some(t => tamanhosDaPeca(p).includes(t)));
+    b.hidden = !tem; if (tem) algum = true;
+  });
+  const fx = document.querySelector('.faixas'); if (fx) fx.hidden = !algum;
   devolverFoco(foco);
 }
 $('#limpar').addEventListener('click', () => {
-  Object.assign(filtro, { tam: '', cat: '', gen: '', busca: '', faixa: null, ate: 0 }); $('#busca').value = ''; montarFiltros(); desenhar();
+  Object.assign(filtro, { tam: '', cat: '', gen: '', busca: '', faixa: null, ate: 0, promo: false }); $('#busca').value = ''; montarFiltros(); desenhar();
   const f = $('#busca'); if (document.activeElement === $('#limpar')) f.focus({ preventScroll: true });
 });
 let atrasoBusca;
@@ -259,7 +273,7 @@ function filtrar() {
     const livres = tamanhosDaPeca(p);
     return (!filtro.tam || livres.includes(filtro.tam)) && (!filtro.faixa || filtro.faixa.some(t => livres.includes(t))) &&
       (!filtro.cat || p.categoria === filtro.cat) && (!filtro.gen || p.genero === filtro.gen || p.genero === 'unissex') &&
-      (!filtro.ate || p.preco <= filtro.ate) && (!b || norm(p.nome + ' ' + (p.codigo || '') + ' ' + p.cores.map(c => c.nome).join(' ')).includes(b));
+      (!filtro.ate || p.preco <= filtro.ate) && (!filtro.promo || p.promo) && (!b || norm(p.nome + ' ' + (p.codigo || '') + ' ' + p.cores.map(c => c.nome).join(' ')).includes(b));
   });
   const por = { menor: (x, y) => x.preco - y.preco, maior: (x, y) => y.preco - x.preco }[ordem.v];
   /* peças esgotadas vão para o fim; dentro de cada grupo vale a ordem escolhida (ou a mais nova primeiro) */
@@ -334,6 +348,7 @@ const urlPeca = p => location.origin + '/p/' + idCurto(p) + '.html';
 
 function abrirPeca(p, cor) {
   atual = p; corSel = cor && p.cores.includes(cor) ? cor : p.cores[0]; tamSel = ''; qtdSel = 1;
+  dlgPeca.dataset.genero = p.genero || '';
   $('#peca-nome').textContent = p.nome;
   $('#p-codigo').textContent = cod(p);
   $('#p-preco').textContent = BRL(p.preco);
@@ -436,6 +451,10 @@ function atualizarSacola() {
   if (String(n) !== qtdEl.textContent && n > Number(qtdEl.textContent || 0)) { qtdEl.classList.remove('pula'); void qtdEl.offsetWidth; qtdEl.classList.add('pula'); }
   qtdEl.textContent = n;
   $('#sacola-qtd').hidden = n === 0;
+  $('#flut-qtd').textContent = n; $('#flut-qtd').hidden = n === 0;
+  $('#sacola-flut').setAttribute('aria-label', `Abrir sacola, ${n} ${n === 1 ? 'item' : 'itens'}`);
+  if (n > Number(qtdEl.dataset.ant || 0)) { const fl = $('#flut-qtd'); fl.classList.remove('pula'); void fl.offsetWidth; fl.classList.add('pula'); }
+  qtdEl.dataset.ant = n;
   $('#sacola-btn').setAttribute('aria-label', `Abrir sacola, ${n} ${n === 1 ? 'item' : 'itens'}`);
   $('#sacola-vazia').hidden = n > 0;
   $('#sacola-itens').replaceChildren(...sacola.map((x, i) => {
@@ -456,7 +475,7 @@ function atualizarSacola() {
   /* dicas que ajudam a fechar: falta pouco para a promoção ou para a entrega grátis (só vale para a cidade da loja) */
   const dicaPromo = $('#dica-promo');
   dicaPromo.hidden = !falta;
-  if (falta) dicaPromo.textContent = `Falta${falta.n > 1 ? 'm' : ''} ${falta.n} para a promoção: leve ${falta.promo.qtd} por ${BRL(falta.promo.total)}` + (economia(falta.unit, falta.promo) ? ` e economize ${economia(falta.unit, falta.promo)}.` : '.');
+  if (falta) $('#dica-promo-txt').textContent = `Falta${falta.n > 1 ? 'm' : ''} ${falta.n} para a promoção: leve ${falta.promo.qtd} por ${BRL(falta.promo.total)}` + (economia(falta.unit, falta.promo) ? ` e economize ${economia(falta.unit, falta.promo)}.` : '.');
   const dicaFrete = $('#dica-frete');
   dicaFrete.hidden = !CFG.freteGratisAcima || n === 0;
   if (CFG.freteGratisAcima) {
@@ -470,6 +489,12 @@ function atualizarSacola() {
 function abrirSacola() { atualizarSacola(); abrirDlg(dlgSacola, '#sacola'); }
 $('#sacola-btn').addEventListener('click', abrirSacola);
 $('#sacola-fechar').addEventListener('click', () => dlgSacola.close());
+$('#continuar').addEventListener('click', () => dlgSacola.close());
+$('#sacola-flut').addEventListener('click', abrirSacola);
+$('#ver-promo').addEventListener('click', () => {
+  Object.assign(filtro, { tam: '', cat: '', gen: '', busca: '', faixa: null, ate: 0, promo: true }); $('#busca').value = '';
+  dlgSacola.close(); montarFiltros(); desenhar(); setTimeout(() => rolarAoCatalogo(true), 60);
+});
 
 function mensagem() {
   const { desconto, total } = calcular();
@@ -508,6 +533,9 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
 }
 /* botão flutuante de voltar ao topo: aparece depois de rolar */
 const vt = $('#voltar-topo');
-addEventListener('scroll', () => vt.classList.toggle('mostra', scrollY > 700), { passive: true });
+const flut = $('#sacola-flut');
+const atualizarFlut = () => { flut.hidden = !(innerWidth >= 900 && scrollY > 420); flut.classList.toggle('mostra', !flut.hidden); };
+addEventListener('scroll', () => { vt.classList.toggle('mostra', scrollY > 700); atualizarFlut(); }, { passive: true });
+addEventListener('resize', atualizarFlut);
 vt.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
 carregar();

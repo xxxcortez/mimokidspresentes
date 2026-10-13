@@ -50,7 +50,6 @@ a{color:inherit;text-underline-offset:3px}
 .menu::-webkit-scrollbar{display:none}
 .menu-item{flex:none;border:0;background:transparent;border-radius:999px;padding:8px 20px;font:500 18px/1.1 var(--display);color:var(--tinta)}
 .menu-item:hover{background:var(--linha-suave)}
-.menu-item[aria-pressed="true"]{background:var(--rosa-bebe);color:var(--tinta)}
 
 /* abertura: arte de céu em papel recortado (imagem gerada por IA, sem texto) */
 .vitrine-topo{position:relative;min-height:clamp(560px,52vw,720px);display:grid;align-items:center;padding:clamp(34px,5vw,64px) var(--lado) clamp(40px,6vw,90px);background:#DCEBF3 url(assets/arte/hero-celular.webp) center bottom/cover no-repeat;overflow:hidden}
@@ -365,3 +364,37 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 @media(max-width:899px){.topo{gap:10px}.busca{padding:0 12px;gap:6px}.busca input{font-size:15px}.busca svg{width:17px;height:17px}}
 .rodape-enfeite{width:150px;margin:-56px 0 0 -14px}
 @media(max-width:420px){.rodape-enfeite{width:120px}}
+
+/* ---- botões de papel pastel com costura e ícones de papel ---- */
+.chip,.menu-item,.tam{--papel-tom:url(assets/arte/papel-azulzinho.webp);display:inline-flex;align-items:center;gap:6px;border:0;background:#EEF8FB var(--papel-tom) center/220px;outline:1.5px dashed rgba(51,38,74,.22);outline-offset:-5px;box-shadow:0 4px 10px -6px rgba(51,38,74,.45);color:var(--tinta);transition:transform .2s,box-shadow .2s}
+[data-tom=rosa]{--papel-tom:url(assets/arte/papel-rosinha.webp)}
+[data-tom=sol]{--papel-tom:url(assets/arte/papel-amarelinho.webp)}
+.chip:hover,.menu-item:hover,.tam:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 14px -8px rgba(51,38,74,.5);border:0}
+.chip .ic{width:28px;height:28px;object-fit:contain;margin:-4px 0 -4px -6px}
+.menu{gap:12px;padding-top:8px;padding-bottom:14px}
+.menu-item{padding:8px 20px 8px 12px;font:500 18px/1.1 var(--display)}
+.menu-item .ic{width:36px;height:36px;object-fit:contain;margin:-6px 0 -6px -4px}
+.chip[aria-pressed="true"],.menu-item[aria-pressed="true"],.tam[aria-pressed="true"]{background:linear-gradient(rgba(214,0,126,.5),rgba(214,0,126,.5)),url(assets/arte/papel-rosa.webp) center/260px #D6007E;color:#fff;outline-color:rgba(255,255,255,.7);text-shadow:0 1px 2px rgba(120,0,60,.35)}
+.tam{padding:9px 18px}
+.tam:disabled{background:transparent;outline-style:dashed;box-shadow:none}
+.chip:focus-visible,.menu-item:focus-visible,.tam:focus-visible{outline:3px solid var(--tinta);outline-offset:3px}
+@media(max-width:520px){.menu-item{padding:7px 14px 7px 9px;font-size:16.5px}.menu-item .ic{width:30px;height:30px}.chip{padding:6px 13px;font-size:15px}}
+.menu{justify-content:flex-start}.menu>:first-child{margin-left:auto}.menu>:last-child{margin-right:auto}
+
+/* ---- busca e sacola em papel claro com costura ---- */
+.busca,.sacola-btn,.sacola-btn[class]{background:linear-gradient(rgba(255,255,255,.72),rgba(255,255,255,.72)),url(assets/arte/papel-rosinha.webp) center/240px #fff;border:0;outline:1.5px dashed rgba(214,0,126,.35);outline-offset:-5px;box-shadow:0 5px 14px -8px rgba(51,38,74,.45)}
+.busca{height:48px;padding:0 18px 0 10px}
+.busca:focus-within{outline:2px solid var(--rosa-texto);outline-offset:-2px;border:0}
+.ic-lupa{width:22px;height:36px;object-fit:contain;transform:rotate(-40deg);flex:none;margin:0 2px 0 4px}
+.busca input::placeholder{color:var(--tinta-suave);font-family:var(--display);font-weight:500}
+.sacola-btn:hover{background:linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,.45)),url(assets/arte/papel-rosinha.webp) center/240px #fff}
+.sacola-btn:focus-visible{outline:3px solid var(--tinta);outline-offset:3px}
+.sacola-qtd,.sacola-qtd[class]{background:linear-gradient(rgba(214,0,126,.5),rgba(214,0,126,.5)),url(assets/arte/papel-rosa.webp) center/120px #D6007E}
+@media(max-width:899px){.busca{height:44px;padding:0 12px 0 8px}.ic-lupa{width:18px;height:30px}}
+@media(max-width:899px){
+  .topo{gap:8px}
+  .sacola-btn,.sacola-btn[class]{position:relative;width:48px;padding:0;justify-content:center}
+  .sacola-qtd,.sacola-qtd[class]{position:absolute;top:-6px;right:-6px;min-width:22px;height:22px;line-height:22px;font-size:12.5px}
+  .busca{padding:0 10px 0 6px}.busca input{font-size:15px}
+}
+@media(max-width:380px){.busca input{font-size:14px}.ic-lupa{width:15px;height:26px;margin:0 0 0 2px}.marca{height:56px}}

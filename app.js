@@ -80,21 +80,29 @@ function configurar() {
 }
 
 /* ---------- filtros ---------- */
-function chip(rotulo, ativo, aoClicar) {
-  return el('button', { class: 'chip', type: 'button', 'aria-pressed': String(ativo), onclick: aoClicar, text: rotulo });
+/* ícones de papel (assets/arte/ic-*.webp) e tom do papel de cada botão */
+const ICONE_GEN = { menina: 'menina', menino: 'menino', unissex: 'unissex' };
+const TOM_GEN = { menina: 'rosa', menino: 'azul', unissex: 'sol' };
+function iconeCategoria(c) {
+  const n = norm(c);
+  return /vestid/.test(n) ? 'vestido' : /conjunt/.test(n) ? 'conjunto' : /present|kit|mimo/.test(n) ? 'presente' : 'tudo';
+}
+const icone = nome => nome ? el('img', { class: 'ic', src: 'assets/arte/ic-' + nome + '.webp', alt: '', width: 96, height: 96, 'aria-hidden': 'true' }) : null;
+function chip(rotulo, ativo, aoClicar, { ic = null, tom = 'azul' } = {}) {
+  return el('button', { class: 'chip', 'data-tom': tom, type: 'button', 'aria-pressed': String(ativo), onclick: aoClicar }, icone(ic), el('span', { text: rotulo }));
 }
 function montarFiltros() {
-  const grupo = (id, valores, chave, rotular = v => v, nome = '') => {
+  const grupo = (id, valores, chave, rotular = v => v, nome = '', estilo = () => ({}), estiloTodos = {}) => {
     const box = $(id);
     box.replaceChildren();
     if (valores.length < 2) { box.hidden = true; return; }
     box.hidden = false;
-    box.append(el('span', { class: 'grupo-rotulo', text: nome }), chip('Todos', !filtro[chave], () => { filtro[chave] = ''; montarFiltros(); desenhar(); }),
-      ...valores.map(v => chip(rotular(v), filtro[chave] === v, () => { filtro[chave] = filtro[chave] === v ? '' : v; montarFiltros(); desenhar(); })));
+    box.append(el('span', { class: 'grupo-rotulo', text: nome }), chip('Todos', !filtro[chave], () => { filtro[chave] = ''; montarFiltros(); desenhar(); }, estiloTodos),
+      ...valores.map(v => chip(rotular(v), filtro[chave] === v, () => { filtro[chave] = filtro[chave] === v ? '' : v; montarFiltros(); desenhar(); }, estilo(v))));
   };
   const tams = [...new Set(PECAS.flatMap(todosTamanhos))].sort(comparaTam);
   grupo('#f-tam', tams, 'tam', t => 'Tam. ' + capitaliza(t), 'Tamanho');
-  grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g, 'Para');
+  grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g, 'Para', g => ({ ic: ICONE_GEN[g], tom: TOM_GEN[g] || 'azul' }), { ic: 'tudo', tom: 'sol' });
   $('#limpar').hidden = !Object.values(filtro).some(Boolean);
   $('#filtros').hidden = !['#f-tam', '#f-cat', '#f-gen'].some(id => !$(id).hidden) && !Object.values(filtro).some(Boolean);
 }
@@ -125,8 +133,9 @@ function desenharVitrine() {
   const temCats = cats.length >= 2;
   const menu = $('#menu');
   menu.hidden = !temCats;
-  menu.replaceChildren(...(temCats ? [{ rotulo: 'Tudo', valor: '' }, ...cats.map(c => ({ rotulo: c, valor: c }))].map(x =>
-    el('button', { type: 'button', class: 'menu-item', 'aria-pressed': String(filtro.cat === x.valor), onclick: () => irParaCategoria(x.valor), text: x.rotulo })) : []));
+  menu.replaceChildren(...(temCats ? [{ rotulo: 'Tudo', valor: '' }, ...cats.map(c => ({ rotulo: c, valor: c }))].map((x, i) =>
+    el('button', { type: 'button', class: 'menu-item', 'data-tom': ['sol', 'rosa', 'azul', 'rosa'][i % 4], 'aria-pressed': String(filtro.cat === x.valor), onclick: () => irParaCategoria(x.valor) },
+      icone(x.valor ? iconeCategoria(x.valor) : 'tudo'), el('span', { text: x.rotulo }))) : []));
   const cg = $('#cat-grade');
   $('#categorias').hidden = !temCats;
   cg.replaceChildren(...(temCats ? cats.slice(0, 4).map((c, i) => {

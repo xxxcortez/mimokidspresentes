@@ -486,3 +486,8 @@ dialog#sacola .fechar{right:14px;top:16px}
 .lista-ic li,.lista-ic a{grid-template-columns:34px 1fr}
 .lista-ic .r-email,.r-email img{width:34px}
 .copia-ic{width:28px;height:28px}
+
+/* ---- topo: o enfeite de nuvem nunca cobre a busca (só aparece onde cabe entre a busca e o logo) ---- */
+.busca{position:relative;z-index:2}
+@media(min-width:900px) and (max-width:1359px){.topo::before,.topo::after{display:none}}
+@media(min-width:1360px){.busca{max-width:230px}}

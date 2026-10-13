@@ -400,14 +400,13 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 /* ---- ícones de papel nos controles (fechar, quantidade, remover, aviso de IA) ---- */
 .fechar img{width:30px;height:30px;object-fit:contain}
 .fechar,.fechar[class]{background:#fff;border:2px solid var(--rosa-bebe)}
-.qtd button img{width:26px;height:26px;object-fit:contain;display:block;margin:0 auto}
 .qtd button{display:grid;place-items:center;height:44px}
 .item .qtd button{height:40px}
 .remover{display:inline-flex;align-items:center;gap:4px}
 .remover img{width:24px;height:24px;object-fit:contain}
 
 /* ícones de controle com mais contraste (papel pastel realçado) */
-.fechar img,.qtd button img{filter:saturate(2.4) brightness(.78) contrast(1.15)}
+.fechar img{filter:saturate(2.4) brightness(.78) contrast(1.15)}
 .remover img{filter:saturate(2) brightness(.85)}
 .fechar{width:46px;height:46px}.fechar img{width:30px;height:30px}
 .qtd button img{width:22px;height:22px}
@@ -448,3 +447,5 @@ dialog#zoom::backdrop{background:#1d1427}
 .tam-dica{margin:10px 0 0;font-size:13.5px;color:var(--tinta-suave)}
 .tam-dica:empty{display:none}
 @media(max-width:520px){.zoom-ant{left:8px}.zoom-prox{right:8px}.zoom-btn{width:44px;height:44px}}
+
+.qtd button{font:500 24px/1 var(--display);color:var(--tinta)}

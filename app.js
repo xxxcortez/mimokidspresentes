@@ -382,7 +382,7 @@ function atualizarSacola() {
     return el('div', { class: 'item' },
       el('img', { src: capa(p, cor), alt: p.nome, loading: 'lazy' }),
       el('div', {}, el('strong', { text: p.nome }), el('small', { text: [corUtil(p, x.cor), 'tam. ' + capitaliza(x.tam), p.codigo ? 'cod. ' + p.codigo.toLowerCase() : ''].filter(Boolean).join(' · ') }),
-        el('div', { class: 'qtd' }, el('button', { type: 'button', 'aria-label': 'Diminuir', disabled: x.qtd <= 1, onclick: muda(-1) }, icone('menos')), el('output', { text: x.qtd }), el('button', { type: 'button', 'aria-label': 'Aumentar', disabled: x.qtd >= 20, onclick: muda(1) }, icone('mais')))),
+        el('div', { class: 'qtd' }, el('button', { type: 'button', 'aria-label': 'Diminuir', disabled: x.qtd <= 1, onclick: muda(-1), text: '−' }), el('output', { text: x.qtd }), el('button', { type: 'button', 'aria-label': 'Aumentar', disabled: x.qtd >= 20, onclick: muda(1), text: '+' }))),
       el('div', { class: 'item-fim' }, el('strong', { text: BRL(x.qtd * p.preco) }), el('br'), el('button', { class: 'remover', type: 'button', 'aria-label': 'Remover ' + p.nome, onclick: () => { sacola.splice(i, 1); atualizarSacola(); } }, icone('remover'), el('span', { text: 'Remover' }))));
   }));
   const { desconto, total } = calcular();

@@ -66,13 +66,14 @@ async function carregar() {
 function configurar() {
   const fmt = v => BRL(Number(v)).replace(',00', '');
   const avisos = [];
-  if (CFG.freteGratisAcima) avisos.push(`Entrega grátis${CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : ''} acima de ${fmt(CFG.freteGratisAcima)}`);
+  if (CFG.freteGratisAcima) avisos.push(`Entrega grátis${CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : ''} acima de ${fmt(CFG.freteGratisAcima)} reais`);
   if (CFG.brinde) avisos.push(`Compras acima de ${fmt(CFG.brinde.acima)} ganham ${CFG.brinde.texto}`);
   const aviso = $('#aviso');
   if (avisos.length) { aviso.replaceChildren(...avisos.map(a => el('span', { text: a }))); aviso.hidden = false; }
-  document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30));
+  document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30) + ' reais');
   document.querySelectorAll('.frete-cidade').forEach(n => n.textContent = CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : '');
   document.querySelectorAll('.parcelas-valor, #parcelas').forEach(n => n.textContent = CFG.parcelasCartao || 12);
+  document.querySelectorAll('[data-rede]').forEach(n => { n.href = { whats: CFG.whatsapp && 'https://wa.me/' + CFG.whatsapp, insta: CFG.instagram && 'https://www.instagram.com/' + CFG.instagram + '/', tiktok: CFG.tiktok && 'https://www.tiktok.com/@' + CFG.tiktok }[n.dataset.rede] || '#'; });
   if (CFG.whatsapp) { $('#l-whats').href = 'https://wa.me/' + CFG.whatsapp; $('#l-whats-presente').href = 'https://wa.me/' + CFG.whatsapp; }
   if (CFG.instagram) $('#l-insta').href = 'https://www.instagram.com/' + CFG.instagram + '/';
   if (CFG.tiktok) $('#l-tiktok').href = 'https://www.tiktok.com/@' + CFG.tiktok;
@@ -105,7 +106,7 @@ function cartao(p, { selo = false } = {}) {
   const foto = el('img', { src: capa(p), alt: p.nome, width: 720, height: 960, loading: 'lazy', decoding: 'async' });
   const selo_ia = el('span', { class: 'ia-selo', text: 'Foto ilustrativa (IA)', hidden: !(p.cores[0].ia || []).includes(0) });
   const abrir = el('button', { class: 'peca-foto', type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p) },
-    foto, selo ? el('span', { class: 'selo-novo', text: 'Novo' }) : null, el('span', { class: 'bolha', text: BRL(p.preco) }), selo_ia);
+    foto, selo ? el('span', { class: 'selo-novo', text: 'Novo' }) : null, selo_ia);
   const cores = p.cores.length > 1 ? el('div', { class: 'cores', role: 'group', 'aria-label': 'Cores de ' + p.nome },
     p.cores.map((c, i) => el('button', {
       class: 'cor', type: 'button', style: '--c:' + (c.hex || '#ccc'), 'aria-label': c.nome, title: c.nome, 'aria-pressed': String(i === 0),
@@ -114,6 +115,7 @@ function cartao(p, { selo = false } = {}) {
   const tams = tamanhosDaPeca(p);
   return el('article', { class: 'peca', 'data-genero': p.genero || '' }, abrir, cores,
     el('h3', { class: 'peca-nome', text: p.nome }),
+    el('p', { class: 'peca-preco', text: BRL(p.preco) }),
     el('p', { class: 'peca-meta', text: [p.codigo ? 'cod. ' + p.codigo.toLowerCase() : '', tams.length ? 'tam. ' + tams.map(capitaliza).join(' · ') : 'esgotado'].filter(Boolean).join(' · ') }),
     p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null);
 }

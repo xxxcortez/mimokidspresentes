@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mimokidspresentes.com.br/sitemap.xml

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mimo Kids Presentes | Moda bebê e infantil do RN ao tamanho 4</title>
-<meta name="description" content="Roupinhas e presentes para bebês e crianças, do RN ao tamanho 4. Escolha pelo site e finalize o pedido pelo WhatsApp.">
+<title>Mimo Kids Presentes | Moda bebê e infantil em Aparecida do Taboado-MS</title>
+<meta name="description" content="Roupinhas e presentes para bebês e crianças, do RN ao tamanho 4, em Aparecida do Taboado-MS. Escolha pelo site e finalize o pedido pelo WhatsApp.">
 <meta name="theme-color" content="#CDEEF4">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
@@ -19,18 +19,29 @@
 <meta property="og:image" content="https://mimokidspresentes.com.br/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mimo Kids Presentes: moda bebê e infantil, do RN ao tamanho 4">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mimo Kids Presentes | Moda bebê e infantil">
+<meta name="twitter:description" content="Roupinhas delicadas e presentes para bebês e crianças, do RN ao tamanho 4. Escolha pelo site e finalize pelo WhatsApp.">
+<meta name="twitter:image" content="https://mimokidspresentes.com.br/assets/og.jpg">
 <link rel="preload" href="assets/fontes/Fredoka-Variavel.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fontes/Ubuntu-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/arte/hero-celular.webp" as="image" media="(max-width:879px)">
+<link rel="preload" href="assets/arte/hero.webp" as="image" media="(min-width:880px)">
 <link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ClothingStore","name":"Mimo Kids Presentes","url":"https://mimokidspresentes.com.br/","image":"https://mimokidspresentes.com.br/assets/og.jpg","logo":"https://mimokidspresentes.com.br/assets/favicon-512.png","description":"Moda bebê e infantil, do RN ao tamanho 4, e presentes que viram memória.","telephone":"+55 67 98154-2208","areaServed":{"@type":"City","name":"Aparecida do Taboado","containedInPlace":{"@type":"State","name":"Mato Grosso do Sul"}},"sameAs":["https://www.instagram.com/mimokidspresentes/","https://www.tiktok.com/@mimokidspresentes"]}
+</script>
 </head>
 <body>
 <a class="pular" href="#catalogo">Ir para as peças</a>
+<p class="so-leitor" id="sr" role="status" aria-live="polite"></p>
 
-<div class="aviso" id="aviso" hidden></div>
+<div class="aviso" id="aviso"><span>Entrega grátis em Aparecida do Taboado-MS acima de R$ 30.</span></div>
 
 <header class="topo">
   <a class="marca" href="#" aria-label="Mimo Kids Presentes, início">
-    <img src="assets/logo.png" alt="Mimo Kids Presentes" width="1000" height="565">
+    <img src="assets/logo.webp" alt="Mimo Kids Presentes" width="1000" height="565">
   </a>
   <label class="busca">
     <img class="ic-lupa" src="assets/arte/ic-lupa.webp" alt="" width="96" height="181" aria-hidden="true">
@@ -42,7 +53,7 @@
     <span class="sacola-qtd" id="sacola-qtd">0</span>
   </button>
 </header>
-<nav class="menu" id="menu" aria-label="Categorias" hidden></nav>
+<nav class="menu" id="menu" aria-label="Menu de categorias"><button type="button" class="menu-item" data-tom="sol" aria-pressed="true"><img class="ic" src="assets/arte/ic-tudo.webp" alt="" width="96" height="96" aria-hidden="true"><span>Tudo</span></button></nav>
 
 <section class="vitrine-topo" aria-label="Apresentação da loja">
   <div class="vt-texto">
@@ -50,11 +61,11 @@
     <p>Roupinhas delicadas e presentes para bebês e crianças, do RN ao tamanho 4. Escolha pelo site e finalize pelo WhatsApp.</p>
     <a class="botao" href="#catalogo">Ver as novidades</a>
   </div>
-  <div class="fotos-topo" id="ovos" aria-hidden="true"></div>
+  <div class="fotos-topo" id="ovos"></div>
 </section>
 
 <main>
-  <section class="categorias" id="categorias" aria-label="Categorias" hidden>
+  <section class="categorias" id="categorias" aria-label="Quadros de categorias" hidden>
     <div class="cat-grade" id="cat-grade"></div>
   </section>
 
@@ -71,10 +82,16 @@
       <div class="grupo" id="f-tam" role="group" aria-label="Filtrar por tamanho"></div>
       <div class="grupo" id="f-cat" role="group" aria-label="Filtrar por categoria" hidden></div>
       <div class="grupo" id="f-gen" role="group" aria-label="Filtrar por menina ou menino"></div>
+      <div class="grupo" id="f-preco" role="group" aria-label="Filtrar por preço" hidden></div>
+      <label class="ordem" id="ordem" hidden><span>Ordenar</span>
+        <select id="ord"><option value="">Novidades</option><option value="menor">Menor preço</option><option value="maior">Maior preço</option></select>
+      </label>
       <button class="limpar" id="limpar" type="button" hidden>Limpar filtros</button>
     </div>
 
     <div class="grade" id="grade"></div>
+    <noscript><p class="sem-js">Para ver as peças, ative o JavaScript no navegador ou fale com a gente pelo WhatsApp (67) 98154-2208.</p></noscript>
+    <div class="mais-bloco"><button class="botao secundario" id="mais" type="button" hidden>Ver mais peças</button></div>
 
     <div class="vazio" id="vazio" hidden>
       <img class="ursinho" src="assets/arte/ursinho.webp" alt="" width="520" height="480" aria-hidden="true">
@@ -89,8 +106,15 @@
     <img class="bicho coelhinho" src="assets/arte/coelhinho.webp" alt="" width="420" height="602" aria-hidden="true">
     <div class="presente-texto">
       <h2 id="presente-titulo">Para presentear</h2>
-      <p>Nascimento, chá de bebê ou aniversário: escolha a peça e peça pelo WhatsApp, a gente ajuda com tamanho e cor.</p>
-      <a class="botao" id="l-whats-presente" href="#catalogo" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+      <p>Nascimento, chá de bebê ou aniversário: escolha a peça e faça o pedido pelo WhatsApp, a gente ajuda com tamanho e cor.</p>
+      <div class="faixas" role="group" aria-label="Ver presentes por idade">
+        <span class="faixas-rotulo">Presente para quem tem:</span>
+        <button class="chip" type="button" data-tom="rosa" data-faixa="RN,P"><span>0 a 6 meses</span></button>
+        <button class="chip" type="button" data-tom="azul" data-faixa="M,G"><span>6 a 12 meses</span></button>
+        <button class="chip" type="button" data-tom="sol" data-faixa="1,2"><span>1 a 2 anos</span></button>
+        <button class="chip" type="button" data-tom="rosa" data-faixa="3,4"><span>3 a 4 anos</span></button>
+      </div>
+      <a class="botao" id="l-whats-presente" href="#">Pedir ajuda no WhatsApp</a>
     </div>
   </section>
 
@@ -98,13 +122,14 @@
     <div class="fato f-azul"><img src="assets/arte/icone-novidade.webp" alt="" width="320" height="300" aria-hidden="true"><div><strong>Novidade toda semana</strong>Peças novas direto dos nossos Stories.</div></div>
     <div class="fato f-sol"><img src="assets/arte/icone-entrega.webp" alt="" width="320" height="300" aria-hidden="true"><div><strong>Entrega grátis</strong>Compras acima de <span class="frete-valor"></span><span class="frete-cidade"></span>.</div></div>
     <div class="fato f-rosa"><img src="assets/arte/icone-whatsapp.webp" alt="" width="320" height="300" aria-hidden="true"><div><strong>Pedido pelo WhatsApp</strong>Pix ou cartão em até <span class="parcelas-valor"></span>x (juros por conta do cliente).</div></div>
+    <div class="fato f-lilas" id="fato-live"><img src="assets/arte/icone-live.webp" alt="" width="320" height="300" aria-hidden="true"><div><strong id="live-titulo">Lives com a gente</strong><span id="live-texto">Os horários são avisados antes, nos Stories do Instagram.</span></div></div>
   </section>
 </main>
 
 <footer class="rodape">
   <div class="rodape-grade">
     <div class="rodape-marca">
-      <div class="rodape-logo-bloco"><img src="assets/logo.png" alt="Mimo Kids Presentes" width="1000" height="565" class="rodape-logo"><img class="rodape-enfeite" src="assets/arte/enfeite-logo.webp" alt="" width="420" height="249" aria-hidden="true"></div>
+      <div class="rodape-logo-bloco"><img src="assets/logo.webp" alt="Mimo Kids Presentes" width="1000" height="565" class="rodape-logo"><img class="rodape-enfeite" src="assets/arte/enfeite-logo.webp" alt="" width="420" height="249" aria-hidden="true"></div>
       <div class="sobre-loja"><p class="frase"><strong>Moda bebê e infantil</strong>do RN ao tamanho 4, e presentes que viram memória.</p>
       <p class="cidade"><span>Aparecida do Taboado-MS</span></p></div>
       <ul class="redes" aria-label="Redes sociais">
@@ -196,8 +221,10 @@
         </div>
         <button class="botao" id="p-add" type="button">Adicionar à sacola</button>
       </div>
+      <button class="compartilhar" id="p-compartilhar" type="button">Compartilhar esta peça</button>
+      <p class="aviso-peca" id="p-aviso" role="status"></p>
       <p class="descricao" id="p-desc"></p>
-      <p class="nota">Entrega grátis<span class="frete-cidade"></span> em compras acima de <span class="frete-valor"></span>. Pix com o preço do site; cartão em até <span class="parcelas-valor"></span>x com juros por conta do cliente.</p>
+      <p class="nota">Entrega grátis<span class="frete-cidade"></span> em compras acima de <span class="frete-valor"></span>; em outras cidades, combinamos o frete pelo WhatsApp. Pix com o preço do site; cartão em até <span class="parcelas-valor"></span>x com juros por conta do cliente. Trocas por tamanho ou por defeito: veja <a href="trocas-e-devolucoes.html">Trocas e devoluções</a>.</p>
     </div>
   </div>
 </dialog>
@@ -208,22 +235,27 @@
     <h2 id="sacola-titulo">Minha sacola</h2>
     <div class="sacola-vazia" id="sacola-vazia"><img class="ursinho" src="assets/arte/ovelhinha.webp" alt="" width="420" height="353" aria-hidden="true"><p>Sua sacola está vazia. Escolha uma peça e um tamanho.</p></div>
     <div id="sacola-itens"></div>
-    <div class="sacola-totais" id="sacola-totais" hidden>
-      <p class="linha-desconto" id="sacola-desconto" hidden></p>
-      <p class="linha-total"><span>Total</span><strong id="sacola-total"></strong></p>
-    </div>
-    <label class="obs" id="obs-rotulo" for="obs" hidden>Observações
-      <textarea id="obs" rows="2" placeholder="Algo que a gente deva saber?"></textarea>
-    </label>
-    <button class="botao grande" id="pedido" type="button" hidden>Preparar pedido</button>
-    <div class="pedido-previa" id="previa" hidden>
-      <label for="pedido-texto">Mensagem do pedido</label>
-      <textarea id="pedido-texto" rows="8" readonly></textarea>
-      <div class="previa-acoes">
-        <a class="botao" id="whats" href="#" target="_blank" rel="noopener noreferrer">Abrir no WhatsApp</a>
+    <div class="sacola-extras" id="sacola-extras" hidden>
+      <p class="dica" id="dica-promo" hidden></p>
+      <p class="dica" id="dica-frete" hidden></p>
+      <label class="obs" for="cidade">Cidade e bairro (para combinar a entrega)
+        <input id="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Aparecida do Taboado, Centro">
+      </label>
+      <label class="obs" id="obs-rotulo" for="obs">Observações
+        <textarea id="obs" rows="2" placeholder="Algo que a gente deva saber?"></textarea>
+      </label>
+      <details class="previa" id="previa">
+        <summary>Ver a mensagem do pedido</summary>
+        <label for="pedido-texto" class="so-leitor">Mensagem do pedido</label>
+        <textarea id="pedido-texto" rows="8" readonly></textarea>
         <button class="botao secundario" id="copiar" type="button">Copiar mensagem</button>
-      </div>
-      <p class="nota" id="previa-nota" role="status">O WhatsApp abre com a mensagem pronta para você revisar e enviar.</p>
+        <p class="nota" id="previa-nota" role="status">O WhatsApp abre com a mensagem pronta para você revisar e enviar.</p>
+      </details>
+    </div>
+    <div class="sacola-rodape" id="sacola-rodape" hidden>
+      <p class="linha-desconto" id="sacola-desconto" hidden></p>
+      <p class="linha-total"><span>Total</span><strong id="sacola-total" aria-live="polite"></strong></p>
+      <a class="botao grande" id="whats" href="#" target="_blank" rel="noopener noreferrer">Enviar pedido pelo WhatsApp</a>
     </div>
   </div>
 </dialog>

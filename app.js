@@ -23,8 +23,20 @@ function el(tag, props = {}, ...filhos) {
   return e;
 }
 
-let CFG = {}, PECAS = [];
-const filtro = { tam: '', cat: '', gen: '', busca: '' };
+const cod = p => p.codigo ? 'Cód. ' + String(p.codigo).toUpperCase() : '';
+/* miniatura do cartão: o bot grava ao lado da foto grande uma versão "-m.jpg" (480px); se não existir, usa a grande */
+const miniatura = f => String(f).replace(/\.jpg$/i, '-m.jpg');
+const eNova = p => { const t = Date.parse(p.criado); return !isNaN(t) && (Date.now() - t) / 86400000 <= (Number(CFG.novoDias) || 14); };
+const zap = texto => /^55\d{10,11}$/.test(CFG.whatsapp || '') ? 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(texto) : '#';
+const avisarLeitor = t => { const n = $('#sr'); if (n) { n.textContent = ''; setTimeout(() => { n.textContent = t; }, 30); } };
+/* devolve o foco ao botão equivalente depois de redesenhar uma lista (teclado e leitor de tela) */
+const guardarFoco = () => { const a = document.activeElement; return a && a.dataset ? a.dataset.foco : ''; };
+const devolverFoco = f => { if (f) { const n = [...document.querySelectorAll('[data-foco]')].find(x => x.dataset.foco === f && !x.disabled); if (n) n.focus({ preventScroll: true }); } };
+
+let CFG = {}, PECAS = [], ERRO = false;
+const filtro = { tam: '', cat: '', gen: '', busca: '', faixa: null, ate: 0 };
+const ordem = { v: '' };
+const temFiltro = () => Boolean(filtro.tam || filtro.cat || filtro.gen || filtro.busca.trim() || filtro.faixa || filtro.ate);
 const GENEROS = { menina: 'Menina', menino: 'Menino', unissex: 'Unissex' };
 
 /* ---------- tamanhos: lista fixa RN, P, M, G, 1, 2, 3, 4 ----------
@@ -82,32 +94,42 @@ const porId = new Map();
 /* ---------- carga ---------- */
 async function carregar() {
   let dados;
+  ERRO = false;
   try {
     const r = await fetch('produtos.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error(String(r.status));
     dados = await r.json();
-  } catch { dados = { config: {}, produtos: [] }; }
+  } catch { ERRO = true; dados = { config: CFG, produtos: [] }; }
   CFG = dados.config || {};
   PECAS = (dados.produtos || []).filter(p => p && p.cores && p.cores.length && p.cores[0].fotos && p.cores[0].fotos.length)
     .sort((a, b) => String(b.criado || '').localeCompare(String(a.criado || '')) || String(b.id).localeCompare(String(a.id)));
   PECAS.forEach(normalizarPeca);
+  porId.clear();
   PECAS.forEach(p => porId.set(String(p.id), p));
   configurar();
   montarFiltros();
+  desenharVitrine();
   desenhar();
   atualizarSacola();
+  abrirPorHash();
 }
 
 function configurar() {
   const fmt = v => BRL(Number(v)).replace(',00', '');
   const avisos = [];
-  if (CFG.freteGratisAcima) avisos.push(`Entrega grátis${CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : ''} acima de ${fmt(CFG.freteGratisAcima)} reais.`);
+  if (CFG.freteGratisAcima) avisos.push(`Entrega grátis${CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : ''} acima de ${fmt(CFG.freteGratisAcima)}.`);
   const aviso = $('#aviso');
   if (avisos.length) { aviso.replaceChildren(...avisos.map(a => el('span', { text: a }))); aviso.hidden = false; }
-  document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30) + ' reais');
+  document.querySelectorAll('.frete-valor').forEach(n => n.textContent = fmt(CFG.freteGratisAcima || 30));
   document.querySelectorAll('.frete-cidade').forEach(n => n.textContent = CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : '');
   document.querySelectorAll('.parcelas-valor, #parcelas').forEach(n => n.textContent = CFG.parcelasCartao || 12);
   document.querySelectorAll('[data-rede]').forEach(n => { n.href = { whats: CFG.whatsapp && 'https://wa.me/' + CFG.whatsapp, insta: CFG.instagram && 'https://www.instagram.com/' + CFG.instagram + '/', tiktok: CFG.tiktok && 'https://www.tiktok.com/@' + CFG.tiktok }[n.dataset.rede] || '#'; });
-  if (CFG.whatsapp) { $('#l-whats').href = 'https://wa.me/' + CFG.whatsapp; $('#l-whats-presente').href = 'https://wa.me/' + CFG.whatsapp; }
+  if (CFG.whatsapp) { $('#l-whats').href = 'https://wa.me/' + CFG.whatsapp; }
+  const pres = $('#l-whats-presente');
+  pres.href = zap('Olá, Mimo Kids Presentes! Quero ajuda para escolher um presente.');
+  if (pres.href !== location.href + '#') { pres.target = '_blank'; pres.rel = 'noopener noreferrer'; }
+  /* as lives não têm dia fixo (são avisadas antes no Instagram); se a loja informar uma data, ela vira "Próxima live" */
+  if (CFG.proximaLive) { $('#live-titulo').textContent = 'Próxima live'; $('#live-texto').textContent = CFG.proximaLive; }
   if (CFG.instagram) $('#l-insta').href = 'https://www.instagram.com/' + CFG.instagram + '/';
   if (CFG.tiktok) $('#l-tiktok').href = 'https://www.tiktok.com/@' + CFG.tiktok;
 }
@@ -121,50 +143,82 @@ function iconeCategoria(c) {
   return /vestid/.test(n) ? 'vestido' : /conjunt/.test(n) ? 'conjunto' : /present|kit|mimo/.test(n) ? 'presente' : 'tudo';
 }
 const icone = nome => nome ? el('img', { class: 'ic', src: 'assets/arte/ic-' + nome + '.webp', alt: '', width: 96, height: 96, 'aria-hidden': 'true' }) : null;
-function chip(rotulo, ativo, aoClicar, { ic = null, tom = 'azul' } = {}) {
-  return el('button', { class: 'chip', 'data-tom': tom, type: 'button', 'aria-pressed': String(ativo), onclick: aoClicar }, icone(ic), el('span', { text: rotulo }));
+function chip(rotulo, ativo, aoClicar, { ic = null, tom = 'azul', foco = '' } = {}) {
+  return el('button', { class: 'chip', 'data-tom': tom, 'data-foco': foco, type: 'button', 'aria-pressed': String(ativo), onclick: aoClicar }, icone(ic), el('span', { text: rotulo }));
 }
 function montarFiltros() {
+  const foco = guardarFoco();
+  const aplicar = () => { montarFiltros(); desenhar(); };
   const grupo = (id, valores, chave, rotular = v => v, nome = '', estilo = () => ({}), estiloTodos = {}) => {
     const box = $(id);
     box.replaceChildren();
     if (valores.length < 2) { box.hidden = true; return; }
     box.hidden = false;
-    box.append(el('span', { class: 'grupo-rotulo', text: nome }), chip('Todos', !filtro[chave], () => { filtro[chave] = ''; montarFiltros(); desenhar(); }, estiloTodos),
-      ...valores.map(v => chip(rotular(v), filtro[chave] === v, () => { filtro[chave] = filtro[chave] === v ? '' : v; montarFiltros(); desenhar(); }, estilo(v))));
+    box.append(el('span', { class: 'grupo-rotulo', text: nome }), chip('Todos', !filtro[chave], () => { filtro[chave] = ''; aplicar(); }, { ...estiloTodos, foco: chave + ':' }),
+      ...valores.map(v => chip(rotular(v), filtro[chave] === v, () => { filtro[chave] = filtro[chave] === v ? '' : v; if (chave === 'tam') filtro.faixa = null; aplicar(); }, { ...estilo(v), foco: chave + ':' + v })));
   };
-  const tams = [...new Set(PECAS.flatMap(todosTamanhos))].sort(comparaTam);
+  const tams = [...new Set(PECAS.flatMap(tamanhosDaPeca))].sort(comparaTam);
   grupo('#f-tam', tams, 'tam', t => 'Tam. ' + capitaliza(t), 'Tamanho');
   grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g, 'Para', g => ({ ic: ICONE_GEN[g], tom: TOM_GEN[g] || 'azul' }), { ic: 'tudo', tom: 'sol' });
-  $('#limpar').hidden = !Object.values(filtro).some(Boolean);
-  $('#filtros').hidden = !['#f-tam', '#f-cat', '#f-gen'].some(id => !$(id).hidden) && !Object.values(filtro).some(Boolean);
+  const lim = Number(CFG.precoAte) || 100;
+  const boxP = $('#f-preco');
+  boxP.replaceChildren();
+  boxP.hidden = !(PECAS.some(p => p.preco <= lim) && PECAS.some(p => p.preco > lim));
+  if (!boxP.hidden) boxP.append(chip('Até ' + BRL(lim).replace(',00', ''), filtro.ate === lim, () => { filtro.ate = filtro.ate === lim ? 0 : lim; aplicar(); }, { tom: 'rosa', foco: 'preco' }));
+  $('#ordem').hidden = PECAS.length < 3;
+  $('#limpar').hidden = !temFiltro();
+  $('#filtros').hidden = !['#f-tam', '#f-cat', '#f-gen', '#f-preco'].some(id => !$(id).hidden) && !temFiltro() && PECAS.length < 3;
+  devolverFoco(foco);
 }
-$('#limpar').addEventListener('click', () => { Object.keys(filtro).forEach(k => filtro[k] = ''); $('#busca').value = ''; montarFiltros(); desenhar(); });
-$('#busca').addEventListener('input', e => { filtro.busca = e.target.value; $('#limpar').hidden = !Object.values(filtro).some(Boolean); desenhar(); });
+$('#limpar').addEventListener('click', () => {
+  Object.assign(filtro, { tam: '', cat: '', gen: '', busca: '', faixa: null, ate: 0 }); $('#busca').value = ''; montarFiltros(); desenhar();
+  const f = $('#busca'); if (document.activeElement === $('#limpar')) f.focus({ preventScroll: true });
+});
+let atrasoBusca;
+$('#busca').addEventListener('input', e => {
+  filtro.busca = e.target.value;
+  $('#limpar').hidden = !temFiltro();
+  clearTimeout(atrasoBusca);
+  atrasoBusca = setTimeout(() => { desenhar(); rolarAoCatalogo(false); }, 140);
+});
+$('#ord').addEventListener('change', e => { ordem.v = e.target.value; desenhar(); });
+document.querySelectorAll('[data-faixa]').forEach(b => b.addEventListener('click', () => {
+  filtro.faixa = b.dataset.faixa.split(','); filtro.tam = ''; montarFiltros(); desenhar(); rolarAoCatalogo(true);
+}));
+/* leva a pessoa até as peças quando ela filtra ou digita lá no topo e o resultado estaria fora da tela */
+function rolarAoCatalogo(sempre) {
+  const g = $('#catalogo').getBoundingClientRect();
+  if (sempre || g.top > innerHeight * 0.55 || g.bottom < 0) $('#catalogo').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
 
 /* ---------- cartão da peça ---------- */
 function cartao(p, { selo = false } = {}) {
-  const foto = el('img', { src: capa(p), alt: p.nome, width: 720, height: 960, loading: 'lazy', decoding: 'async' });
-  const abrir = el('button', { class: 'peca-foto', type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p) },
+  let corAtual = p.cores[0];
+  const foto = el('img', { src: miniatura(capa(p)), alt: p.nome, width: 480, height: 640, loading: 'lazy', decoding: 'async' });
+  foto.addEventListener('error', () => { const orig = capa(p, corAtual); if (foto.getAttribute('src') !== orig) foto.src = orig; });
+  const abrir = el('button', { class: 'peca-foto', type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p, corAtual) },
     foto, selo ? el('span', { class: 'selo-novo', text: 'Novo' }) : null);
   const cores = p.cores.length > 1 ? el('div', { class: 'cores', role: 'group', 'aria-label': 'Cores de ' + p.nome },
     p.cores.map((c, i) => el('button', {
       class: 'cor', type: 'button', style: '--c:' + (c.hex || '#ccc'), 'aria-label': c.nome, title: c.nome, 'aria-pressed': String(i === 0),
-      onclick: ev => { foto.src = capa(p, c); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
+      onclick: ev => { corAtual = c; foto.src = miniatura(capa(p, c)); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
     }))) : null;
   const tams = tamanhosDaPeca(p);
   /* atalho: peça com 1 cor e 1 tamanho entra direto na sacola; as demais abrem a página para escolher */
   const direto = p.cores.length === 1 && tams.length === 1;
-  const add = el('button', { class: 'peca-add botao', type: 'button', 'aria-label': 'Adicionar ' + p.nome + ' à sacola', disabled: !tams.length, onclick: ev => {
-    if (!direto) { abrirPeca(p); return; }
-    adicionar(p, p.cores[0], tams[0], 1);
-    const b = ev.currentTarget; b.textContent = 'Adicionada à sacola'; b.classList.add('feito');
-    setTimeout(() => { b.textContent = 'Adicionar à sacola'; b.classList.remove('feito'); }, 1800);
-  }, text: tams.length ? 'Adicionar à sacola' : 'Esgotado' });
-  return el('article', { class: 'peca', 'data-genero': p.genero || '', onclick: ev => { if (ev.target.closest('.peca-nome,.peca-preco,.peca-meta,.peca-promo')) abrirPeca(p); } }, abrir, cores,
+  const rotuloAdd = direto ? 'Adicionar à sacola' : 'Escolher tamanho';
+  const add = !tams.length
+    ? el('a', { class: 'peca-add botao secundario', href: zap(`Olá, Mimo Kids Presentes! Quero saber quando a peça ${p.nome}${p.codigo ? ' (' + cod(p) + ')' : ''} voltar ao estoque.`), target: '_blank', rel: 'noopener noreferrer', text: 'Avise-me quando chegar' })
+    : el('button', { class: 'peca-add botao', type: 'button', 'aria-label': rotuloAdd + ': ' + p.nome, onclick: ev => {
+      if (!direto) { abrirPeca(p, corAtual); return; }
+      adicionar(p, p.cores[0], tams[0], 1);
+      const b = ev.currentTarget; b.textContent = 'Adicionada à sacola'; b.classList.add('feito'); avisarLeitor(p.nome + ' adicionada à sacola.');
+      setTimeout(() => { b.textContent = rotuloAdd; b.classList.remove('feito'); }, 1800);
+    }, text: rotuloAdd });
+  return el('article', { class: 'peca', 'data-genero': p.genero || '', onclick: ev => { if (ev.target.closest('.peca-nome,.peca-preco,.peca-meta,.peca-promo')) abrirPeca(p, corAtual); } }, abrir, cores,
     el('h3', { class: 'peca-nome', text: p.nome }),
     el('p', { class: 'peca-preco', text: BRL(p.preco) }),
-    el('p', { class: 'peca-meta', text: [p.codigo ? 'cod. ' + p.codigo.toLowerCase() : '', tams.length ? 'tam. ' + tams.map(capitaliza).join(' · ') : 'esgotado'].filter(Boolean).join(' · ') }),
+    el('p', { class: 'peca-meta', text: [cod(p), tams.length ? 'tam. ' + tams.map(capitaliza).join(' · ') : 'esgotado'].filter(Boolean).join(' · ') }),
     p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null, add);
 }
 
@@ -174,18 +228,18 @@ function desenharVitrine() {
   const menu = $('#menu');
   menu.hidden = !temCats;
   menu.replaceChildren(...(temCats ? [{ rotulo: 'Tudo', valor: '' }, ...cats.map(c => ({ rotulo: c, valor: c }))].map((x, i) =>
-    el('button', { type: 'button', class: 'menu-item', 'data-tom': ['sol', 'rosa', 'azul', 'rosa'][i % 4], 'aria-pressed': String(filtro.cat === x.valor), onclick: () => irParaCategoria(x.valor) },
+    el('button', { type: 'button', class: 'menu-item', 'data-tom': ['sol', 'rosa', 'azul', 'rosa'][i % 4], 'data-cat': x.valor, 'aria-pressed': String(filtro.cat === x.valor), onclick: () => irParaCategoria(x.valor) },
       icone(x.valor ? iconeCategoria(x.valor) : 'tudo'), el('span', { text: x.rotulo }))) : []));
   const cg = $('#cat-grade');
   $('#categorias').hidden = !temCats;
   cg.replaceChildren(...(temCats ? cats.slice(0, 4).map((c, i) => {
     const p = PECAS.find(x => x.categoria === c);
     return el('button', { type: 'button', class: 'cat-quadro cq' + (i % 4), onclick: () => irParaCategoria(c) },
-      el('span', { class: 'cat-foto' }, el('img', { src: capa(p), alt: '', loading: 'lazy', width: 720, height: 960 })), el('span', { class: 'cat-nome', text: c }));
+      el('span', { class: 'cat-foto' }, el('img', { src: miniatura(capa(p)), alt: '', loading: 'lazy', width: 480, height: 640, onerror: ev => { if (ev.target.getAttribute('src') !== capa(p)) ev.target.src = capa(p); } })), el('span', { class: 'cat-nome', text: c }));
   }) : []));
   const ovos = $('#ovos');
-  if (!ovos.childElementCount) ovos.replaceChildren(...PECAS.slice(0, 2).map((p, i) =>
-    el('div', { class: 'foto-topo ft' + (i + 1) }, el('img', { src: capa(p), alt: '', width: 720, height: 960 }))));
+  ovos.replaceChildren(...PECAS.slice(0, 2).map((p, i) =>
+    el('button', { class: 'foto-topo ft' + (i + 1), type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p) }, el('img', { src: miniatura(capa(p)), alt: '', width: 480, height: 640, onerror: ev => { if (ev.target.getAttribute('src') !== capa(p)) ev.target.src = capa(p); } }))));
 }
 function irParaCategoria(c) {
   filtro.cat = c; montarFiltros(); desenhar();
@@ -194,37 +248,87 @@ function irParaCategoria(c) {
 
 function filtrar() {
   const b = norm(filtro.busca.trim());
-  return PECAS.filter(p => (!filtro.tam || todosTamanhos(p).includes(filtro.tam)) && (!filtro.cat || p.categoria === filtro.cat) &&
-    (!filtro.gen || p.genero === filtro.gen) && (!b || norm(p.nome + ' ' + (p.codigo || '') + ' ' + p.cores.map(c => c.nome).join(' ')).includes(b)));
+  const lista = PECAS.filter(p => {
+    const livres = tamanhosDaPeca(p);
+    return (!filtro.tam || livres.includes(filtro.tam)) && (!filtro.faixa || filtro.faixa.some(t => livres.includes(t))) &&
+      (!filtro.cat || p.categoria === filtro.cat) && (!filtro.gen || p.genero === filtro.gen || p.genero === 'unissex') &&
+      (!filtro.ate || p.preco <= filtro.ate) && (!b || norm(p.nome + ' ' + (p.codigo || '') + ' ' + p.cores.map(c => c.nome).join(' ')).includes(b));
+  });
+  const por = { menor: (x, y) => x.preco - y.preco, maior: (x, y) => y.preco - x.preco }[ordem.v];
+  /* peças esgotadas vão para o fim; dentro de cada grupo vale a ordem escolhida (ou a mais nova primeiro) */
+  return lista.map((p, i) => [p, i]).sort(([x, i], [y, j]) => (tamanhosDaPeca(x).length ? 0 : 1) - (tamanhosDaPeca(y).length ? 0 : 1) || (por ? por(x, y) : 0) || i - j).map(a => a[0]);
 }
 
-function desenhar() {
+const PAGINA = 24;
+let limite = PAGINA, jaDesenhou = false;
+function desenhar({ manterLimite = false } = {}) {
+  if (!manterLimite) limite = PAGINA;
   const lista = filtrar();
-  const filtrando = Object.values(filtro).some(Boolean);
-  $('#grade').replaceChildren(...lista.map((p, i) => cartao(p, { selo: !filtrando && i < 3 })));
-  $('#contagem').textContent = PECAS.length ? `${lista.length} ${lista.length === 1 ? 'peça' : 'peças'}` : '';
-  desenharVitrine();
+  const filtrando = temFiltro();
+  const grade = $('#grade');
+  grade.replaceChildren(...lista.slice(0, limite).map(p => cartao(p, { selo: !filtrando && eNova(p) })));
+  /* depois da primeira vez os cartões já nascem visíveis: sem piscar a cada letra da busca */
+  if (jaDesenhou) grade.querySelectorAll('.peca').forEach(n => { n.classList.add('visto'); n.dataset.obs = '1'; });
+  jaDesenhou = true;
+  document.querySelectorAll('.menu-item').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.cat || '') === filtro.cat)));
+  const mais = $('#mais');
+  mais.hidden = lista.length <= limite;
+  mais.textContent = `Ver mais peças (${lista.length - limite})`;
+  $('#contagem').textContent = PECAS.length ? `${lista.length} ${lista.length === 1 ? 'peça' : 'peças'}` + (filtro.faixa ? ` · tamanhos ${filtro.faixa.join(' e ')}` : '') : '';
   const vazio = $('#vazio');
   vazio.hidden = lista.length > 0;
   if (!lista.length) {
     const zero = !PECAS.length;
-    $('#vazio-titulo').textContent = zero ? 'Novidades chegando' : 'Nada por aqui ainda';
-    $('#vazio-texto').textContent = zero ? 'Estamos preparando as primeiras peças. Acompanhe os lançamentos no Instagram ou peça pelo WhatsApp.' : 'Nenhuma peça combina com esses filtros. Que tal tirar um deles?';
     const acao = $('#vazio-acao');
-    acao.textContent = zero ? 'Ver no Instagram' : 'Limpar filtros';
-    acao.href = zero ? 'https://www.instagram.com/' + (CFG.instagram || '') + '/' : '#';
-    acao.onclick = zero ? null : e => { e.preventDefault(); $('#limpar').click(); };
+    if (ERRO) {
+      $('#vazio-titulo').textContent = 'Não conseguimos carregar as peças agora';
+      $('#vazio-texto').textContent = 'Confira a sua conexão e tente de novo. Se preferir, é só chamar a gente no WhatsApp.';
+      acao.textContent = 'Tentar de novo'; acao.removeAttribute('target'); acao.href = '#';
+      acao.onclick = e => { e.preventDefault(); carregar(); };
+    } else {
+      $('#vazio-titulo').textContent = zero ? 'Novidades chegando' : 'Nada por aqui ainda';
+      $('#vazio-texto').textContent = zero ? 'Estamos preparando as primeiras peças. Acompanhe os lançamentos no Instagram ou peça pelo WhatsApp.' : 'Nenhuma peça combina com esses filtros. Que tal tirar um deles?';
+      acao.textContent = zero ? 'Ver no Instagram' : 'Limpar filtros';
+      acao.href = zero ? 'https://www.instagram.com/' + (CFG.instagram || '') + '/' : '#';
+      if (zero) { acao.target = '_blank'; } else acao.removeAttribute('target');
+      acao.onclick = zero ? null : e => { e.preventDefault(); $('#limpar').click(); };
+    }
   }
 }
+$('#mais').addEventListener('click', () => {
+  const antes = limite; limite += PAGINA; desenhar({ manterLimite: true });
+  const novo = $('#grade').querySelectorAll('.peca-foto')[antes]; if (novo) novo.focus({ preventScroll: true });
+});
+
+/* ---------- diálogos: o botão Voltar do celular fecha a peça/sacola em vez de sair do site ---------- */
+const dlgPeca = $('#peca');
+const dlgSacola = $('#sacola');
+let histAberto = false;
+function abrirDlg(d, hash) {
+  if (!d.open) d.showModal();
+  if (histAberto) history.replaceState({ mimo: 1 }, '', hash);
+  else { history.pushState({ mimo: 1 }, '', hash); histAberto = true; }
+}
+[dlgPeca, dlgSacola].forEach(d => d.addEventListener('close', () => {
+  if (histAberto && !dlgPeca.open && !dlgSacola.open) { histAberto = false; history.back(); }
+}));
+addEventListener('popstate', () => {
+  const abertos = [dlgPeca, dlgSacola].filter(d => d.open);
+  if (abertos.length) { histAberto = false; abertos.forEach(d => d.close()); }
+});
+/* toque fora da caixa (no fundo escuro) fecha; toque numa área vazia dentro do diálogo não */
+const foraDe = (d, e) => { const r = d.getBoundingClientRect(); return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom; };
+[dlgPeca, dlgSacola].forEach(d => d.addEventListener('click', e => { if (e.target === d && foraDe(d, e)) d.close(); }));
 
 /* ---------- página da peça ---------- */
-const dlgPeca = $('#peca');
 let atual = null, corSel = null, tamSel = '', qtdSel = 1;
+const idCurto = p => String(p.codigo || p.id).toLowerCase();
+const urlPeca = p => location.origin + '/p/' + idCurto(p) + '.html';
 
-function abrirPeca(p) {
-  atual = p; corSel = p.cores[0]; tamSel = ''; qtdSel = 1;
+function abrirPeca(p, cor) {
+  atual = p; corSel = cor && p.cores.includes(cor) ? cor : p.cores[0]; tamSel = ''; qtdSel = 1;
   $('#peca-nome').textContent = p.nome;
-  $('#p-codigo').textContent = p.codigo ? 'cod. ' + p.codigo.toLowerCase() : '';
+  $('#p-codigo').textContent = cod(p);
   $('#p-preco').textContent = BRL(p.preco);
   const promo = $('#p-promo');
   promo.hidden = !p.promo;
@@ -232,35 +336,45 @@ function abrirPeca(p) {
   $('#p-desc').textContent = limpaTexto(p.descricao);
   $('#p-cores-bloco').hidden = p.cores.length < 2;
   $('#p-erro').textContent = '';
+  $('#p-aviso').textContent = '';
   $('#q-valor').textContent = 1;
-  desenharCor();
-  dlgPeca.showModal();
+  desenharCor(true);
+  abrirDlg(dlgPeca, '#' + idCurto(p));
   dlgPeca.scrollTop = 0;
 }
+/* link direto: /#v01 abre a peça (quem recebe o link do WhatsApp cai direto nela) */
+function abrirPorHash() {
+  const h = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+  if (!h || h === 'catalogo' || h === 'sacola') return;
+  const p = PECAS.find(x => String(x.id).toLowerCase() === h || String(x.codigo || '').toLowerCase() === h);
+  if (p && !dlgPeca.open) { history.replaceState(null, '', location.pathname + location.search); abrirPeca(p); }
+}
 
-function desenharCor() {
+function desenharCor(resetGaleria) {
+  const foco = guardarFoco();
   const c = corSel, p = atual;
   const livres = c.tamanhos.filter(t => !(c.esgotados || []).includes(t));
   if (!tamSel && livres.length === 1) tamSel = livres[0];
   $('#p-cor-nome').textContent = c.nome || '';
-  $('#p-cores').replaceChildren(...p.cores.map(x => el('button', {
-    class: 'cor', type: 'button', style: '--c:' + (x.hex || '#ccc'), title: x.nome, 'aria-label': x.nome, 'aria-pressed': String(x === c),
-    onclick: () => { corSel = x; if (!x.tamanhos.includes(tamSel) || (x.esgotados || []).includes(tamSel)) tamSel = ''; desenharCor(); }
+  $('#p-cores').replaceChildren(...p.cores.map((x, i) => el('button', {
+    class: 'cor', type: 'button', style: '--c:' + (x.hex || '#ccc'), title: x.nome, 'aria-label': x.nome, 'aria-pressed': String(x === c), 'data-foco': 'peca-cor:' + i,
+    onclick: () => { corSel = x; if (!x.tamanhos.includes(tamSel) || (x.esgotados || []).includes(tamSel)) tamSel = ''; desenharCor(true); }
   })));
   $('#p-tamanhos').replaceChildren(...[...c.tamanhos].sort(comparaTam).map(t => el('button', {
-    class: 'tam', type: 'button', 'aria-pressed': String(t === tamSel), disabled: (c.esgotados || []).includes(t),
+    class: 'tam', type: 'button', 'aria-pressed': String(t === tamSel), disabled: (c.esgotados || []).includes(t), 'data-foco': 'peca-tam:' + t,
     title: (c.esgotados || []).includes(t) ? 'Esgotado' : null, text: capitaliza(t),
-    onclick: () => { tamSel = t; $('#p-erro').textContent = ''; desenharCor(); }
+    onclick: () => { tamSel = t; $('#p-erro').textContent = ''; desenharCor(false); }
   })));
   const dicas = c.tamanhos.filter(t => /^[A-Z]{1,2}$/.test(t) && dicaTamanho(t)).map(t => `${t}: ${dicaTamanho(t)}`);
   $('#tam-dica').textContent = dicas.length ? 'Tamanhos por idade: ' + dicas.join(' · ') : '';
-  desenharGaleria(0);
+  if (resetGaleria) desenharGaleria(0);
+  devolverFoco(foco);
 }
 function desenharGaleria(i) {
   const fotos = corSel.fotos;
   const img = $('#g-foto');
   img.src = fotos[i]; img.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '');
-  $('#g-mini').replaceChildren(...(fotos.length > 1 ? fotos.map((f, k) => el('button', { type: 'button', 'aria-pressed': String(k === i), 'aria-label': 'Foto ' + (k + 1), onclick: () => desenharGaleria(k) }, el('img', { src: f, alt: '', loading: 'lazy' }))) : []));
+  $('#g-mini').replaceChildren(...(fotos.length > 1 ? fotos.map((f, k) => el('button', { type: 'button', 'aria-pressed': String(k === i), 'aria-label': 'Foto ' + (k + 1), onclick: () => desenharGaleria(k) }, el('img', { src: miniatura(f), alt: '', loading: 'lazy', onerror: ev => { if (ev.target.getAttribute('src') !== f) ev.target.src = f; } }))) : []));
 }
 $('#q-menos').addEventListener('click', () => { qtdSel = Math.max(1, qtdSel - 1); $('#q-valor').textContent = qtdSel; });
 $('#q-mais').addEventListener('click', () => { qtdSel = Math.min(20, qtdSel + 1); $('#q-valor').textContent = qtdSel; });
@@ -271,7 +385,14 @@ $('#p-add').addEventListener('click', () => {
   abrirSacola();
 });
 $('#peca-fechar').addEventListener('click', () => dlgPeca.close());
-dlgPeca.addEventListener('click', e => { if (e.target === dlgPeca) dlgPeca.close(); });
+$('#p-compartilhar').addEventListener('click', async () => {
+  const url = urlPeca(atual), texto = `${atual.nome}, ${BRL(atual.preco)} | Mimo Kids Presentes`;
+  if (navigator.share) {
+    try { await navigator.share({ title: atual.nome, text: texto, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; }
+  }
+  try { await navigator.clipboard.writeText(url); $('#p-aviso').textContent = 'Link copiado. É só colar na conversa.'; }
+  catch { window.prompt('Copie o link da peça:', url); }
+});
 
 /* ---------- sacola ---------- */
 let sacola = [];
@@ -285,18 +406,22 @@ function adicionar(p, cor, tam, qtd) {
 }
 
 function calcular() {
-  let subtotal = 0, desconto = 0;
+  let subtotal = 0, desconto = 0, falta = null;
   const grupos = new Map();
   sacola.forEach(x => {
     const p = porId.get(x.id); if (!p) return;
     subtotal += x.qtd * p.preco;
     if (p.promo) { const k = p.promo.grupo || 'p' + p.id; const g = grupos.get(k) || { promo: p.promo, qtd: 0, valor: 0 }; g.qtd += x.qtd; g.valor += x.qtd * p.preco; grupos.set(k, g); }
   });
-  grupos.forEach(g => { const unit = g.valor / g.qtd; const pago = Math.floor(g.qtd / g.promo.qtd) * g.promo.total + (g.qtd % g.promo.qtd) * unit; desconto += Math.max(0, g.valor - pago); });
-  return { subtotal, desconto, total: subtotal - desconto };
+  grupos.forEach(g => {
+    const unit = g.valor / g.qtd; const pago = Math.floor(g.qtd / g.promo.qtd) * g.promo.total + (g.qtd % g.promo.qtd) * unit; desconto += Math.max(0, g.valor - pago);
+    if (!falta && g.qtd % g.promo.qtd !== 0) falta = { n: g.promo.qtd - (g.qtd % g.promo.qtd), promo: g.promo };
+  });
+  return { subtotal, desconto, total: subtotal - desconto, falta };
 }
 
 function atualizarSacola() {
+  const foco = guardarFoco();
   sacola = sacola.filter(x => porId.has(x.id));
   salvar();
   const n = sacola.reduce((s, x) => s + x.qtd, 0);
@@ -310,46 +435,58 @@ function atualizarSacola() {
     const p = porId.get(x.id); const cor = p.cores.find(c => c.nome === x.cor) || p.cores[0];
     const muda = d => () => { x.qtd = Math.min(20, Math.max(1, x.qtd + d)); atualizarSacola(); };
     return el('div', { class: 'item' },
-      el('img', { src: capa(p, cor), alt: p.nome, loading: 'lazy' }),
-      el('div', {}, el('strong', { text: p.nome }), el('small', { text: [corUtil(p, x.cor), 'tam. ' + capitaliza(x.tam), p.codigo ? 'cod. ' + p.codigo.toLowerCase() : ''].filter(Boolean).join(' · ') }),
-        el('div', { class: 'qtd' }, el('button', { type: 'button', 'aria-label': 'Diminuir', disabled: x.qtd <= 1, onclick: muda(-1), text: '−' }), el('output', { text: x.qtd }), el('button', { type: 'button', 'aria-label': 'Aumentar', disabled: x.qtd >= 20, onclick: muda(1), text: '+' }))),
-      el('div', { class: 'item-fim' }, el('strong', { text: BRL(x.qtd * p.preco) }), el('br'), el('button', { class: 'remover', type: 'button', 'aria-label': 'Remover ' + p.nome, onclick: () => { sacola.splice(i, 1); atualizarSacola(); } }, icone('remover'), el('span', { text: 'Remover' }))));
+      el('img', { src: miniatura(capa(p, cor)), alt: '', loading: 'lazy', onerror: ev => { if (ev.target.getAttribute('src') !== capa(p, cor)) ev.target.src = capa(p, cor); } }),
+      el('div', {}, el('strong', { text: p.nome }), el('small', { text: [corUtil(p, x.cor), 'tam. ' + capitaliza(x.tam), cod(p)].filter(Boolean).join(' · ') }),
+        el('div', { class: 'qtd' }, el('button', { type: 'button', 'data-foco': 'menos:' + i, 'aria-label': 'Diminuir quantidade de ' + p.nome, disabled: x.qtd <= 1, onclick: muda(-1), text: '−' }), el('output', { text: x.qtd }), el('button', { type: 'button', 'data-foco': 'mais:' + i, 'aria-label': 'Aumentar quantidade de ' + p.nome, disabled: x.qtd >= 20, onclick: muda(1), text: '+' }))),
+      el('div', { class: 'item-fim' }, el('strong', { text: BRL(x.qtd * p.preco) }), el('br'), el('button', { class: 'remover', type: 'button', 'aria-label': 'Remover ' + p.nome, onclick: () => { sacola.splice(i, 1); atualizarSacola(); if (!sacola.length) $('#sacola-fechar').focus(); } }, icone('remover'), el('span', { text: 'Remover' }))));
   }));
-  const { desconto, total } = calcular();
-  $('#sacola-totais').hidden = n === 0;
+  const { desconto, total, falta } = calcular();
+  $('#sacola-rodape').hidden = n === 0;
   $('#sacola-desconto').hidden = desconto <= 0;
   $('#sacola-desconto').textContent = 'Promoção aplicada: −' + BRL(desconto);
   $('#sacola-total').textContent = BRL(total);
-  $('#obs-rotulo').hidden = n === 0;
-  $('#pedido').hidden = n === 0;
-  $('#previa').hidden = true;
+  $('#sacola-extras').hidden = n === 0;
+  /* dicas que ajudam a fechar: falta pouco para a promoção ou para a entrega grátis (só vale para a cidade da loja) */
+  const dicaPromo = $('#dica-promo');
+  dicaPromo.hidden = !falta;
+  if (falta) dicaPromo.textContent = `Falta${falta.n > 1 ? 'm' : ''} ${falta.n} para a promoção: leve ${falta.promo.qtd} por ${BRL(falta.promo.total)}.`;
+  const dicaFrete = $('#dica-frete');
+  dicaFrete.hidden = !CFG.freteGratisAcima || n === 0;
+  if (CFG.freteGratisAcima) {
+    const cidade = CFG.freteGratisCidade ? ' em ' + CFG.freteGratisCidade : '';
+    dicaFrete.textContent = (total >= CFG.freteGratisAcima ? `Entrega grátis${cidade}!` : `Faltam ${BRL(CFG.freteGratisAcima - total)} para a entrega grátis${cidade}.`) + ' Em outras cidades, combinamos o frete pelo WhatsApp.';
+  }
+  atualizarPedido();
+  devolverFoco(foco);
 }
 
-const dlgSacola = $('#sacola');
-function abrirSacola() { atualizarSacola(); dlgSacola.showModal(); }
+function abrirSacola() { atualizarSacola(); abrirDlg(dlgSacola, '#sacola'); }
 $('#sacola-btn').addEventListener('click', abrirSacola);
 $('#sacola-fechar').addEventListener('click', () => dlgSacola.close());
-dlgSacola.addEventListener('click', e => { if (e.target === dlgSacola) dlgSacola.close(); });
 
 function mensagem() {
   const { desconto, total } = calcular();
-  const linhas = sacola.map(x => { const p = porId.get(x.id); return `• ${p.nome} (cod. ${(p.codigo || '').toLowerCase()})${corUtil(p, x.cor) ? ' | Cor: ' + corUtil(p, x.cor) : ''} | Tamanho: ${capitaliza(x.tam)} | Quantidade: ${x.qtd}`; });
+  const linhas = sacola.map(x => { const p = porId.get(x.id); return `• ${p.nome}${p.codigo ? ' (' + cod(p).replace('Cód.', 'cód.') + ')' : ''}${corUtil(p, x.cor) ? ' | Cor: ' + corUtil(p, x.cor) : ''} | Tamanho: ${capitaliza(x.tam)} | Quantidade: ${x.qtd}`; });
   let m = 'Olá, Mimo Kids Presentes! Já escolhi os meus mimos pelo site.\n\nPedido:\n' + linhas.join('\n');
   if (desconto > 0) m += `\n\nPromoção aplicada: desconto de ${BRL(desconto)}.`;
   m += `\nTotal: ${BRL(total)}`;
+  const cidade = $('#cidade').value.trim();
+  if (cidade) m += '\n\nCidade e bairro: ' + cidade;
   const obs = $('#obs').value.trim();
   if (obs) m += '\n\nObservações: ' + obs;
   return m + '\n\nPor favor, confirme a disponibilidade, tamanho e valor do meu pedido.';
 }
-$('#pedido').addEventListener('click', () => {
+/* o botão do WhatsApp já nasce com a mensagem pronta e acompanha cada mudança na sacola, na cidade e nas observações */
+function atualizarPedido() {
+  if (!sacola.length) return;
   const texto = mensagem();
   $('#pedido-texto').value = texto;
-  $('#previa').hidden = false;
   const valido = /^55\d{10,11}$/.test(CFG.whatsapp || '');
   $('#whats').hidden = !valido;
-  if (valido) $('#whats').href = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(texto);
-  $('#previa').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-});
+  if (valido) $('#whats').href = zap(texto);
+}
+$('#obs').addEventListener('input', atualizarPedido);
+$('#cidade').addEventListener('input', atualizarPedido);
 $('#copiar').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText($('#pedido-texto').value); $('#previa-nota').textContent = 'Mensagem copiada.'; }
   catch { $('#pedido-texto').select(); $('#previa-nota').textContent = 'Selecione e copie o texto acima.'; }

@@ -16,7 +16,7 @@ Loja de moda bebê e infantil (RN ao tamanho 4). Site **estático** (sem build, 
   com o que existe no catálogo; a ordem é natural (RN, P, M, G, GG, depois por idade em meses; número puro = anos).
 - **Cores**: várias cores por peça (bolinhas no cartão e na página). Cada cor tem as suas fotos e os seus tamanhos.
 - **promo**: "leve N por R$ T". Sem `grupo`, vale por peça (soma de todas as cores e tamanhos); com `grupo`, mistura peças da mesma linha.
-- **ia** (dentro da cor): índices das fotos criadas por IA (criança fictícia). Ao ver uma delas, a página mostra "Foto ilustrativa com modelo criado por inteligência artificial".
+- **ia** (dentro da cor): índices das fotos criadas por IA (criança fictícia). O site não exibe mais aviso de IA (decisão do dono em 13/10/2026); o campo fica só como registro.
 - Foto padrão: a do **cabide** (feed 3:4 do bot). Ordem da vitrine: `criado` mais recente primeiro; as 8 primeiras viram o trilho "Chegou agora".
 
 ## Visual (a "vitrine no céu de papel")

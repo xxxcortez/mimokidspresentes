@@ -6,7 +6,20 @@
 <title>Mimo Kids Presentes | Moda bebê e infantil do RN ao tamanho 4</title>
 <meta name="description" content="Roupinhas e presentes para bebês e crianças, do RN ao tamanho 4. Escolha pelo site e finalize o pedido pelo WhatsApp.">
 <meta name="theme-color" content="#CDEEF4">
-<link rel="icon" href="assets/logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="canonical" href="https://mimokidspresentes.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mimo Kids Presentes">
+<meta property="og:title" content="Mimo Kids Presentes | Moda bebê e infantil">
+<meta property="og:description" content="Roupinhas delicadas e presentes para bebês e crianças, do RN ao tamanho 4. Escolha pelo site e finalize pelo WhatsApp.">
+<meta property="og:url" content="https://mimokidspresentes.com.br/">
+<meta property="og:image" content="https://mimokidspresentes.com.br/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fontes/Fredoka-Variavel.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -130,12 +143,11 @@
   </div>
   <div class="rodape-fim">
     <p>© 2026 Mimo Kids Presentes. Pedidos confirmados pelo WhatsApp; não há pagamento pelo site.</p>
-    <p>Fotos marcadas com “IA” usam modelos criados por inteligência artificial.</p>
   </div>
 </footer>
 
 <dialog id="peca" aria-labelledby="peca-nome">
-  <button class="fechar" id="peca-fechar" type="button" aria-label="Fechar">×</button>
+  <button class="fechar" id="peca-fechar" type="button" aria-label="Fechar"><img src="assets/arte/ic-fechar.webp" alt="" width="96" height="96" aria-hidden="true"></button>
   <div class="peca-corpo">
     <div class="galeria">
       <div class="galeria-principal"><img id="g-foto" alt="" width="720" height="960"></div>
@@ -157,21 +169,20 @@
       </div>
       <div class="acao">
         <div class="qtd">
-          <button type="button" id="q-menos" aria-label="Diminuir quantidade">−</button>
+          <button type="button" id="q-menos" aria-label="Diminuir quantidade"><img src="assets/arte/ic-menos.webp" alt="" width="96" height="96" aria-hidden="true"></button>
           <output id="q-valor">1</output>
-          <button type="button" id="q-mais" aria-label="Aumentar quantidade">+</button>
+          <button type="button" id="q-mais" aria-label="Aumentar quantidade"><img src="assets/arte/ic-mais.webp" alt="" width="96" height="96" aria-hidden="true"></button>
         </div>
         <button class="botao" id="p-add" type="button">Adicionar à sacola</button>
       </div>
       <p class="descricao" id="p-desc"></p>
-      <p class="nota" id="p-ia" hidden>Foto ilustrativa com modelo criado por inteligência artificial.</p>
       <p class="nota">Entrega grátis<span class="frete-cidade"></span> em compras acima de <span class="frete-valor"></span>. Pix com o preço do site; cartão em até <span class="parcelas-valor"></span>x com juros por conta do cliente.</p>
     </div>
   </div>
 </dialog>
 
 <dialog id="sacola" aria-labelledby="sacola-titulo">
-  <button class="fechar" id="sacola-fechar" type="button" aria-label="Fechar sacola">×</button>
+  <button class="fechar" id="sacola-fechar" type="button" aria-label="Fechar sacola"><img src="assets/arte/ic-fechar.webp" alt="" width="96" height="96" aria-hidden="true"></button>
   <div class="sacola-corpo">
     <h2 id="sacola-titulo">Minha sacola</h2>
     <div class="sacola-vazia" id="sacola-vazia"><img class="ursinho" src="assets/arte/ovelhinha.webp" alt="" width="420" height="353" aria-hidden="true"><p>Sua sacola está vazia. Escolha uma peça e um tamanho.</p></div>

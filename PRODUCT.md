@@ -27,7 +27,7 @@ Preço acessível (peças a partir de R$ 35, promoções por quantidade como "3 
 - O pedido é sempre confirmado pelo WhatsApp (+55 67 98154-2208); não há checkout nem pagamento no site.
 - Pagamento: Pix com o preço do site; cartão de crédito em até 12x com juros por conta do cliente.
 - Entrega grátis acima de R$ 30 somente em Aparecida do Taboado-MS (outras cidades: frete combinado no WhatsApp). Não há mais brinde (as meias malucas acabaram em 13/10/2026). Prazo de entrega é combinado no WhatsApp.
-- Fotos das peças são geradas pelo pipeline da loja: foto de cabide (padrão) e, às vezes, foto com criança fictícia criada por IA, sempre com aviso.
+- Fotos das peças são geradas pelo pipeline da loja: foto de cabide (padrão) e, às vezes, foto com criança fictícia criada por IA.
 - Redes: Instagram e TikTok @mimokidspresentes (lives com horários avisados nos Stories).
 
 ## Capabilities and Constraints
@@ -35,7 +35,7 @@ Preço acessível (peças a partir de R$ 35, promoções por quantidade como "3 
 - Catálogo em `produtos.json`: peça com código (V/C/B/P + número), nome, categoria, gênero, preço, promoção `{qtd,total}`, descrição, várias cores (cada uma com fotos e tamanhos) e fotos marcadas como IA.
 - Tamanhos são exatamente o texto que a loja digita (ex.: "6 meses a 1 ano", "P", "2"); sem tabela de conversão. Filtros nascem do que existe no catálogo.
 - O site não deve prometer prazo, frete além do combinado, checkout automático, nem mostrar preço ou estoque que não esteja no catálogo.
-- Fotos com criança criada por IA mostram o aviso "Foto ilustrativa com modelo criado por inteligência artificial".
+- Decisão do dono (13/10/2026): o site NÃO mostra aviso de foto criada por IA (selo, nota na peça e frase no rodapé foram removidos). O campo `ia` do catálogo continua existindo, sem efeito visual.
 - Idioma: português do Brasil.
 
 ## Brand Commitments
@@ -51,7 +51,7 @@ Fotos reais de catálogo geradas pelo pipeline (feed 3:4), o logo oficial, o his
 - A foto da peça é a protagonista; o resto da interface recua.
 - Clareza antes de enfeite: tamanho, preço e promoção sempre legíveis, inclusive no celular.
 - O catálogo vem do bot; o design aguenta de 1 a centenas de peças e nomes de tamanho livres.
-- Honestidade: nada de estoque, prazo ou prova social inventados; aviso claro nas fotos com IA.
+- Honestidade: nada de estoque, prazo ou prova social inventados.
 - Pedido por WhatsApp é o caminho principal, com o mínimo de passos.
 
 ## Accessibility & Inclusion

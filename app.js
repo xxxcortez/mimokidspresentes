@@ -112,13 +112,12 @@ $('#busca').addEventListener('input', e => { filtro.busca = e.target.value; $('#
 /* ---------- cartão da peça ---------- */
 function cartao(p, { selo = false } = {}) {
   const foto = el('img', { src: capa(p), alt: p.nome, width: 720, height: 960, loading: 'lazy', decoding: 'async' });
-  const selo_ia = el('span', { class: 'ia-selo', text: 'Foto ilustrativa (IA)', hidden: !(p.cores[0].ia || []).includes(0) });
   const abrir = el('button', { class: 'peca-foto', type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p) },
-    foto, selo ? el('span', { class: 'selo-novo', text: 'Novo' }) : null, selo_ia);
+    foto, selo ? el('span', { class: 'selo-novo', text: 'Novo' }) : null);
   const cores = p.cores.length > 1 ? el('div', { class: 'cores', role: 'group', 'aria-label': 'Cores de ' + p.nome },
     p.cores.map((c, i) => el('button', {
       class: 'cor', type: 'button', style: '--c:' + (c.hex || '#ccc'), 'aria-label': c.nome, title: c.nome, 'aria-pressed': String(i === 0),
-      onclick: ev => { foto.src = capa(p, c); selo_ia.hidden = !(c.ia || []).includes(0); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
+      onclick: ev => { foto.src = capa(p, c); ev.currentTarget.parentElement.querySelectorAll('.cor').forEach(b => b.setAttribute('aria-pressed', String(b === ev.currentTarget))); }
     }))) : null;
   const tams = tamanhosDaPeca(p);
   return el('article', { class: 'peca', 'data-genero': p.genero || '' }, abrir, cores,
@@ -216,7 +215,6 @@ function desenharGaleria(i) {
   const fotos = corSel.fotos;
   const img = $('#g-foto');
   img.src = fotos[i]; img.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '');
-  $('#p-ia').hidden = !(corSel.ia || []).includes(i);
   $('#g-mini').replaceChildren(...(fotos.length > 1 ? fotos.map((f, k) => el('button', { type: 'button', 'aria-pressed': String(k === i), 'aria-label': 'Foto ' + (k + 1), onclick: () => desenharGaleria(k) }, el('img', { src: f, alt: '', loading: 'lazy' }))) : []));
 }
 $('#q-menos').addEventListener('click', () => { qtdSel = Math.max(1, qtdSel - 1); $('#q-valor').textContent = qtdSel; });
@@ -269,8 +267,8 @@ function atualizarSacola() {
     return el('div', { class: 'item' },
       el('img', { src: capa(p, cor), alt: p.nome, loading: 'lazy' }),
       el('div', {}, el('strong', { text: p.nome }), el('small', { text: [corUtil(p, x.cor), 'tam. ' + capitaliza(x.tam), p.codigo ? 'cod. ' + p.codigo.toLowerCase() : ''].filter(Boolean).join(' · ') }),
-        el('div', { class: 'qtd' }, el('button', { type: 'button', 'aria-label': 'Diminuir', disabled: x.qtd <= 1, onclick: muda(-1), text: '−' }), el('output', { text: x.qtd }), el('button', { type: 'button', 'aria-label': 'Aumentar', disabled: x.qtd >= 20, onclick: muda(1), text: '+' }))),
-      el('div', { class: 'item-fim' }, el('strong', { text: BRL(x.qtd * p.preco) }), el('br'), el('button', { class: 'remover', type: 'button', 'aria-label': 'Remover ' + p.nome, onclick: () => { sacola.splice(i, 1); atualizarSacola(); }, text: 'Remover' })));
+        el('div', { class: 'qtd' }, el('button', { type: 'button', 'aria-label': 'Diminuir', disabled: x.qtd <= 1, onclick: muda(-1) }, icone('menos')), el('output', { text: x.qtd }), el('button', { type: 'button', 'aria-label': 'Aumentar', disabled: x.qtd >= 20, onclick: muda(1) }, icone('mais')))),
+      el('div', { class: 'item-fim' }, el('strong', { text: BRL(x.qtd * p.preco) }), el('br'), el('button', { class: 'remover', type: 'button', 'aria-label': 'Remover ' + p.nome, onclick: () => { sacola.splice(i, 1); atualizarSacola(); } }, icone('remover'), el('span', { text: 'Remover' }))));
   }));
   const { desconto, total } = calcular();
   $('#sacola-totais').hidden = n === 0;

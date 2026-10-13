@@ -1,4 +1,5 @@
 .DS_Store
-Thumbs.db
-.impeccable/review/
+.impeccable/
 .impeccable/mocks/
+.impeccable/review/
+Thumbs.db

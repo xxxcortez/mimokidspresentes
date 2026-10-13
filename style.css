@@ -589,3 +589,18 @@ dialog#peca>.fechar,dialog#sacola>.fechar{position:sticky;top:10px;right:auto;ma
 /* sacola: o rodapé com total e WhatsApp fica sempre colado embaixo, mesmo com poucos itens */
 .sacola-corpo{min-height:100dvh;display:flex;flex-direction:column}
 .sacola-corpo>.sacola-rodape{margin-top:auto}
+
+/* "Leve N por R$ X" + "Economize R$ Y" (mesmo texto do Story do bot) */
+.peca-promo{border-radius:18px;text-align:center;line-height:1.25;padding:5px 14px}
+.peca-promo small{display:block;font:600 13.5px/1.2 var(--display);color:var(--tinta);margin-top:1px}
+.promo-linha{border-radius:18px}
+
+/* placa da cidade: texto no espaço livre à direita do balão, sem encostar na cesta */
+.sobre-loja .cidade span{left:58%;top:60%;width:62%;font-size:22px;-webkit-text-stroke:7px #F4A9CB}
+@media(max-width:380px){.sobre-loja .cidade span{font-size:20px}}
+
+/* placa "Siga a Mimo": letras de papel recortado; a cidade vira uma linha no cartão da frase */
+.sobre-loja .cidade-linha{margin:-4px 0 0;font:500 16px/1.2 var(--display);color:var(--tinta)}
+.sobre-loja .cidade span{font-size:23px;line-height:1.02}
+.sobre-loja .cidade span b{display:block;font-weight:700;font-size:38px;line-height:1;letter-spacing:.02em}
+@media(max-width:380px){.sobre-loja .cidade span{font-size:21px}.sobre-loja .cidade span b{font-size:34px}}

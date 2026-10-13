@@ -26,6 +26,13 @@ function el(tag, props = {}, ...filhos) {
 const cod = p => p.codigo ? 'Cód. ' + String(p.codigo).toUpperCase() : '';
 /* miniatura do cartão: o bot grava ao lado da foto grande uma versão "-m.jpg" (480px); se não existir, usa a grande */
 const miniatura = f => String(f).replace(/\.jpg$/i, '-m.jpg');
+/* "Economize R$ 18": mesma conta do bot (qtd x preço - valor da promoção); só aparece se de fato economiza. Inteiro sem centavos, como no Story */
+const economia = (preco, promo) => {
+  if (!promo) return '';
+  const ec = Math.round((promo.qtd * preco - promo.total) * 100) / 100;
+  if (!(ec > 0)) return '';
+  return 'R$ ' + (Number.isInteger(ec) ? String(ec) : ec.toFixed(2).replace('.', ','));
+};
 const eNova = p => { const t = Date.parse(p.criado); return !isNaN(t) && (Date.now() - t) / 86400000 <= (Number(CFG.novoDias) || 14); };
 const zap = texto => /^55\d{10,11}$/.test(CFG.whatsapp || '') ? 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(texto) : '#';
 const avisarLeitor = t => { const n = $('#sr'); if (n) { n.textContent = ''; setTimeout(() => { n.textContent = t; }, 30); } };
@@ -219,7 +226,7 @@ function cartao(p, { selo = false } = {}) {
     el('h3', { class: 'peca-nome', text: p.nome }),
     el('p', { class: 'peca-preco', text: BRL(p.preco) }),
     el('p', { class: 'peca-meta', text: [cod(p), tams.length ? 'tam. ' + tams.map(capitaliza).join(' · ') : 'esgotado'].filter(Boolean).join(' · ') }),
-    p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null, add);
+    p.promo ? el('span', { class: 'peca-promo' }, el('span', { text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }), economia(p.preco, p.promo) ? el('small', { text: 'Economize ' + economia(p.preco, p.promo) }) : null) : null, add);
 }
 
 function desenharVitrine() {
@@ -332,7 +339,7 @@ function abrirPeca(p, cor) {
   $('#p-preco').textContent = BRL(p.preco);
   const promo = $('#p-promo');
   promo.hidden = !p.promo;
-  if (p.promo) promo.textContent = `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` + (p.promo.grupo ? ' (pode misturar modelos da mesma linha)' : '');
+  if (p.promo) promo.textContent = `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` + (economia(p.preco, p.promo) ? ' · Economize ' + economia(p.preco, p.promo) : '') + (p.promo.grupo ? ' (pode misturar modelos da mesma linha)' : '');
   $('#p-desc').textContent = limpaTexto(p.descricao);
   $('#p-cores-bloco').hidden = p.cores.length < 2;
   $('#p-erro').textContent = '';
@@ -415,7 +422,7 @@ function calcular() {
   });
   grupos.forEach(g => {
     const unit = g.valor / g.qtd; const pago = Math.floor(g.qtd / g.promo.qtd) * g.promo.total + (g.qtd % g.promo.qtd) * unit; desconto += Math.max(0, g.valor - pago);
-    if (!falta && g.qtd % g.promo.qtd !== 0) falta = { n: g.promo.qtd - (g.qtd % g.promo.qtd), promo: g.promo };
+    if (!falta && g.qtd % g.promo.qtd !== 0) falta = { n: g.promo.qtd - (g.qtd % g.promo.qtd), promo: g.promo, unit };
   });
   return { subtotal, desconto, total: subtotal - desconto, falta };
 }
@@ -449,7 +456,7 @@ function atualizarSacola() {
   /* dicas que ajudam a fechar: falta pouco para a promoção ou para a entrega grátis (só vale para a cidade da loja) */
   const dicaPromo = $('#dica-promo');
   dicaPromo.hidden = !falta;
-  if (falta) dicaPromo.textContent = `Falta${falta.n > 1 ? 'm' : ''} ${falta.n} para a promoção: leve ${falta.promo.qtd} por ${BRL(falta.promo.total)}.`;
+  if (falta) dicaPromo.textContent = `Falta${falta.n > 1 ? 'm' : ''} ${falta.n} para a promoção: leve ${falta.promo.qtd} por ${BRL(falta.promo.total)}` + (economia(falta.unit, falta.promo) ? ` e economize ${economia(falta.unit, falta.promo)}.` : '.');
   const dicaFrete = $('#dica-frete');
   dicaFrete.hidden = !CFG.freteGratisAcima || n === 0;
   if (CFG.freteGratisAcima) {

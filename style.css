@@ -305,7 +305,6 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .lista-ic{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .lista-ic li,.lista-ic a{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;line-height:1.4;text-decoration:none}
 .lista-ic svg{width:24px;height:24px;margin-top:1px}
-.ic-pix{fill:#32BCAD}
 .ic-rede{width:30px;height:30px}.ic-rede svg{width:16px;height:16px;fill:#fff;margin:0}
 .contatos a:hover strong{text-decoration:underline;text-underline-offset:3px}
 .contatos small{display:block;color:var(--tinta-suave);font-size:13.5px}
@@ -604,3 +603,19 @@ dialog#peca>.fechar,dialog#sacola>.fechar{position:sticky;top:10px;right:auto;ma
 .sobre-loja .cidade span{font-size:23px;line-height:1.02}
 .sobre-loja .cidade span b{display:block;font-weight:700;font-size:38px;line-height:1;letter-spacing:.02em}
 @media(max-width:380px){.sobre-loja .cidade span{font-size:21px}.sobre-loja .cidade span b{font-size:34px}}
+
+/* números do "Como comprar" em papel recortado (1 a 5) */
+.passos li::before{content:counter(p);font-size:0;color:transparent;width:34px;height:34px;border-radius:0;background:center/contain no-repeat;filter:saturate(1.9) brightness(.92) contrast(1.1) drop-shadow(0 2px 2px rgba(51,38,74,.2))}
+.passos li:nth-child(1)::before{background-image:url(assets/arte/num-1.webp)}
+.passos li:nth-child(2)::before{background-image:url(assets/arte/num-2.webp)}
+.passos li:nth-child(3)::before{background-image:url(assets/arte/num-3.webp)}
+.passos li:nth-child(4)::before{background-image:url(assets/arte/num-4.webp)}
+.passos li:nth-child(5)::before{background-image:url(assets/arte/num-5.webp)}
+.passos li{grid-template-columns:34px 1fr}
+
+/* placa "Siga as nossas redes sociais": texto centrado no miolo azul (3 linhas curtas livram a cesta do balão) */
+.sobre-loja .cidade span{left:52.1%;top:55.8%;width:64%;transform:translate(-50%,-50%) rotate(-1.5deg);font-size:21px;line-height:1.08;-webkit-text-stroke:6px #F4A9CB}
+@media(max-width:380px){.sobre-loja .cidade span{font-size:19px}}
+.passos li::before{filter:saturate(3) brightness(.74) contrast(1.2) drop-shadow(0 2px 2px rgba(51,38,74,.25));width:36px;height:36px}
+.passos li{grid-template-columns:36px 1fr}
+.passos li::before{filter:saturate(2.6) brightness(.8) contrast(1.15) hue-rotate(-16deg) drop-shadow(0 2px 2px rgba(51,38,74,.25));margin-top:-5px}

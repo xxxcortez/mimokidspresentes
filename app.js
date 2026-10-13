@@ -92,7 +92,6 @@ function montarFiltros() {
   };
   const tams = [...new Set(PECAS.flatMap(todosTamanhos))].sort(comparaTam);
   grupo('#f-tam', tams, 'tam', t => 'Tam. ' + capitaliza(t), 'Tamanho');
-  grupo('#f-cat', [...new Set(PECAS.map(p => p.categoria).filter(Boolean))], 'cat', v => v, 'Tipo');
   grupo('#f-gen', [...new Set(PECAS.map(p => p.genero).filter(Boolean))], 'gen', g => GENEROS[g] || g, 'Para');
   $('#limpar').hidden = !Object.values(filtro).some(Boolean);
   $('#filtros').hidden = !['#f-tam', '#f-cat', '#f-gen'].some(id => !$(id).hidden) && !Object.values(filtro).some(Boolean);
@@ -105,7 +104,7 @@ function cartao(p, { selo = false } = {}) {
   const foto = el('img', { src: capa(p), alt: p.nome, width: 720, height: 960, loading: 'lazy', decoding: 'async' });
   const selo_ia = el('span', { class: 'ia-selo', text: 'Foto ilustrativa (IA)', hidden: !(p.cores[0].ia || []).includes(0) });
   const abrir = el('button', { class: 'peca-foto', type: 'button', 'aria-label': 'Ver ' + p.nome, onclick: () => abrirPeca(p) },
-    foto, selo ? el('span', { class: 'selo-novo', text: 'NOVO' }) : null, el('span', { class: 'etiqueta' }, el('span', { class: 'etiqueta-papel', text: BRL(p.preco) })), selo_ia);
+    foto, selo ? el('span', { class: 'selo-novo', text: 'Novo' }) : null, el('span', { class: 'bolha', text: BRL(p.preco) }), selo_ia);
   const cores = p.cores.length > 1 ? el('div', { class: 'cores', role: 'group', 'aria-label': 'Cores de ' + p.nome },
     p.cores.map((c, i) => el('button', {
       class: 'cor', type: 'button', style: '--c:' + (c.hex || '#ccc'), 'aria-label': c.nome, title: c.nome, 'aria-pressed': String(i === 0),
@@ -118,6 +117,29 @@ function cartao(p, { selo = false } = {}) {
     p.promo ? el('span', { class: 'peca-promo', text: `Leve ${p.promo.qtd} por ${BRL(p.promo.total)}` }) : null);
 }
 
+function desenharVitrine() {
+  const cats = [...new Set(PECAS.map(p => p.categoria).filter(Boolean))];
+  const temCats = cats.length >= 2;
+  const menu = $('#menu');
+  menu.hidden = !temCats;
+  menu.replaceChildren(...(temCats ? [{ rotulo: 'Tudo', valor: '' }, ...cats.map(c => ({ rotulo: c, valor: c }))].map(x =>
+    el('button', { type: 'button', class: 'menu-item', 'aria-pressed': String(filtro.cat === x.valor), onclick: () => irParaCategoria(x.valor), text: x.rotulo })) : []));
+  const cg = $('#cat-grade');
+  $('#categorias').hidden = !temCats;
+  cg.replaceChildren(...(temCats ? cats.slice(0, 4).map((c, i) => {
+    const p = PECAS.find(x => x.categoria === c);
+    return el('button', { type: 'button', class: 'cat-quadro', 'data-i': i % 4, onclick: () => irParaCategoria(c) },
+      el('img', { src: capa(p), alt: '', loading: 'lazy', width: 720, height: 960 }), el('span', { text: c }));
+  }) : []));
+  const ovos = $('#ovos');
+  if (!ovos.childElementCount) ovos.replaceChildren(...PECAS.slice(0, 2).map((p, i) =>
+    el('div', { class: 'ovo ovo' + (i + 1) }, el('img', { src: capa(p), alt: '', width: 720, height: 960 }))));
+}
+function irParaCategoria(c) {
+  filtro.cat = c; montarFiltros(); desenhar();
+  $('#catalogo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function filtrar() {
   const b = norm(filtro.busca.trim());
   return PECAS.filter(p => (!filtro.tam || todosTamanhos(p).includes(filtro.tam)) && (!filtro.cat || p.categoria === filtro.cat) &&
@@ -127,11 +149,9 @@ function filtrar() {
 function desenhar() {
   const lista = filtrar();
   const filtrando = Object.values(filtro).some(Boolean);
-  $('#grade').replaceChildren(...lista.map(p => cartao(p)));
+  $('#grade').replaceChildren(...lista.map((p, i) => cartao(p, { selo: !filtrando && i < 3 })));
   $('#contagem').textContent = PECAS.length ? `${lista.length} ${lista.length === 1 ? 'peça' : 'peças'}` : '';
-  const novos = PECAS.slice(0, 8);
-  $('#novidades').hidden = filtrando || PECAS.length < 3;
-  $('#trilho').replaceChildren(...novos.map((p, i) => cartao(p, { selo: i < 3 })));
+  desenharVitrine();
   const vazio = $('#vazio');
   vazio.hidden = lista.length > 0;
   if (!lista.length) {

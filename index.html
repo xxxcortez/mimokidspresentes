@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mimo Kids Presentes | Moda bebê e infantil do RN ao tamanho 4</title>
 <meta name="description" content="Roupinhas e presentes para bebês e crianças, do RN ao tamanho 4. Escolha pelo site e finalize o pedido pelo WhatsApp.">
-<meta name="theme-color" content="#50C0D0">
+<meta name="theme-color" content="#CDEEF4">
 <link rel="icon" href="assets/logo.png">
-<link rel="preload" href="assets/fontes/EncodeSansCondensed-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fontes/Fredoka-Variavel.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,33 +28,33 @@
     <span class="sacola-qtd" id="sacola-qtd">0</span>
   </button>
 </header>
+<nav class="menu" id="menu" aria-label="Categorias" hidden></nav>
 
 <section class="vitrine-topo" aria-label="Apresentação da loja">
-  <h1>Pequenos looks.<br><em>Grandes memórias.</em></h1>
-  <ul class="fatos">
-    <li><strong>Novidade toda semana</strong> direto dos nossos Stories</li>
-    <li><strong>Pedido pelo WhatsApp</strong> com Pix ou cartão</li>
-  </ul>
+  <svg class="nuvem n1" viewBox="0 0 120 60" aria-hidden="true"><path d="M20 52a16 16 0 0 1 2-32 22 22 0 0 1 42-6 18 18 0 0 1 30 12 14 14 0 0 1 6 26Z"/></svg><svg class="nuvem n2" viewBox="0 0 120 60" aria-hidden="true"><path d="M20 52a16 16 0 0 1 2-32 22 22 0 0 1 42-6 18 18 0 0 1 30 12 14 14 0 0 1 6 26Z"/></svg><svg class="estrela e1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8Z"/></svg><svg class="estrela e2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8Z"/></svg>
+  <div class="vt-texto">
+    <h1>Pequenos looks.<br><em>Grandes memórias.</em></h1>
+    <p>Roupinhas delicadas e presentes para bebês e crianças, do RN ao tamanho 4. Escolha pelo site e finalize pelo WhatsApp.</p>
+    <a class="botao" href="#catalogo">Ver as novidades</a>
+  </div>
+  <div class="ovos" id="ovos" aria-hidden="true"></div>
+  <svg class="onda" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50C160 0 320 0 480 38s320 40 480 8 320-30 480 6V90H0Z"/></svg>
 </section>
 
 <main>
-  <section class="novidades" id="novidades" aria-labelledby="novidades-titulo" hidden>
-    <div class="secao-cab">
-      <h2 id="novidades-titulo">Chegou agora</h2>
-      <p>As últimas peças que postamos no Instagram.</p>
-    </div>
-    <div class="trilho" id="trilho"></div>
+  <section class="categorias" id="categorias" aria-label="Categorias" hidden>
+    <div class="cat-grade" id="cat-grade"></div>
   </section>
 
   <section class="catalogo" id="catalogo" aria-labelledby="catalogo-titulo">
     <div class="secao-cab">
-      <h2 id="catalogo-titulo">Todas as peças</h2>
+      <h2 id="catalogo-titulo">Nossas peças</h2>
       <p id="contagem" role="status"></p>
     </div>
 
     <div class="filtros" id="filtros">
       <div class="grupo" id="f-tam" role="group" aria-label="Filtrar por tamanho"></div>
-      <div class="grupo" id="f-cat" role="group" aria-label="Filtrar por categoria"></div>
+      <div class="grupo" id="f-cat" role="group" aria-label="Filtrar por categoria" hidden></div>
       <div class="grupo" id="f-gen" role="group" aria-label="Filtrar por menina ou menino"></div>
       <button class="limpar" id="limpar" type="button" hidden>Limpar filtros</button>
     </div>
@@ -66,6 +66,12 @@
       <p id="vazio-texto"></p>
       <a class="botao" id="vazio-acao" href="#" target="_blank" rel="noopener noreferrer"></a>
     </div>
+  </section>
+
+  <section class="fatos" aria-label="Como funciona">
+    <div class="fato f-azul"><strong>Novidade toda semana</strong>Peças novas direto dos nossos Stories.</div>
+    <div class="fato f-sol"><strong>Entrega grátis</strong>Em compras acima de <span class="frete-valor"></span>.</div>
+    <div class="fato f-rosa"><strong>Pedido pelo WhatsApp</strong>Pix ou cartão em até <span class="parcelas-valor"></span>x (juros por conta do cliente).</div>
   </section>
 </main>
 

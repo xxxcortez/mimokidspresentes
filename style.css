@@ -1,5 +1,5 @@
-/* Mimo Kids Presentes: identidade do logo (rosa, turquesa, letras estreitas).
-   Etiqueta de preço = elemento de marca: lembra a etiqueta de presente/roupa e leva o código da peça. */
+/* Mimo Kids Presentes: vitrine no céu de papel. Estrutura de loja clássica com acabamento de papel recortado e aquarela
+   (artes em assets/arte, geradas por IA, origem em /opt/mimo-pipeline/docs/ARTE-SITE.md). Sistema completo em DESIGN.md. */
 @font-face{font-family:"Fredoka Site";src:url(assets/fontes/Fredoka-Variavel.woff2) format("woff2");font-weight:300 700;font-display:swap}
 @font-face{font-family:"Ubuntu Site";src:url(assets/fontes/Ubuntu-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Ubuntu Site";src:url(assets/fontes/Ubuntu-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
@@ -9,7 +9,7 @@
 
 
 :root{
-  --rosa:#E80088; --rosa-texto:#BC006A; --turq:#50C0D0; --turq-escuro:#17727F;
+  --rosa:#E80088; --rosa-papel:#D6007E; --rosa-texto:#BC006A; --turq:#50C0D0; --turq-escuro:#17727F;
   --ceu:#CDEEF4; --rosa-bebe:#FFD6EA; --sol:#FFEDA8; --lilas:#E4DBFF;
   --fundo:#FFFDF8; --papel:#FFFFFF; --tinta:#33264A; --tinta-suave:#5E5275; --linha:#E8DFEF; --linha-suave:#F3EDF7;
   --display:"Fredoka Site","Arial Rounded MT Bold",system-ui,sans-serif; --texto:"Ubuntu Site",system-ui,sans-serif;
@@ -134,7 +134,7 @@ a{color:inherit;text-underline-offset:3px}
 
 /* botões */
 .botao{display:inline-block;border:0;border-radius:999px;background:var(--rosa-texto);color:#fff;text-decoration:none;text-align:center;padding:14px 32px;font:600 20px/1.1 var(--display);box-shadow:0 10px 18px -8px rgba(188,0,106,.6);transition:transform .15s,background .15s}
-.botao:hover{background:#9E0058;transform:translateY(-2px)}
+.botao:hover{transform:translateY(-2px)}
 .botao.secundario{background:#fff;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta)}
 .botao.secundario:hover{background:var(--linha-suave)}
 .botao.grande{width:100%;padding:17px}
@@ -231,13 +231,13 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .presente-texto{padding:clamp(28px,5vw,64px);max-width:560px}
 .presente h2{margin:0 0 10px;font:600 clamp(32px,4.6vw,52px)/1.05 var(--display)}
 .presente p{margin:0 0 22px;color:var(--tinta-suave);font-size:18px;max-width:34ch}
-@media(max-width:700px){.presente{background-position:68% center}.presente::after{content:"";position:absolute;inset:0;border-radius:32px;background:linear-gradient(90deg,rgba(220,235,243,.92),rgba(220,235,243,.7) 62%,rgba(220,235,243,.1));z-index:0}.coelhinho{left:auto;right:18px;width:72px;top:-58px}}
+@media(max-width:700px){.presente{background-position:68% center}.presente::after{content:"";position:absolute;inset:0;border-radius:32px;background:linear-gradient(90deg,rgba(220,235,243,.92),rgba(220,235,243,.7) 62%,rgba(220,235,243,.1));z-index:0}}
 .fato{box-shadow:var(--sombra);border:2px solid #fff}
 /* entrada suave */
 .anima .peca:not(.visto),.anima .cat-quadro:not(.visto),.anima .fato:not(.visto){opacity:0;transform:translateY(22px)}
 .anima .peca,.anima .cat-quadro,.anima .fato{transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 
-/* ilustrações de apoio (fundo branco das imagens some com multiply) */
+/* ilustrações de apoio (recortadas com fundo transparente) */
 .baloes,.ursinho,.bicho,.divisor{pointer-events:none}
 .divisor{display:block;width:min(460px,78%);height:auto;margin:6px auto 14px}
 .catalogo{position:relative}
@@ -260,19 +260,22 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 @media(max-width:760px){.elefantinho{width:84px;left:2%;top:20px}.girafinha{width:96px;bottom:24px}}
 
 /* acabamento em papel: botões, etiqueta de preço, selo */
-.botao{position:relative;background:#D6007E url(assets/arte/papel-rosa.webp) center/260px;outline:1.5px dashed rgba(255,255,255,.7);outline-offset:-6px;text-shadow:0 1px 2px rgba(120,0,60,.35)}
-.botao:hover{background-color:#D6007E;filter:brightness(.93)}
+.botao{position:relative;background:var(--rosa-papel) url(assets/arte/papel-rosa.webp) center/260px;outline:1.5px dashed rgba(255,255,255,.7);outline-offset:-6px;text-shadow:0 1px 2px rgba(120,0,60,.35)}
+.botao:hover{background-color:var(--rosa-papel);filter:brightness(.93)}
 .botao.secundario{background:#fff url(assets/arte/papel-creme.webp) center/260px;outline-color:rgba(51,38,74,.35)}
-.chip[aria-pressed="true"],.tam[aria-pressed="true"]{background:#D6007E url(assets/arte/papel-rosa.webp) center/260px;border-color:#D6007E;text-shadow:0 1px 2px rgba(120,0,60,.35)}
+.chip[aria-pressed="true"],.tam[aria-pressed="true"]{background:var(--rosa-papel) url(assets/arte/papel-rosa.webp) center/260px;border-color:var(--rosa-papel);text-shadow:0 1px 2px rgba(120,0,60,.35)}
 .bolha{right:8px;top:10px;width:120px;height:83px;padding:0 8px 0 40px;display:flex;align-items:center;justify-content:center;background:url(assets/arte/etiqueta.webp) center/100% 100% no-repeat;color:var(--tinta);border-radius:0;box-shadow:none;font:600 18px/1 var(--display);transform:rotate(5deg);transform-origin:20% 50%;filter:drop-shadow(0 5px 6px rgba(51,38,74,.22))}
 .peca-foto:hover .bolha{transform:rotate(-2deg)}
 .bolha{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
 .selo-novo{left:8px;top:8px;width:64px;height:64px;padding:0;display:grid;place-items:center;background:url(assets/arte/selo.webp) center/contain no-repeat;box-shadow:none;border-radius:0;font:600 14px/1 var(--display);transform:rotate(-10deg);filter:drop-shadow(0 4px 5px rgba(51,38,74,.2))}
 @media(max-width:520px){.bolha{width:94px;height:65px;padding-left:31px;padding-right:4px;font-size:14.5px;right:4px;top:8px}.selo-novo{width:46px;height:46px;font-size:11px;left:4px;top:4px}.elefantinho{display:none}.baloes{width:70px;top:-4px}}
-@media(max-width:700px){.presente .coelhinho{left:auto;right:16px;width:70px;top:-56px}}
 .peca-info .cores{justify-content:flex-start}
 @media(min-width:900px){.galeria{display:flex;flex-direction:column}.galeria-principal{flex:1;aspect-ratio:auto;min-height:0}.galeria-principal img{height:100%}}
 .botao,.chip[aria-pressed="true"],.tam[aria-pressed="true"]{background-image:linear-gradient(rgba(214,0,126,.5),rgba(214,0,126,.5)),url(assets/arte/papel-rosa.webp)}
 .galeria{background:#CDEEF4 url(assets/arte/cat-azul.webp) center/cover no-repeat}
 @media(max-width:899px){.acao .botao{padding:14px 14px;font-size:18px;white-space:nowrap}}
 .grade:has(.peca:only-child){grid-template-columns:minmax(0,320px);justify-content:center}
+
+/* foco visível vence a costura dos botões */
+.botao:focus-visible,.chip:focus-visible,.tam:focus-visible{outline:3px solid var(--tinta);outline-offset:3px}
+@media(max-width:700px){.presente .coelhinho{left:auto;right:16px;width:70px;top:-56px}}

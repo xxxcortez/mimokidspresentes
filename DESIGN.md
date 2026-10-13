@@ -1,234 +1,294 @@
 ---
 name: Mimo Kids Presentes
-description: Vitrine de moda bebê e infantil onde a foto da peça pendura limpa e o preço vem numa etiqueta de papel com furo e barbante.
+description: Vitrine clássica de moda bebê e infantil montada num céu de papel recortado e aquarela, com bichinhos de papel, etiqueta de papel no preço e botões de papel rosa costurado.
 colors:
   rosa-logo: "#E80088"
+  rosa-papel: "#D6007E"
   rosa-tinta: "#BC006A"
-  turquesa: "#50C0D0"
   turquesa-escuro: "#17727F"
-  turquesa-claro: "#DDF3F6"
-  bebe-rosa: "#FFD6EA"
-  bebe-azul: "#CDEEF4"
-  bebe-sol: "#FFEDA8"
-  fundo: "#FFFBFD"
+  ceu: "#CDEEF4"
+  ceu-aquarela: "#DCEBF3"
+  rosa-bebe: "#FFD6EA"
+  sol: "#FFEDA8"
+  lilas: "#E4DBFF"
+  fundo: "#FFFDF8"
   papel: "#FFFFFF"
-  tinta: "#2A1230"
-  tinta-suave: "#5E4964"
-  linha: "#EBD3E0"
-  linha-suave: "#F5E6EE"
-  amarelo-faixa: "#F7C928"
+  tinta: "#33264A"
+  tinta-suave: "#5E5275"
+  linha: "#E8DFEF"
+  linha-suave: "#F3EDF7"
 typography:
   display:
-    fontFamily: "Encode Condensed, Arial Narrow, system-ui, sans-serif"
-    fontSize: "clamp(40px, 7.6vw, 88px)"
+    fontFamily: "Fredoka Site, Arial Rounded MT Bold, system-ui, sans-serif"
+    fontSize: "clamp(42px, 6.2vw, 88px)"
     fontWeight: 600
     lineHeight: 1.02
-    letterSpacing: "-0.015em"
+    letterSpacing: "-0.012em"
   headline:
-    fontFamily: "Encode Condensed, Arial Narrow, system-ui, sans-serif"
-    fontSize: "clamp(30px, 4.6vw, 46px)"
+    fontFamily: "Fredoka Site, Arial Rounded MT Bold, system-ui, sans-serif"
+    fontSize: "clamp(32px, 4.6vw, 46px)"
     fontWeight: 600
     lineHeight: 1.05
-    letterSpacing: "-0.01em"
   title:
-    fontFamily: "Encode Condensed, Arial Narrow, system-ui, sans-serif"
-    fontSize: "21px"
+    fontFamily: "Fredoka Site, Arial Rounded MT Bold, system-ui, sans-serif"
+    fontSize: "22px"
     fontWeight: 600
     lineHeight: 1.15
-    letterSpacing: "0"
+  price:
+    fontFamily: "Fredoka Site, Arial Rounded MT Bold, system-ui, sans-serif"
+    fontSize: "38px"
+    fontWeight: 600
+    lineHeight: 1.1
+  button:
+    fontFamily: "Fredoka Site, Arial Rounded MT Bold, system-ui, sans-serif"
+    fontSize: "20px"
+    fontWeight: 600
+    lineHeight: 1.1
+  label:
+    fontFamily: "Fredoka Site, Arial Rounded MT Bold, system-ui, sans-serif"
+    fontSize: "17px"
+    fontWeight: 500
+    lineHeight: 1.2
   body:
     fontFamily: "Ubuntu Site, system-ui, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.55
-  label:
-    fontFamily: "Encode Condensed, Arial Narrow, system-ui, sans-serif"
-    fontSize: "17px"
-    fontWeight: 500
-    lineHeight: 1.2
-    letterSpacing: "0.01em"
+  note:
+    fontFamily: "Ubuntu Site, system-ui, sans-serif"
+    fontSize: "13.5px"
+    fontWeight: 400
+    lineHeight: 1.55
 rounded:
-  sm: "3px"
-  md: "4px"
-  pill: "50%"
+  polaroid: "6px"
+  campo: "16px"
+  foto: "20px"
+  cartao: "28px"
+  faixa: "32px"
+  pilula: "999px"
 spacing:
-  xs: "8px"
-  sm: "14px"
-  md: "22px"
-  lg: "34px"
-  xl: "46px"
-  gutter: "clamp(16px, 4.5vw, 56px)"
+  lado: "clamp(16px, 4.5vw, 56px)"
+  chip-gap: "8px"
+  grade-gap-celular: "30px 14px"
+  grade-gap: "40px 24px"
+  quadro-gap: "20px"
 components:
   button-primary:
-    backgroundColor: "{colors.tinta}"
-    textColor: "#FFFFFF"
-    typography: "{typography.label}"
-    rounded: "{rounded.md}"
-    padding: "14px 26px"
-  button-primary-hover:
-    backgroundColor: "{colors.rosa-tinta}"
+    backgroundColor: "{colors.rosa-papel}"
+    textColor: "{colors.papel}"
+    typography: "{typography.button}"
+    rounded: "{rounded.pilula}"
+    padding: "14px 32px"
   button-secondary:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.papel}"
     textColor: "{colors.tinta}"
-    rounded: "{rounded.md}"
-    padding: "14px 26px"
-  chip-filtro:
-    backgroundColor: "transparent"
-    textColor: "{colors.tinta-suave}"
-    rounded: "{rounded.md}"
-    padding: "6px 12px"
-  chip-filtro-ativo:
-    backgroundColor: "{colors.rosa-tinta}"
-    textColor: "#FFFFFF"
-  etiqueta-unissex:
-    backgroundColor: "{colors.bebe-sol}"
+    typography: "{typography.button}"
+    rounded: "{rounded.pilula}"
+    padding: "14px 32px"
+  chip:
+    backgroundColor: "{colors.papel}"
     textColor: "{colors.tinta}"
-    padding: "24px 13px 10px"
-  etiqueta-menina:
-    backgroundColor: "{colors.bebe-rosa}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pilula}"
+    padding: "6px 16px"
+  chip-selected:
+    backgroundColor: "{colors.rosa-papel}"
+    textColor: "{colors.papel}"
+  menu-item:
+    backgroundColor: "{colors.fundo}"
     textColor: "{colors.tinta}"
-  etiqueta-menino:
-    backgroundColor: "{colors.bebe-azul}"
+    rounded: "{rounded.pilula}"
+    padding: "8px 20px"
+  menu-item-active:
+    backgroundColor: "{colors.rosa-bebe}"
     textColor: "{colors.tinta}"
-  tamanho:
-    backgroundColor: "#FFFFFF"
+  card-peca-menina:
+    backgroundColor: "{colors.rosa-bebe}"
+    rounded: "{rounded.cartao}"
+    padding: "10px"
+  card-peca-menino:
+    backgroundColor: "{colors.ceu}"
+    rounded: "{rounded.cartao}"
+    padding: "10px"
+  card-peca-unissex:
+    backgroundColor: "{colors.sol}"
+    rounded: "{rounded.cartao}"
+    padding: "10px"
+  card-peca-sem-genero:
+    backgroundColor: "{colors.lilas}"
+    rounded: "{rounded.cartao}"
+    padding: "10px"
+  input-busca:
+    backgroundColor: "{colors.papel}"
     textColor: "{colors.tinta}"
-    rounded: "{rounded.md}"
-    padding: "8px 14px"
-  tamanho-ativo:
-    backgroundColor: "{colors.rosa-tinta}"
-    textColor: "#FFFFFF"
-  promo:
-    backgroundColor: "{colors.turquesa-claro}"
+    rounded: "{rounded.pilula}"
+    height: "44px"
+  promo-pill:
+    backgroundColor: "{colors.ceu}"
     textColor: "{colors.turquesa-escuro}"
-    rounded: "{rounded.sm}"
-    padding: "3px 9px"
+    rounded: "{rounded.pilula}"
+    padding: "3px 12px"
 ---
 
 # Design System: Mimo Kids Presentes
 
 ## Overview
 
-**Creative North Star: "A Arara da Loja Fina"**
+**Creative North Star: "A Vitrine no Céu de Papel"**
 
-A vitrine é uma arara de loja delicada: a foto da peça fica pendurada, limpa e grande, e o preço vem numa etiqueta de papel com furo reforçado e barbante rosa, levemente inclinada. Tudo o mais recua. A interface fala baixo, em letras estreitas do logo, em minúsculas com peso médio, sobre branco rosado e tinta ameixa.
+O site é uma vitrine clássica de loja infantil (barra de aviso, cabeçalho com logo, busca e sacola, menu de categorias, banner de abertura, quadros de categoria, grade de peças, faixa de presente, fatos, rodapé) vestida de um mundo de papel recortado e aquarela. O céu pastel com nuvens de papel, arco-íris e estrelinhas douradas abre e fecha a página; bichinhos de papel (elefante, coelho, girafa, ovelha, urso) espiam pelas bordas das seções; cada cenário de categoria é um quadro ilustrado em rosa, azul, amarelo ou lilás. A alegria é lúdica, mas a estrutura é de loja: a foto da peça continua a protagonista e preço, tamanho e promoção ficam sempre legíveis.
 
-A cor entra em blocos de pastel de bebê, não em tinta forte. A abertura é rosa-bebê, a faixa "Chegou agora" e o rodapé são azul-bebê, e a etiqueta de cada peça toma a cor do gênero (menina rosa-bebê, menino azul-bebê, unissex amarelo-bebê). O rosa e o turquesa fortes do logo ficam para detalhes pequenos: barbante, furo, botão ativo, foco, promoção. Essa cor nos blocos veio por pedido do usuário depois da primeira direção, que era toda branca; a construção final a assume.
+Os materiais são papel de verdade, não metáfora plana: a etiqueta do preço é uma tag de papel ilustrada, o "Novo" é uma roseta de papel, os botões de ação têm textura de papel rosa com costura tracejada, as fotos de peça na abertura e nos quadros entram como fotos de papel com margem branca, levemente tortas. Tudo projeta sombra macia tingida de ameixa, como papel colado sobre papel.
 
-Densidade baixa, uma coluna de leitura por vez, sombras de papel suaves. Direção anterior (Armarinho: turquesa, cartelas, fita métrica) foi rejeitada pelo usuário e não deve voltar.
+Todas as ilustrações (`assets/arte/*.webp`) foram geradas por IA (OpenRouter, `meta/muse-image`) com prompt sem texto, sem letras, sem logotipos e sem pessoas; o fundo branco foi recortado por preenchimento a partir das bordas. Proveniência e prompts em `/opt/mimo-pipeline/docs/ARTE-SITE.md`. O logo oficial (`assets/logo.png`) nunca é redesenhado nem reinterpretado por IA: ele só ganha um suporte (a nuvem de papel do rodapé).
 
 **Key Characteristics:**
-- Foto 3:4 limpa como protagonista; o preço mora na etiqueta pendurada, nunca sobre a foto em caixa.
-- Pastéis de bebê em áreas grandes, cores fortes do logo só em detalhes.
-- Títulos estreitos (Encode Sans Condensed) semibold, texto corrido em Ubuntu.
-- Etiqueta de papel com cantos superiores chanfrados, furo, barbante e inclinação de 3 graus.
-- Formas de 3 a 4px; círculos apenas para amostras de cor, sacola e fechar.
+- Esqueleto de vitrine clássica, pele de papel recortado e aquarela.
+- Céu pastel nas pontas (abertura e rodapé), papel creme quente no meio.
+- Bichinhos e artes de papel decoram, nunca carregam informação.
+- Formas redondas: pílulas, cartões de 28px, fotos de papel inclinadas.
+- Fredoka arredondada para títulos, botões e rótulos; Ubuntu para texto corrido.
+- Moldura do cartão de peça colorida pelo gênero.
 
 ## Colors
 
-Pastéis de bebê em blocos, branco rosado como chão, tinta ameixa para texto, rosa e turquesa do logo em pequenos acentos.
+Pastéis de bebê em grandes áreas, rosa da marca forte só na ação e no preço, tinta ameixa no lugar do preto.
 
 ### Primary
-- **Rosa do Logo** (#E80088): detalhes decorativos: faixa colorida da abertura, filete superior do rodapé, borda da miniatura selecionada, foco da busca, fundo de seleção de texto.
-- **Rosa Carimbo** (#BC006A; token `rosa-tinta`): a versão escurecida do rosa que passa contraste para texto. Barbante e furo da etiqueta, ênfase "Grandes memórias." no título, filtro e tamanho ativos, contador da sacola, hover do botão, links de remover e mensagens de erro.
+- **Rosa do Logo** (`rosa-logo`): o rosa puro da marca. Usado só em bordas e realces: borda da busca em foco, borda de chip e tamanho no hover, miniatura ativa da galeria, seleção de texto.
+- **Rosa Papel** (`rosa-papel`): a base dos botões de ação e dos chips/tamanhos selecionados, sempre combinada à textura `papel-rosa.webp` sob um véu de 50% da própria cor. Leva texto branco.
+- **Rosa Carimbo** (`rosa-tinta`): o rosa escurecido para texto: preço grande, total da sacola, "Grandes memórias." do título, links "Limpar filtros" e "Remover", mensagens de erro, contador da sacola.
 
 ### Secondary
-- **Turquesa do Logo** (#50C0D0): anel de foco (3px) e faixa da abertura. Nunca como fundo de bloco.
-- **Turquesa Profundo** (#17727F) sobre **Turquesa Névoa** (#DDF3F6): selo de promoção ("Leve 3 por R$ 99"), linha de desconto e aviso de brinde na sacola. Turquesa significa promoção.
+- **Turquesa Fundo do Mar** (`turquesa-escuro`): exclusivo de promoção ("3 por R$ 99") e da linha de desconto da sacola, sempre sobre céu ou creme. O turquesa claro do logo vive só no logo.
 
 ### Tertiary
-- **Rosa-bebê** (#FFD6EA): fundo da abertura e etiqueta de peça de menina.
-- **Azul-bebê** (#CDEEF4): fundo de "Chegou agora", do rodapé e etiqueta de peça de menino.
-- **Amarelo-bebê** (#FFEDA8): etiqueta de peça unissex.
-- **Amarelo da faixa** (#F7C928): só o terceiro trecho da faixa tricolor da abertura.
+- **Céu** (`ceu`): moldura de peça de menino, fundo da galeria, fato "Novidade", pílula de promoção, cor do tema do navegador.
+- **Céu Aquarela** (`ceu-aquarela`): o tom do céu pintado; cor de espera atrás das artes da abertura e do rodapé e véu de leitura da faixa "Para presentear" no celular.
+- **Rosa-bebê** (`rosa-bebe`): moldura de peça de menina, botão da sacola, item ativo do menu, fato "WhatsApp".
+- **Sol** (`sol`): moldura de peça unissex, fato "Entrega", hover do botão da sacola, aviso de brinde, pontinhos da barra de aviso.
+- **Lilás** (`lilas`): moldura de peça sem gênero e o quarto cenário de categoria.
 
 ### Neutral
-- **Branco Rosado** (#FFFBFD): chão da página, cabeçalho translúcido, diálogos.
-- **Papel** (#FFFFFF): etiqueta neutra (base), selo "novo", campos.
-- **Tinta Ameixa** (#2A1230): texto, botão primário, faixa de aviso, sublinhado da busca.
-- **Ameixa Suave** (#5E4964): texto secundário, filtros inativos.
-- **Fio Rosado** (#EBD3E0) e **Fio Rosado Suave** (#F5E6EE): divisórias, bordas de campo, fundo de carregamento da foto, hover.
+- **Creme de Papel** (`fundo`): fundo da página, dos diálogos e das barras fixas.
+- **Papel Branco** (`papel`): busca, chips, pílula do nome da categoria, margem das fotos de papel, botão de fechar.
+- **Tinta Ameixa** (`tinta`): todo texto principal, barra de aviso, anel de foco, linha do total.
+- **Tinta Suave** (`tinta-suave`): subtítulos, rótulos, meta da peça, notas.
+- **Linha** (`linha`) e **Linha Suave** (`linha-suave`): bordas de chip, campo e quantidade; separadores tracejados da sacola; hover neutro.
 
 ### Named Rules
-**The Pastel Block Rule.** Pastel de bebê preenche áreas grandes (abertura, faixa, rodapé, etiqueta); o rosa e o turquesa fortes do logo nunca preenchem bloco, só marcam detalhe.
-**The Tag Color Rule.** A cor da etiqueta de preço é função do gênero da peça no catálogo: menina rosa-bebê, menino azul-bebê, unissex amarelo-bebê. Sem gênero, papel branco.
-**The Turquoise Means Sale Rule.** Turquesa em texto ou selo significa promoção; fora disso só o anel de foco.
-**The Contrast Pink Rule.** Texto e estados ativos usam o rosa escurecido (`rosa-tinta`), nunca o rosa puro do logo.
+**The Pastel Block Rule.** Pastéis (céu, rosa-bebê, sol, lilás) preenchem áreas: molduras, fatos, quadros, galeria. Rosa forte nunca preenche bloco, só botão, chip ativo e texto.
+
+**The Gender Frame Rule.** A moldura do cartão de peça é função do gênero no catálogo: menina rosa-bebê, menino céu, unissex sol, sem gênero lilás. Os quadros de categoria, ao contrário, ganham cor pela posição (rosa, azul, sol, lilás em ciclo), não pelo conteúdo.
+
+**The Contrast Pink Rule.** Texto rosa é sempre Rosa Carimbo; texto branco só sobre Rosa Papel ou mais escuro. O Rosa do Logo nunca carrega texto.
+
+**The Turquoise Means Sale Rule.** Turquesa em texto significa promoção ou desconto; não vira decoração.
 
 ## Typography
 
-**Display Font:** Encode Sans Condensed (Medium, SemiBold, Bold; com Arial Narrow, system-ui)
-**Body Font:** Ubuntu (Regular, Medium, Bold; com system-ui)
+**Display Font:** Fredoka (variável 300–700, servida localmente como "Fredoka Site", com Arial Rounded MT Bold de reserva)
+**Body Font:** Ubuntu (400, 500, 700, servida localmente como "Ubuntu Site")
 
-**Character:** Letras estreitas e calmas, parentes das do logo, para tudo que nomeia e precifica; Ubuntu humaniza o texto corrido. Maiúsculas e minúsculas normais, sem caixa alta gritada.
+**Character:** Fredoka tem os cantos redondos do papel recortado e a voz alegre da vitrine; Ubuntu é calma e legível para condições de pagamento, descrições e notas.
 
 ### Hierarchy
-- **Display** (600, clamp(40px, 7.6vw, 88px), 1.02): frase da marca na abertura, até 14ch, com `text-wrap: balance`.
-- **Headline** (600, clamp(30px, 4.6vw, 46px), 1.05): títulos de seção ("Chegou agora", "Todas as peças"); título da peça no diálogo usa 32 a 44px.
-- **Title** (600, 21px, 1.15): nome da peça no cartão; preço na etiqueta (600, 20px, 1); preço grande no diálogo (600, 38px).
-- **Body** (400, 16px, 1.55): descrições limitadas a 62ch; notas em 13,5 a 14px.
-- **Label** (500, 17px, 1.2, 0.01em): filtros, tamanhos, rótulos e botões (botão 600, 19px, 0.03em).
+- **Display** (600, clamp 42–88px, 1.02, tracking levemente negativo): só o título da abertura, com a segunda linha em Rosa Carimbo e quebra equilibrada.
+- **Headline** (600, clamp 32–46px, 1.05): títulos de seção ("Nossas peças"), faixa "Para presentear" (até 52px), nome da peça no diálogo (até 40px), "Minha sacola".
+- **Title** (600, 21–23px, 1.1–1.2): nome do quadro de categoria, títulos dos fatos e das colunas do rodapé.
+- **Price** (600, 38px, Rosa Carimbo): preço no diálogo; o total da sacola usa 32px. Na grade o preço vai na etiqueta de papel (600, 18px; 14.5px no celular), em Tinta Ameixa.
+- **Button** (600, 20px): botões de ação; 18px no celular.
+- **Label** (500, 16–18px): menu, chips, tamanhos, rótulos de bloco, nome da peça no cartão (19px).
+- **Body** (400, 16px/1.55 Ubuntu): texto corrido; descrição limitada a 62ch.
+- **Note** (400, 13.5–14.5px Ubuntu, Tinta Suave): aviso de IA, condições de entrega e pagamento, rodapé final.
 
 ### Named Rules
-**The Quiet Condensed Rule.** Títulos e preços em Encode Condensed minúsculo/misto; tracking positivo só em rótulos de até 19px.
+**The Round Voice Rule.** Tudo o que se clica ou se escaneia (título, botão, chip, menu, preço) fala em Fredoka; tudo o que se lê com calma fala em Ubuntu. Sem caixa-alta forçada e sem tracking aberto.
 
 ## Layout
 
-Margem lateral fluida `clamp(16px, 4.5vw, 56px)` em todas as seções. Abertura em grade: uma coluna no celular, frase à esquerda e dois fatos em texto simples à direita a partir de 880px. Catálogo em 2 colunas no celular, 3 a partir de 720px, 4 a partir de 1100px, com vão de 34 a 46px entre linhas e 14 a 22px entre colunas. "Chegou agora" é um trilho horizontal com encaixe, cartões de 220 a 290px. Cabeçalho (76px, 66px abaixo de 420px) e barra de filtros são fixos no topo. Detalhe da peça: duas colunas a partir de 900px; no celular ocupa a tela toda, com a barra de ação fixa embaixo. Sacola é gaveta lateral de 440px. Alvos de toque de 40 a 46px ou mais.
+Coluna única de vitrine, centralizada, com margens laterais fluidas (`lado`). Conteúdos largos param em 1300–1400px. Cabeçalho (92px; 74px abaixo de 420px) e menu de categorias ficam fixos no topo, sobre o creme de papel; a barra de aviso fica acima deles.
+
+- **Abertura:** arte de céu em cobertura total (16:9 a partir de 880px; vertical 3:4 no celular), texto à esquerda até 620px, duas fotos de papel das peças mais recentes inclinadas à direita (no celular, embaixo, sobre as nuvens). Um degradê de 90px funde o céu no creme.
+- **Quadros de categoria:** grade automática de colunas mínimas de 240px, quadros 3:2.
+- **Grade de peças:** 2 colunas no celular, 3 a partir de 720px, 4 a partir de 1100px; uma peça sozinha fica centrada em até 320px.
+- **Diálogo da peça:** tela cheia no celular; a partir de 900px, cartão de até 1000px em duas colunas (galeria 1.05fr sobre o cenário azul, informação 1fr). A barra de ação fica presa ao pé no celular.
+- **Sacola:** gaveta lateral à direita, até 440px.
+- **Rodapé:** céu de papel com a nuvem do logo, três colunas a partir de 800px.
+- **Divisor ilustrado** (fileira de nuvenzinhas e lua, até 460px) separa os blocos do meio da página.
 
 ## Elevation & Depth
 
-Plano, com sombra apenas de papel. A etiqueta usa duas sombras projetadas suaves (`drop-shadow(0 1px 1px rgba(42,18,48,.25)) drop-shadow(0 8px 8px rgba(42,18,48,.18))`), que respeitam o recorte chanfrado. O botão de fechar e a gaveta usam sombras difusas ameixa. Cartões de peça não têm sombra.
+Profundidade de papel colado: tudo o que é recorte projeta uma sombra curta e macia, tingida de ameixa, nunca preta e nunca deslocada sem desfoque. A arte já traz o relevo aquarelado; o CSS só acrescenta a sombra de contato.
 
 ### Shadow Vocabulary
-- **Papel** (`0 1px 2px rgba(42,18,48,.10), 0 10px 22px -10px rgba(42,18,48,.30)`): botão fechar.
-- **Gaveta** (`-12px 0 30px -12px rgba(42,18,48,.35)`): sacola.
+- **Papel assentado** (`box-shadow: 0 2px 4px rgba(51,38,74,.08), 0 14px 26px -14px rgba(51,38,74,.35)`): cartões de peça, quadros de categoria, fatos, faixa de presente, botão de fechar.
+- **Foto de papel** (`box-shadow: 0 2px 3px rgba(51,38,74,.12), 0 22px 36px -14px rgba(51,38,74,.45)`): fotos com margem branca da abertura (versão de 16px nos quadros de categoria).
+- **Pílula solta** (`box-shadow: 0 4px 10px rgba(51,38,74,.18)`): nome da categoria sobre o cenário.
+- **Recorte ilustrado** (`filter: drop-shadow(0 5px 6px rgba(51,38,74,.22))`): etiqueta de preço e roseta "Novo", que seguem o contorno da arte.
+- **Brilho do botão** (`box-shadow: 0 10px 18px -8px rgba(188,0,106,.6)`): sombra rosada sob o botão de papel rosa.
 
 ### Named Rules
-**The Paper Shadow Rule.** Sombras são difusas, tingidas de ameixa e com desfoque; nunca sólidas, nunca deslocadas sem desfoque.
+**The Paper Shadow Rule.** Sombra sempre difusa e tingida de ameixa (ou de rosa sob o botão rosa); sólida, preta ou deslocada sem desfoque não existe neste mundo.
 
 ## Shapes
 
-Quase retas: 3px nas fotos e selos, 4px em botões, campos, filtros e tamanhos, 6px no diálogo grande. Círculos só onde o objeto é redondo (amostra de cor, contador, fechar, furo da etiqueta). A forma assinatura é a etiqueta: retângulo com os dois cantos de cima cortados em 12px, furo circular de 11px com anel de 2px em rosa carimbo, barbante de 2px descendo do topo, inclinação de 3 graus (hover: -2 graus).
+Papel recortado com tesoura de ponta redonda. Ações, chips, menu, busca e selos são pílulas completas. Cartões de peça e quadros de categoria têm 28px; a foto dentro da moldura repete o canto com 20px. Faixa de presente e diálogo da peça têm 32px. Fotos de papel têm cantos quase retos (6px na margem, 3px na foto) e entram inclinadas de 3° a 5°, alternando o lado. A etiqueta de preço inclina 5° e a roseta "Novo" −10°. A costura tracejada (1.5px, recuada 6px para dentro) marca os botões de papel; o tracejado de 2px separa os itens da sacola; tamanho esgotado ganha borda tracejada e texto riscado.
 
 ## Components
 
 ### Buttons
-- **Shape:** cantos de 4px.
-- **Primary:** fundo tinta ameixa, texto branco, 14px 26px, rótulo de 19px 600.
-- **Hover / Focus:** fundo vira rosa carimbo em 150ms; foco com anel turquesa de 3px.
-- **Secondary:** transparente com contorno interno de 1,5px em ameixa; hover em fio rosado suave.
+Papel rosa costurado, alegre e firme.
+- **Shape:** pílula (999px), padding 14px 32px; a versão "grande" ocupa a largura toda.
+- **Primary:** Rosa Papel com a textura `papel-rosa.webp` (260px) sob véu de 50% da mesma cor, texto branco em Fredoka 600 com leve sombra rosa-escura, costura tracejada branca a 70%, brilho rosado embaixo.
+- **Hover:** sobe 2px e escurece por `brightness(.93)`; transição de 0.15s.
+- **Secondary:** papel creme (`papel-creme.webp`) com texto em Tinta Ameixa, contorno interno de 2px em tinta e costura em tinta a 35%.
+- **Disabled:** Linha, sem sombra, cursor de bloqueio.
 
-### Chips (filtros e tamanhos)
-- **Style:** filtros sem caixa, texto ameixa suave; hover ganha borda fina. Tamanhos com borda de 1,5px em fio rosado sobre branco.
-- **State:** ativo em rosa carimbo com texto branco; tamanho indisponível tracejado e riscado.
+### Chips (filtros, tamanhos, menu)
+- **Style:** pílula branca, borda de 2px em Linha, Fredoka 500 16–17px.
+- **State:** hover troca a borda para Rosa do Logo; selecionado vira papel rosa (mesma textura do botão) com texto branco. Tamanho esgotado: borda tracejada, texto riscado. O menu de categorias usa pílulas sem borda; o item ativo fica em Rosa-bebê.
 
 ### Cards / Containers
-- **Corner Style:** foto com 3px. **Background:** fundo de carregamento fio rosado suave. **Shadow:** nenhuma no cartão; só na etiqueta. **Border:** nenhuma. Nome, meta e amostras de cor abaixo da foto, sem caixa.
+- **Cartão de peça:** moldura de 10px na cor do gênero (Gender Frame Rule), canto 28px, foto 3:4 com canto 20px, sombra "Papel assentado". No hover sobe 4px e gira −0.6°. Nome centralizado abaixo em Fredoka, meta em Tinta Suave, bolinhas de cor (22px, anel creme, área de toque ampliada) e pílula de promoção em céu.
+- **Quadro de categoria:** cenário ilustrado 3:2 (rosa, azul, sol, lilás por posição), foto de papel da peça inclinada no centro (endireita e cresce 5% no hover), nome numa pílula branca embaixo.
+- **Fato:** bloco pastel de 28px com borda branca de 2px, ícone ilustrado de papel à esquerda (84px; 70px no celular), título em Fredoka.
+- **Faixa "Para presentear":** arte de presente em cobertura, canto 32px, coelhinho espiando por cima da borda.
 
 ### Inputs / Fields
-- Busca só com sublinhado de 1,5px em ameixa que vira rosa no foco; campos de texto com borda de 1,5px em fio rosado e 4px de canto.
+- **Busca:** pílula branca de 44px com borda de 2px em Linha e lupa em traço; em foco a borda vira Rosa do Logo.
+- **Textarea (observações, mensagem do pedido):** borda de 2px em Linha, canto 16px, Ubuntu 15px.
+- **Quantidade:** pílula com borda de 2px e botões de 42–44px nas pontas.
+- **Erro:** texto em Rosa Carimbo, 14px, 500, logo abaixo dos tamanhos.
 
 ### Navigation
-- Cabeçalho branco rosado translúcido com filete inferior: logo à esquerda, busca, sacola (ícone de linha de 1,7px). Contador em rosa carimbo.
+- Barra de aviso em Tinta Ameixa com textos em Fredoka 500 separados por pontinhos sol. Cabeçalho fixo com logo (76px de altura; 60px no celular estreito), busca e botão redondo da sacola em rosa-bebê (sol no hover) com contador em Rosa Carimbo. Menu de categorias fixo logo abaixo, rolável na horizontal no celular, sem barra de rolagem visível.
 
 ### Etiqueta de preço (assinatura)
-- Papel pendurado no canto superior direito da foto, com furo, barbante, chanfros e inclinação. Cor pelo gênero (Tag Color Rule). Carrega só o preço.
+Tag de papel ilustrada (`etiqueta.webp`, 120×83px; 94×65px no celular) presa no canto superior direito da foto, inclinada 5°, com o preço em Tinta Ameixa e Fredoka 600. No hover do cartão balança para −2°. Carrega só o preço.
 
-### Selo de promoção
-- Pílula retangular de 3px, turquesa profundo sobre turquesa névoa (branco dentro de "Chegou agora").
+### Roseta "Novo"
+Roseta de papel (`selo.webp`, 64px; 46px no celular) no canto superior esquerdo da foto, inclinada −10°, com a palavra "Novo" em Fredoka 600.
+
+### Aviso de foto com IA
+Pílula branca translúcida (94%) no canto inferior esquerdo da foto, "Foto ilustrativa (IA)" em Ubuntu 12.5px; no diálogo vira nota completa. Obrigatória sempre que a foto estiver marcada como IA.
+
+### Bichinhos e artes de apoio
+Elefantinho e balões ao lado de "Nossas peças" (flutuando devagar, 7–8s), coelhinho sobre a faixa de presente, girafinha no rodapé, ursinho no estado vazio, ovelhinha na sacola vazia, nuvem de papel atrás do logo do rodapé. São decorativos (`aria-hidden`, sem clique) e encolhem ou somem no celular estreito.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** manter a foto 3:4 limpa; preço, só na etiqueta pendurada.
-- **Do** usar pastel de bebê para blocos grandes e rosa/turquesa fortes só em detalhes.
-- **Do** colorir a etiqueta pelo gênero do catálogo e manter ameixa como cor de texto.
-- **Do** usar o rosa escurecido (`rosa-tinta`) para texto e estados ativos.
-- **Do** manter sombras difusas e tingidas de ameixa, e respeitar `prefers-reduced-motion`.
+- **Do** gerar novas artes no mesmo estilo de papel recortado e aquarela, sem texto, sem letras, sem logotipos e sem pessoas, e registrá-las em `docs/ARTE-SITE.md`.
+- **Do** colorir a moldura de cada peça pelo gênero (menina rosa-bebê, menino céu, unissex sol, sem gênero lilás).
+- **Do** usar Rosa Carimbo para preço e qualquer texto rosa; Rosa Papel com textura e costura para botões e seleção.
+- **Do** manter o anel de foco de 3px em Tinta Ameixa, afastado 2px, em todo elemento interativo.
+- **Do** usar a curva `cubic-bezier(.2,.8,.2,1)` para movimentos de papel e desligar animações com movimento reduzido.
+- **Do** desenhar ícones de interface como SVG de traço (1.8–1.9px, pontas redondas) em Tinta Ameixa.
 
 ### Don't:
-- **Don't** voltar à direção Armarinho (turquesa em bloco, cartelas, fita métrica), rejeitada pelo usuário.
-- **Don't** usar caixa alta gritada nem texto de interface em condensado preto pesado.
-- **Don't** pôr o rosa ou o turquesa puros do logo como fundo de bloco.
-- **Don't** inventar estoque, prazo ou prova social.
+- **Don't** redesenhar, regerar com IA ou recolorir o logo oficial; ele só ganha suporte (a nuvem de papel).
+- **Don't** pôr texto, preço ou informação dentro das ilustrações geradas; a informação é sempre HTML por cima.
+- **Don't** usar Rosa do Logo como cor de texto ou como fundo de bloco.
+- **Don't** usar sombra preta, sólida ou deslocada sem desfoque.
+- **Don't** usar turquesa fora de promoção e desconto.

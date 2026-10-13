@@ -594,3 +594,7 @@ dialog#peca>.fechar,dialog#sacola>.fechar{position:sticky;top:10px;right:auto;ma
 .peca-promo{border-radius:18px;text-align:center;line-height:1.25;padding:5px 14px}
 .peca-promo small{display:block;font:600 13.5px/1.2 var(--display);color:var(--tinta);margin-top:1px}
 .promo-linha{border-radius:18px}
+
+/* placa da cidade: texto no espaço livre à direita do balão, sem encostar na cesta */
+.sobre-loja .cidade span{left:58%;top:60%;width:62%;font-size:22px;-webkit-text-stroke:7px #F4A9CB}
+@media(max-width:380px){.sobre-loja .cidade span{font-size:20px}}

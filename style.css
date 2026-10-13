@@ -469,3 +469,6 @@ dialog#sacola .fechar{right:14px;top:16px}
 .bandeira svg{height:26px;width:40px;max-width:none}
 .bandeira .elo{font-size:21px}
 .doc-cartao p,.doc-cartao li{max-width:none}
+.r-email{background:var(--rosa-bebe)}
+.r-email svg{fill:none!important;stroke:var(--rosa-texto);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.contatos a{overflow-wrap:break-word}

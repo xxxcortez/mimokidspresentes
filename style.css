@@ -202,3 +202,4 @@ dialog#sacola{width:min(440px,100vw);height:100dvh;margin:0 0 0 auto;box-shadow:
 .cores .cor{width:34px;height:34px}.peca .cores .cor{width:22px;height:22px}
 .remover{font-size:14.5px;padding:12px 4px 12px 12px}
 .item .qtd{transform:none}.item .qtd button{width:44px;height:40px}
+@media(max-width:899px){.filtros{position:static;flex-wrap:wrap;overflow:visible;padding-right:var(--lado);-webkit-mask-image:none;mask-image:none;gap:8px 0}.grupo{flex-wrap:wrap;flex:1 1 100%}.grupo+.grupo{padding-left:0;border-left:0}.grupo-rotulo{flex:0 0 64px}}

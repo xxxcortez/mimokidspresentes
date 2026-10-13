@@ -516,3 +516,10 @@ dialog#sacola .fechar{right:14px;top:16px}
 .sobre-loja .cidade{position:relative;width:260px;aspect-ratio:var(--placa,700/ 450);background:url(assets/arte/placa-cidade.webp) center/100% 100% no-repeat;border:0;border-radius:0;box-shadow:none;padding:0 0 0 14%;display:flex;align-items:center;justify-content:center;align-self:center;filter:drop-shadow(0 6px 8px rgba(51,38,74,.16));margin:-4px 0 -2px}
 .sobre-loja .cidade span{display:block;padding-top:22%;text-align:center;font:600 18px/1.15 var(--display);color:var(--tinta);max-width:11ch}
 .sobre-loja .cidade img{display:none}
+
+/* ---- centralização do bloco da marca: texto da placa e redes alinhados ao centro do cartão ---- */
+.sobre-loja .cidade{width:100%;max-width:300px;padding:0}
+.sobre-loja .cidade span{font-size:17px;max-width:none;padding-top:24%;padding-left:2%}
+.rodape-marca .redes{width:100%;max-width:340px;justify-content:center;gap:16px;margin-top:16px}
+.rede{width:46px;height:46px}
+.sobre-loja .cidade span{max-width:130px;padding:14% 0 0;margin:0 auto;font-size:18px}

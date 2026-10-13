@@ -17,6 +17,7 @@
 </header>
 <main class="doc">
   <article class="doc-cartao">
+    <img class="doc-ilus" src="assets/arte/ic-trocas.webp" alt="" width="160" height="184" aria-hidden="true">
     <h1>Trocas e devoluções</h1>
     <p class="doc-data">Atualizado em 13/10/2026</p>
     <p>Queremos que cada peça chegue perfeita. Se algo não estiver como esperado, é só falar com a gente.</p>
@@ -45,8 +46,8 @@
   </article>
 </main>
 <footer class="doc-rodape">
-  <nav class="rodape-links" aria-label="Informações da loja"><a href="trocas-e-devolucoes.html">Trocas e devoluções</a><a href="privacidade.html">Política de privacidade</a></nav>
-  <p>© 2026 Mimo Kids Presentes.</p>
+  <nav class="rodape-links" aria-label="Informações da loja"><a href="trocas-e-devolucoes.html"><img class="link-ic" src="assets/arte/ic-trocas.webp" alt="" width="160" height="184" aria-hidden="true">Trocas e devoluções</a><a href="privacidade.html"><img class="link-ic" src="assets/arte/ic-privacidade.webp" alt="" width="160" height="200" aria-hidden="true">Política de privacidade</a></nav>
+  <p class="copia"><img class="copia-ic" src="assets/arte/ic-coracao.webp" alt="" width="120" height="158" aria-hidden="true">© 2026 Mimo Kids Presentes.</p>
 </footer>
 <script>
 fetch('produtos.json').then(r => r.json()).then(d => { const w = d.config && d.config.whatsapp; if (w) document.querySelectorAll('[data-whats]').forEach(a => a.href = 'https://wa.me/' + w); }).catch(() => {});

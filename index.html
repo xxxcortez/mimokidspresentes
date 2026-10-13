@@ -45,6 +45,8 @@
   </section>
 
   <section class="catalogo" id="catalogo" aria-labelledby="catalogo-titulo">
+    <img class="bandeirinhas" src="assets/arte/bandeirinhas.webp" alt="" width="1500" height="320" aria-hidden="true">
+    <img class="baloes" src="assets/arte/baloes.webp" alt="" width="520" height="520" aria-hidden="true">
     <div class="secao-cab">
       <h2 id="catalogo-titulo">Nossas peças</h2>
       <p id="contagem" role="status"></p>
@@ -60,12 +62,14 @@
     <div class="grade" id="grade"></div>
 
     <div class="vazio" id="vazio" hidden>
+      <img class="ursinho" src="assets/arte/ursinho.webp" alt="" width="520" height="480" aria-hidden="true">
       <p class="vazio-titulo" id="vazio-titulo"></p>
       <p id="vazio-texto"></p>
       <a class="botao" id="vazio-acao" href="#" target="_blank" rel="noopener noreferrer"></a>
     </div>
   </section>
 
+  <img class="bandeirinhas inv" src="assets/arte/bandeirinhas.webp" alt="" width="1500" height="320" aria-hidden="true">
   <section class="presente" aria-labelledby="presente-titulo">
     <div class="presente-texto">
       <h2 id="presente-titulo">Para presentear</h2>
@@ -75,9 +79,9 @@
   </section>
 
   <section class="fatos" aria-label="Como funciona">
-    <div class="fato f-azul"><strong>Novidade toda semana</strong>Peças novas direto dos nossos Stories.</div>
-    <div class="fato f-sol"><strong>Entrega grátis</strong>Em compras acima de <span class="frete-valor"></span>.</div>
-    <div class="fato f-rosa"><strong>Pedido pelo WhatsApp</strong>Pix ou cartão em até <span class="parcelas-valor"></span>x (juros por conta do cliente).</div>
+    <div class="fato f-azul"><img src="assets/arte/icone-novidade.webp" alt="" width="320" height="300" aria-hidden="true"><div><strong>Novidade toda semana</strong>Peças novas direto dos nossos Stories.</div></div>
+    <div class="fato f-sol"><img src="assets/arte/icone-entrega.webp" alt="" width="320" height="300" aria-hidden="true"><div><strong>Entrega grátis</strong>Em compras acima de <span class="frete-valor"></span>.</div></div>
+    <div class="fato f-rosa"><img src="assets/arte/icone-whatsapp.webp" alt="" width="320" height="300" aria-hidden="true"><div><strong>Pedido pelo WhatsApp</strong>Pix ou cartão em até <span class="parcelas-valor"></span>x (juros por conta do cliente).</div></div>
   </section>
 </main>
 
@@ -142,7 +146,7 @@
   <button class="fechar" id="sacola-fechar" type="button" aria-label="Fechar sacola">×</button>
   <div class="sacola-corpo">
     <h2 id="sacola-titulo">Minha sacola</h2>
-    <p class="sacola-vazia" id="sacola-vazia">Sua sacola está vazia. Escolha uma peça e um tamanho.</p>
+    <div class="sacola-vazia" id="sacola-vazia"><img class="ursinho" src="assets/arte/ursinho.webp" alt="" width="520" height="480" aria-hidden="true"><p>Sua sacola está vazia. Escolha uma peça e um tamanho.</p></div>
     <div id="sacola-itens"></div>
     <div class="sacola-totais" id="sacola-totais" hidden>
       <p class="linha-desconto" id="sacola-desconto" hidden></p>

@@ -33,7 +33,7 @@ Preço acessível (peças a partir de R$ 35, promoções por quantidade como "3 
 ## Capabilities and Constraints
 
 - Catálogo em `produtos.json`: peça com código (V/C/B/P + número), nome, categoria, gênero, preço, promoção `{qtd,total}`, descrição, várias cores (cada uma com fotos e tamanhos) e fotos marcadas como IA.
-- Tamanhos são exatamente o texto que a loja digita (ex.: "6 meses a 1 ano", "P", "2"); sem tabela de conversão. Filtros nascem do que existe no catálogo.
+- Tamanhos no site: lista fixa RN, P, M, G, 1, 2, 3, 4 (faixas digitadas pela loja, como "6 meses a 1 ano", são convertidas em todos os tamanhos que alcançam; ver `CLAUDE.md`). Filtros nascem do que existe no catálogo.
 - O site não deve prometer prazo, frete além do combinado, checkout automático, nem mostrar preço ou estoque que não esteja no catálogo.
 - Decisão do dono (13/10/2026): o site NÃO mostra aviso de foto criada por IA (selo, nota na peça e frase no rodapé foram removidos). O campo `ia` do catálogo continua existindo, sem efeito visual.
 - Idioma: português do Brasil.

@@ -27,19 +27,52 @@ let CFG = {}, PECAS = [];
 const filtro = { tam: '', cat: '', gen: '', busca: '' };
 const GENEROS = { menina: 'Menina', menino: 'Menino', unissex: 'Unissex' };
 
-/* ---------- tamanhos: ordem natural, sem converter o que a loja digitou ---------- */
-const FIXOS = ['RN', 'P', 'M', 'G', 'GG', 'XG'];
+/* ---------- tamanhos: lista fixa RN, P, M, G, 1, 2, 3, 4 ----------
+   O catálogo guarda o que a loja digitou (ex.: "6 meses a 1 ano"); o site converte para a lista fixa ao carregar.
+   Cada tamanho cobre uma faixa de idade em meses [de, até): RN 0-3, P 3-6, M 6-9, G 9-12, 1 = 12-24, 2 = 24-36, 3 = 36-48, 4 = 48-60.
+   Uma faixa digitada vira todos os tamanhos que ela alcança ("6 meses a 1 ano" = M e G). Texto que não dá para converter segue como foi digitado. */
+const PADRAO = [
+  { k: 'RN', de: 0, ate: 3, dica: 'recém-nascido, até 3 meses' }, { k: 'P', de: 3, ate: 6, dica: '3 a 6 meses' },
+  { k: 'M', de: 6, ate: 9, dica: '6 a 9 meses' }, { k: 'G', de: 9, ate: 12, dica: '9 a 12 meses' },
+  { k: '1', de: 12, ate: 24, dica: '1 ano' }, { k: '2', de: 24, ate: 36, dica: '2 anos' },
+  { k: '3', de: 36, ate: 48, dica: '3 anos' }, { k: '4', de: 48, ate: 60, dica: '4 anos' },
+];
+const ORDEM_PADRAO = PADRAO.map(s => s.k);
+function paraPadrao(texto) {
+  const u = norm(texto).trim().toUpperCase();
+  if (ORDEM_PADRAO.includes(u) && !/^\d+$/.test(u)) return [u];                     // RN, P, M, G
+  const toks = [...u.matchAll(/(\d+(?:[.,]\d+)?)(?:\s*(MESES|MES|ANOS|ANO)|(M)\b)?/g)].map(m => ({ v: parseFloat(m[1].replace(',', '.')), un: m[2] ? (m[2][0] === 'M' ? 'm' : 'a') : m[3] ? 'm' : '' }));
+  const temRN = /\bRN\b|RECEM/.test(u);
+  if (!toks.length && !temRN) return [texto];
+  for (let i = toks.length - 1; i >= 0; i--) if (!toks[i].un) toks[i].un = toks[i + 1] ? toks[i + 1].un : (/MES/.test(u) ? 'm' : 'a');
+  const meses = toks.map(t => t.un === 'm' ? t.v : t.v * 12);
+  if (temRN) meses.unshift(0);
+  const de = Math.min(...meses);
+  let ate = Math.max(...meses);
+  const ult = toks[toks.length - 1];
+  if (toks.length > 1 && ult && ult.un === 'a' && ult.v >= 2) ate += 12;        // "2 a 4 anos" inclui o tamanho 4; "6 meses a 1 ano" termina no G
+  const achados = de === ate ? PADRAO.filter(s => de >= s.de && de < s.ate) : PADRAO.filter(s => s.de < ate && s.ate > de);
+  return achados.length ? achados.map(s => s.k) : [texto];
+}
 function chaveTamanho(t) {
   const u = String(t).toUpperCase().trim();
-  const i = FIXOS.indexOf(u);
+  const i = ORDEM_PADRAO.indexOf(u);
   if (i >= 0) return [0, i];
-  const n = u.match(/\d+(?:[.,]\d+)?/);
-  if (!n) return [2, 0];
-  const v = parseFloat(n[0].replace(',', '.'));
-  return [1, /MES/.test(u) ? v : v * 12];         // "6 meses" = 6; "2" ou "2 anos" = 24 meses
+  return [1, 0];
 }
 const comparaTam = (a, b) => { const x = chaveTamanho(a), y = chaveTamanho(b); return x[0] - y[0] || x[1] - y[1] || String(a).localeCompare(b, 'pt-BR'); };
-const capitaliza = t => t.replace(/\bMESES\b/g, 'meses').replace(/\bANOS\b/g, 'anos').replace(/\bANO\b/g, 'ano').replace(/\bMES\b/g, 'mês').replace(/\bA\b/g, 'a').replace(/\bE\b/g, 'e');
+/* rótulo na tela: "1" vira "1 ano", "2" vira "2 anos"; RN, P, M, G ficam como são */
+const capitaliza = t => /^\d+$/.test(String(t)) ? t + (Number(t) === 1 ? ' ano' : ' anos') : String(t);
+const dicaTamanho = t => (PADRAO.find(s => s.k === t) || {}).dica || '';
+function normalizarPeca(p) {
+  for (const c of p.cores) {
+    const origem = {};
+    for (const t of c.tamanhos || []) for (const k of paraPadrao(t)) (origem[k] = origem[k] || []).push(t);
+    const esg = new Set(c.esgotados || []);
+    c.tamanhos = Object.keys(origem).sort(comparaTam);
+    c.esgotados = c.tamanhos.filter(k => origem[k].every(t => esg.has(t)));
+  }
+}
 
 const tamanhosDaPeca = p => [...new Set(p.cores.flatMap(c => c.tamanhos.filter(t => !(c.esgotados || []).includes(t))))].sort(comparaTam);
 const todosTamanhos = p => [...new Set(p.cores.flatMap(c => c.tamanhos))].sort(comparaTam);
@@ -56,6 +89,7 @@ async function carregar() {
   CFG = dados.config || {};
   PECAS = (dados.produtos || []).filter(p => p && p.cores && p.cores.length && p.cores[0].fotos && p.cores[0].fotos.length)
     .sort((a, b) => String(b.criado || '').localeCompare(String(a.criado || '')) || String(b.id).localeCompare(String(a.id)));
+  PECAS.forEach(normalizarPeca);
   PECAS.forEach(p => porId.set(String(p.id), p));
   configurar();
   montarFiltros();
@@ -219,9 +253,13 @@ function desenharCor() {
     title: (c.esgotados || []).includes(t) ? 'Esgotado' : null, text: capitaliza(t),
     onclick: () => { tamSel = t; $('#p-erro').textContent = ''; desenharCor(); }
   })));
+  const dicas = c.tamanhos.filter(t => /^[A-Z]{1,2}$/.test(t) && dicaTamanho(t)).map(t => `${t}: ${dicaTamanho(t)}`);
+  $('#tam-dica').textContent = dicas.length ? 'Tamanhos por idade: ' + dicas.join(' · ') : '';
   desenharGaleria(0);
 }
+let galIdx = 0;
 function desenharGaleria(i) {
+  galIdx = i;
   const fotos = corSel.fotos;
   const img = $('#g-foto');
   img.src = fotos[i]; img.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '');
@@ -237,6 +275,73 @@ $('#p-add').addEventListener('click', () => {
 });
 $('#peca-fechar').addEventListener('click', () => dlgPeca.close());
 dlgPeca.addEventListener('click', e => { if (e.target === dlgPeca) dlgPeca.close(); });
+
+/* ---------- zoom da foto (tela cheia, ampliar, arrastar, trocar de foto) ---------- */
+const dlgZoom = $('#zoom'), zImg = $('#zoom-img'), zPalco = $('#zoom-palco');
+let zFotos = [], zIdx = 0, zEsc = 1, zx = 0, zy = 0;
+const ZMAX = 4;
+function zAplicar() {
+  const w = zPalco.clientWidth, h = zPalco.clientHeight, fw = zImg.clientWidth, fh = zImg.clientHeight;
+  const mx = Math.max(0, (fw * zEsc - w) / 2), my = Math.max(0, (fh * zEsc - h) / 2);
+  zx = Math.min(mx, Math.max(-mx, zx)); zy = Math.min(my, Math.max(-my, zy));
+  zImg.style.transform = `translate(${zx}px, ${zy}px) scale(${zEsc})`;
+  zPalco.classList.toggle('ampliado', zEsc > 1.01);
+  $('#zoom-nivel').textContent = Math.round(zEsc * 100) + '%';
+  $('#zoom-menos').disabled = zEsc <= 1.01; $('#zoom-mais').disabled = zEsc >= ZMAX - 0.01;
+}
+function zZoom(novo, cx = 0, cy = 0) {
+  novo = Math.min(ZMAX, Math.max(1, novo));
+  zx = cx - (cx - zx) * (novo / zEsc); zy = cy - (cy - zy) * (novo / zEsc);
+  zEsc = novo; if (zEsc <= 1.01) { zEsc = 1; zx = zy = 0; }
+  zAplicar();
+}
+function zMostrar(i) {
+  zIdx = (i + zFotos.length) % zFotos.length; zEsc = 1; zx = zy = 0;
+  zImg.src = zFotos[zIdx]; zImg.alt = atual.nome + (corSel.nome ? ' ' + corSel.nome : '') + ', foto ' + (zIdx + 1);
+  $('#zoom-leg').textContent = zFotos.length > 1 ? `${zIdx + 1} de ${zFotos.length}` : '';
+  $('#zoom-ant').hidden = $('#zoom-prox').hidden = zFotos.length < 2;
+  zAplicar();
+}
+function abrirZoom() {
+  zFotos = corSel.fotos; if (!zFotos.length) return;
+  dlgZoom.showModal(); zMostrar(galIdx);
+}
+$('#g-principal').addEventListener('click', abrirZoom);
+$('#zoom-fechar').addEventListener('click', () => dlgZoom.close());
+dlgZoom.addEventListener('close', () => { if (atual && dlgPeca.open) desenharGaleria(zIdx); });
+$('#zoom-ant').addEventListener('click', () => zMostrar(zIdx - 1));
+$('#zoom-prox').addEventListener('click', () => zMostrar(zIdx + 1));
+$('#zoom-mais').addEventListener('click', () => zZoom(zEsc * 1.5));
+$('#zoom-menos').addEventListener('click', () => zZoom(zEsc / 1.5));
+dlgZoom.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') zMostrar(zIdx - 1); else if (e.key === 'ArrowRight') zMostrar(zIdx + 1);
+  else if (e.key === '+' || e.key === '=') zZoom(zEsc * 1.5); else if (e.key === '-') zZoom(zEsc / 1.5);
+});
+const ptrs = new Map(); let arrasto = null, dist0 = 0, esc0 = 1;
+const centro = ev => { const r = zPalco.getBoundingClientRect(); return [ev.clientX - r.left - r.width / 2, ev.clientY - r.top - r.height / 2]; };
+zPalco.addEventListener('pointerdown', e => {
+  zPalco.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, e);
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; dist0 = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); esc0 = zEsc; arrasto = null; }
+  else arrasto = { x: e.clientX, y: e.clientY, zx, zy, mexeu: false };
+});
+zPalco.addEventListener('pointermove', e => {
+  if (!ptrs.has(e.pointerId)) return; ptrs.set(e.pointerId, e);
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; zZoom(esc0 * Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) / dist0); return; }
+  if (!arrasto) return;
+  const dx = e.clientX - arrasto.x, dy = e.clientY - arrasto.y;
+  if (Math.hypot(dx, dy) > 6) arrasto.mexeu = true;
+  if (zEsc > 1.01) { zx = arrasto.zx + dx; zy = arrasto.zy + dy; zAplicar(); }
+});
+zPalco.addEventListener('pointerup', e => {
+  const era = arrasto; ptrs.delete(e.pointerId); if (ptrs.size) return; arrasto = null;
+  if (!era) return;
+  const dx = e.clientX - era.x;
+  if (zEsc <= 1.01 && Math.abs(dx) > 60 && zFotos.length > 1) { zMostrar(zIdx + (dx < 0 ? 1 : -1)); return; }   // deslizar troca de foto
+  if (!era.mexeu) { const [cx, cy] = centro(e); zZoom(zEsc > 1.01 ? 1 : 2.5, cx, cy); }                             // toque alterna 100% / 250%
+});
+zPalco.addEventListener('pointercancel', e => { ptrs.delete(e.pointerId); arrasto = null; });
+zPalco.addEventListener('wheel', e => { e.preventDefault(); const [cx, cy] = centro(e); zZoom(zEsc * (e.deltaY < 0 ? 1.2 : 1 / 1.2), cx, cy); }, { passive: false });
+addEventListener('resize', () => { if (dlgZoom.open) zAplicar(); });
 
 /* ---------- sacola ---------- */
 let sacola = [];

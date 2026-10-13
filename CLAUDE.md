@@ -12,8 +12,9 @@ Loja de moda bebê e infantil (RN ao tamanho 4). Site **estático** (sem build, 
 
 ## Modelo de dados de uma peça
 `{id, codigo, nome, categoria, genero, preco, promo:{qtd,total,grupo?}|null, descricao, criado, cores:[{nome, hex, fotos[], tamanhos[], esgotados[], ia?[]}]}`
-- **Tamanhos**: exatamente o texto que a loja digitou ("6 MESES A 1 ANO", "P", "2"). Sem tabela de conversão. O filtro de tamanho é montado
-  com o que existe no catálogo; a ordem é natural (RN, P, M, G, GG, depois por idade em meses; número puro = anos).
+- **Tamanhos**: o catálogo guarda o texto que a loja digitou ("6 MESES A 1 ANO", "P", "2"), mas o **site converte ao carregar** (`paraPadrao` em `app.js`) para a lista fixa **RN, P, M, G, 1, 2, 3, 4**
+  (faixas de idade: RN 0-3 meses, P 3-6, M 6-9, G 9-12, 1 = 12-24, 2, 3, 4 anos). Uma faixa vira todos os tamanhos que alcança ("6 meses a 1 ano" = M e G; "2 a 4 anos" = 2, 3 e 4); texto que não converte segue como digitado.
+  O Instagram (legenda e Story) continua com o texto original. A ordem do filtro vem da lista fixa. Decisão do dono em 13/10/2026.
 - **Cores**: várias cores por peça (bolinhas no cartão e na página). Cada cor tem as suas fotos e os seus tamanhos.
 - **promo**: "leve N por R$ T". Sem `grupo`, vale por peça (soma de todas as cores e tamanhos); com `grupo`, mistura peças da mesma linha.
 - **ia** (dentro da cor): índices das fotos criadas por IA (criança fictícia). O site não exibe mais aviso de IA (decisão do dono em 13/10/2026); o campo fica só como registro.

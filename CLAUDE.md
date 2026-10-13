@@ -8,7 +8,7 @@ Loja de moda bebê e infantil (RN ao tamanho 4). Site **estático** (sem build, 
 - `produtos.json`: **toda a vitrine**. `config` (WhatsApp, redes, frete grátis, brinde, parcelas) e `produtos` (lista). É alimentado pelo bot do Instagram
   (`/opt/mimo-pipeline`, na VM do hermes-agent): cada peça postada vira uma entrada aqui e as fotos vão para `assets/produtos/`.
 - `index.html`, `style.css`, `app.js`: a página, o visual e a lógica (catálogo, filtros, cores, página da peça, sacola, mensagem do WhatsApp).
-- `assets/logo.png` (logo oficial), `assets/fontes/` (Encode Sans Condensed, OFL; Ubuntu, Ubuntu Font Licence; woff2 só com latim).
+- `assets/logo.png` (logo oficial), `assets/arte/` (ilustrações geradas por IA, ver `DESIGN.md` e `/opt/mimo-pipeline/docs/ARTE-SITE.md`), `assets/fontes/` (Fredoka, OFL; Ubuntu, Ubuntu Font Licence; woff2 só com latim).
 
 ## Modelo de dados de uma peça
 `{id, codigo, nome, categoria, genero, preco, promo:{qtd,total,grupo?}|null, descricao, criado, cores:[{nome, hex, fotos[], tamanhos[], esgotados[], ia?[]}]}`
@@ -19,9 +19,12 @@ Loja de moda bebê e infantil (RN ao tamanho 4). Site **estático** (sem build, 
 - **ia** (dentro da cor): índices das fotos criadas por IA (criança fictícia). Ao ver uma delas, a página mostra "Foto ilustrativa com modelo criado por inteligência artificial".
 - Foto padrão: a do **cabide** (feed 3:4 do bot). Ordem da vitrine: `criado` mais recente primeiro; as 8 primeiras viram o trilho "Chegou agora".
 
-## Visual (identidade do logo)
-Rosa `#E80088`, turquesa `#50C0D0`, blush `#FDF1F6`, ameixa `#3A2A3A`. Títulos e preços em Encode Sans Condensed; texto em Ubuntu.
-Elemento de marca: **etiqueta de preço** sobre a foto (formato de etiqueta de roupa). Sem peças cadastradas, aparece "Novidades chegando".
+## Visual (a "vitrine no céu de papel")
+Vitrine clássica (menu de categorias, banner, quadros de categoria, grade, faixa "Para presentear", fatos, rodapé) com acabamento de **papel recortado e aquarela**: ilustrações geradas por IA em `assets/arte/`
+(origem e prompts em `/opt/mimo-pipeline/docs/ARTE-SITE.md`), sem texto e sem pessoas; o **logo oficial nunca é redesenhado**. Títulos, botões e preços em **Fredoka**; texto em Ubuntu.
+Rosa do logo `#E80088` (botão de papel `#D6007E`, texto `#BC006A`), pastéis de bebê (céu `#CDEEF4`, rosa `#FFD6EA`, sol `#FFEDA8`, lilás `#E4DBFF`), tinta `#33264A`, fundo `#FFFDF8`.
+Cartão da peça: moldura colorida pelo gênero, preço abaixo do nome. Botões clicáveis são papel pastel com costura tracejada; selecionado = papel rosa. Frete grátis só em Aparecida do Taboado-MS; sem brinde.
+Sistema completo: `DESIGN.md`. Sem peças cadastradas, aparece "Novidades chegando".
 
 ## Testar
 `python3 -m http.server 8843` na raiz. Conferir em 1440 px e 390 px. Depois de publicar (`git push origin main`), o Pages leva ~1-2 min.

@@ -169,6 +169,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c05",
+   "codigo": "C05",
+   "nome": "Macaquinho colorido de bichinhos",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Macaquinho estampado com leõezinhos, girafas e corações em cores vibrantes, com alças coloridas, perfeito para um look cheio de alegria e conforto no verão das pequenas. ✨",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#ba8175",
+     "fotos": [
+      "assets/produtos/c05-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO · PREÇO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

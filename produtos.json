@@ -34,6 +34,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c01",
+   "codigo": "C01",
+   "nome": "Conjunto colorido de borboletas e arco-íris",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Conjunto de blusinha com babados e shortinho com estampa de borboletas, arco-íris e flores, perfeito para um look alegre e cheio de charme no dia a dia da pequena. ✨",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Cinza",
+     "hex": "#cfbeca",
+     "fotos": [
+      "assets/produtos/c01-cinza-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

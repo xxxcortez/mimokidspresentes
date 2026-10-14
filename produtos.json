@@ -115,6 +115,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c03",
+   "codigo": "C03",
+   "nome": "Macaquinho rosa de unicórnios",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Macaquinho rosa com estampa de unicórnios, arco-íris e castelos, perfeito para dias de brincar cheios de magia e conforto. ✨",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#cc8696",
+     "fotos": [
+      "assets/produtos/c03-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO · PREÇO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

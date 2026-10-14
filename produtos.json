@@ -142,6 +142,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c04",
+   "codigo": "C04",
+   "nome": "Conjunto blusa e short de cerejas",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Conjunto de blusa e short branco com estampa fofa de cerejas e corações, alças coloridas e babadinho na barra, perfeito para um look alegre e refrescante no dia a dia. ✨",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Cinza",
+     "hex": "#c8baca",
+     "fotos": [
+      "assets/produtos/c04-cinza-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO · PREÇO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

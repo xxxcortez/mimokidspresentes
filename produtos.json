@@ -196,6 +196,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c06",
+   "codigo": "C06",
+   "nome": "Conjunto blusa e shortinho de morangos",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Conjunto de blusa e shortinho com estampa de morangos e lacinhos, perfeito para um look alegre e cheio de charme nos dias quentes. ✨",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#b86974",
+     "fotos": [
+      "assets/produtos/c06-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO · PREÇO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

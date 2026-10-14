@@ -61,6 +61,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c02",
+   "codigo": "C02",
+   "nome": "Conjunto pêssego com corações",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Conjuntinho em tom pêssego com estampa colorida de corações e babadinhos, perfeito para dias quentes com muito charme e conforto. ✨",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#d19790",
+     "fotos": [
+      "assets/produtos/c02-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO · PREÇO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

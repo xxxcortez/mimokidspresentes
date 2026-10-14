@@ -223,6 +223,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c07",
+   "codigo": "C07",
+   "nome": "Conjunto rosa com florzinhas",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Conjunto rosa vibrante com estampa de florzinhas, blusinha de ombro a ombro e short, perfeito para um look alegre e cheio de charme no dia a dia. ✨",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#d75e8a",
+     "fotos": [
+      "assets/produtos/c07-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO · PREÇO · PREÇO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

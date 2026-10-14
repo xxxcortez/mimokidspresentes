@@ -88,6 +88,33 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v02",
+   "codigo": "V02",
+   "nome": "Vestido amarelo de arco-íris e margaridas",
+   "categoria": "Vestidos",
+   "genero": "menina",
+   "preco": 39.0,
+   "promo": {
+    "qtd": 3,
+    "total": 99.0
+   },
+   "descricao": "Vestido amarelo com estampa de arco-íris e margarinhas, com alças coloridas e barrado fofinho, perfeito para dias ensolarados e cheios de diversão.",
+   "criado": "2026-10-14",
+   "cores": [
+    {
+     "nome": "Laranja",
+     "hex": "#e4ba84",
+     "fotos": [
+      "assets/produtos/v02-laranja-1.jpg"
+     ],
+     "tamanhos": [
+      "6 MESES A 1 ANO · PREÇO"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

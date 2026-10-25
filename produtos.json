@@ -324,6 +324,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "b01",
+   "codigo": "B01",
+   "nome": "Blusa Estampada com Cores Alegres",
+   "categoria": "Blusas e bodies",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Cheia de alegria, essa blusa traz estampas vibrantes de flores e corações, com detalhes delicados em franzido e mangas curtas tipo capa.",
+   "criado": "2026-10-25",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#cfaf92",
+     "fotos": [
+      "assets/produtos/b01-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

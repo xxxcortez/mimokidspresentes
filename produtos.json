@@ -349,6 +349,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c11",
+   "codigo": "C11",
+   "nome": "Conjunto charmosa com detalhes em fita",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.99,
+   "promo": null,
+   "descricao": "O toque especial vem da amarração de fita na blusa e os lindos detalhes franzidos na cintura do short.",
+   "criado": "2026-10-25",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#e3c4bd",
+     "fotos": [
+      "assets/produtos/c11-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

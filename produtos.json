@@ -274,6 +274,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c09",
+   "codigo": "C09",
+   "nome": "Macaquinho Rosa com Estampas Divertidas",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Macaquinho rosa repleto de sol, arco-iris e estrela-do-mar, com detalhes charmosos nas mangas e cintura.",
+   "criado": "2026-10-25",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#da86a3",
+     "fotos": [
+      "assets/produtos/c09-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

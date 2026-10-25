@@ -250,6 +250,30 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c08",
+   "codigo": "C08",
+   "nome": "Conjunto encantador com flor e pássaros",
+   "categoria": "Conjuntos",
+   "genero": "menina",
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Linda estampa floral e de passarinhos em fundo amarelo, realçada por franzidos na parte de baixo e laço na cintura.",
+   "criado": "2026-10-25",
+   "cores": [
+    {
+     "nome": "Laranja",
+     "hex": "#d6ae57",
+     "fotos": [
+      "assets/produtos/c08-laranja-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

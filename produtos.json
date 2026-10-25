@@ -299,6 +299,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c10",
+   "codigo": "C10",
+   "nome": "Macaquinho de verão com estampas vibrantes",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Macaquinho encantador com estampa colorida de sol, arco-iris, picolé, estrela-do-mar e melancia, e detalhes em mangas curtas com babados em camadas.",
+   "criado": "2026-10-25",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#e28aa0",
+     "fotos": [
+      "assets/produtos/c10-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

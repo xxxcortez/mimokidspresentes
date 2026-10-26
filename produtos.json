@@ -429,6 +429,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c14",
+   "codigo": "C14",
+   "nome": "Conjunto com estampa de animais",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa colorida de animais, decote quadrado e mangas com babados que trazem um charme especial.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#cfbf89",
+     "fotos": [
+      "assets/produtos/c14-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

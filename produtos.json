@@ -374,6 +374,36 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c12",
+   "codigo": "C12",
+   "nome": "Conjunto com flores e arco-íris",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa de flores e arco-íris, mangas curtas amplas e cós com acabamento franzido.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#cfa68f",
+     "fotos": [
+      "assets/produtos/c12-estampado-1.jpg",
+      "assets/produtos/c12-estampado-2.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": [],
+     "ia": [
+      0,
+      1
+     ]
+    }
+   ]
   }
  ]
 }

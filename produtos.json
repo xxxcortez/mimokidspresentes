@@ -454,6 +454,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c15",
+   "codigo": "C15",
+   "nome": "Conjunto com estampa de animais",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Conjunto com alegre estampa colorida de animais, mangas com babados e abertura traseira com botões e amarração.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#b0a775",
+     "fotos": [
+      "assets/produtos/c15-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

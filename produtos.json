@@ -579,6 +579,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v03",
+   "codigo": "V03",
+   "nome": "Vestido com laço frontal",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Vestido com estampa floral, laço frontal em destaque e delicadas mangas curtas bufantes.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#d3a7be",
+     "fotos": [
+      "assets/produtos/v03-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

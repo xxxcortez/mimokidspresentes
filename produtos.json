@@ -684,6 +684,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v05",
+   "codigo": "V05",
+   "nome": "Vestido com estampa de limões",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de limões e flores, alça com amarração em laço e saia em camadas franzidas cheia de charme.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#dca094",
+     "fotos": [
+      "assets/produtos/v05-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

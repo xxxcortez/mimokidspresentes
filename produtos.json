@@ -604,6 +604,36 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c19",
+   "codigo": "C19",
+   "nome": "Conjunto com estampa listrada colorida",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa listrada colorida com flores, mangas curtas com babado e detalhe de cós franzido.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#9d9b86",
+     "fotos": [
+      "assets/produtos/c19-estampado-1.jpg",
+      "assets/produtos/c19-estampado-2.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": [],
+     "ia": [
+      0,
+      1
+     ]
+    }
+   ]
   }
  ]
 }

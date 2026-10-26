@@ -659,6 +659,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v04",
+   "codigo": "V04",
+   "nome": "Vestido estampado com pompons",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com decote redondo, mangas curtas com aplicação de pompons e estampa colorida com borboletas, flores, joaninhas e arco-íris.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#bea978",
+     "fotos": [
+      "assets/produtos/v04-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

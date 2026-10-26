@@ -554,6 +554,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "b02",
+   "codigo": "B02",
+   "nome": "Blusa com estampa de corações",
+   "categoria": "Blusas e bodies",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Blusa com estampa de corações, alças largas e gracioso decote com babado franzido.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Azul",
+     "hex": "#85a7bd",
+     "fotos": [
+      "assets/produtos/b02-azul-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

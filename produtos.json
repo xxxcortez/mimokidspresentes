@@ -479,6 +479,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c16",
+   "codigo": "C16",
+   "nome": "Conjunto com estampa de bolinhas",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa de bolinhas, babado franzido e alças largas em uma composição cheia de charme.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#e7c8d5",
+     "fotos": [
+      "assets/produtos/c16-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

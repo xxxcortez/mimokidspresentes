@@ -504,6 +504,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c17",
+   "codigo": "C17",
+   "nome": "Macaquinho com estampa floral",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Macaquinho com estampa floral, alças nos ombros e um gracioso babado franzido na cintura.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#92827c",
+     "fotos": [
+      "assets/produtos/c17-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

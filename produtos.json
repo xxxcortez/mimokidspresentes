@@ -404,6 +404,31 @@
      ]
     }
    ]
+  },
+  {
+   "id": "c13",
+   "codigo": "C13",
+   "nome": "Macaquinho com estampa floral",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Macaquinho sem mangas com estampa floral e detalhe de babado franzido na cintura, trazendo um visual delicado e cheio de charme.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Laranja",
+     "hex": "#c7aa64",
+     "fotos": [
+      "assets/produtos/c13-laranja-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

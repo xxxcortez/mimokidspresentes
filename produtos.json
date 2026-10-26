@@ -529,6 +529,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c18",
+   "codigo": "C18",
+   "nome": "Conjunto estampado com limões",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa de limões, flores e listras, destacando o decote franzido com alças largas.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Bege",
+     "hex": "#d0c5ae",
+     "fotos": [
+      "assets/produtos/c18-bege-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

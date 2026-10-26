@@ -634,6 +634,31 @@
      ]
     }
    ]
+  },
+  {
+   "id": "c20",
+   "codigo": "C20",
+   "nome": "Conjunto com estampa floral",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 59.0,
+   "promo": null,
+   "descricao": "Conjunto delicado com estampa floral, laço frontal em destaque e mangas bufantes cheias de charme.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#ce819b",
+     "fotos": [
+      "assets/produtos/c20-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

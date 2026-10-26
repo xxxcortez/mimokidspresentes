@@ -709,6 +709,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v06",
+   "codigo": "V06",
+   "nome": "Vestido com estampa de morangos",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de morangos e flores, detalhe de laços decorativos nas laterais e barra com babado franzido.",
+   "criado": "2026-10-26",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#e18f89",
+     "fotos": [
+      "assets/produtos/v06-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

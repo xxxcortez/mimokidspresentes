@@ -1119,6 +1119,36 @@
      ]
     }
    ]
+  },
+  {
+   "id": "c23",
+   "codigo": "C23",
+   "nome": "Conjunto com estampa de flores",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa de flores, arco-íris e borboletas, mangas com babados e fechamento com amarração de laço.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#e6748d",
+     "fotos": [
+      "assets/produtos/c23-rosa-1.jpg",
+      "assets/produtos/c23-rosa-2.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": [],
+     "ia": [
+      0,
+      1
+     ]
+    }
+   ]
   }
  ]
 }

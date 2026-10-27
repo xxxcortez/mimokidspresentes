@@ -1089,6 +1089,36 @@
      ]
     }
    ]
+  },
+  {
+   "id": "c22",
+   "codigo": "C22",
+   "nome": "Macacão com maçãs e flores",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Macacão com estampa com maçãs e flores, mangas curtas com babados e abertura com laço para amarração.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#b3a88f",
+     "fotos": [
+      "assets/produtos/c22-estampado-1.jpg",
+      "assets/produtos/c22-estampado-2.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": [],
+     "ia": [
+      0,
+      1
+     ]
+    }
+   ]
   }
  ]
 }

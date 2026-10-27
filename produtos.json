@@ -1009,6 +1009,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v18",
+   "codigo": "V18",
+   "nome": "Vestido com laço no ombro",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa floral e de abelhas, acabamento com laço no ombro e babado na barra.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Azul",
+     "hex": "#7b95af",
+     "fotos": [
+      "assets/produtos/v18-azul-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

@@ -959,6 +959,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v16",
+   "codigo": "V16",
+   "nome": "Vestido com estampa de morangos",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de morangos e flores, mangas curtas com babados e detalhe franzido no peito.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Vermelho",
+     "hex": "#d6544f",
+     "fotos": [
+      "assets/produtos/v16-vermelho-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

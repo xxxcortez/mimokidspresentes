@@ -1174,6 +1174,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c25",
+   "codigo": "C25",
+   "nome": "Conjunto com estampa em blocos",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa colorida em blocos, blusa de mangas com babado e calça comprida para compor um visual encantador.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#a57472",
+     "fotos": [
+      "assets/produtos/c25-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

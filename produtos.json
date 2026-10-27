@@ -884,6 +884,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v13",
+   "codigo": "V13",
+   "nome": "Vestido com estampa floral ondulada",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa floral ondulada, mangas com babados e delicado detalhe franzido frontal.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#a8a69d",
+     "fotos": [
+      "assets/produtos/v13-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

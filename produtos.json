@@ -909,6 +909,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v14",
+   "codigo": "V14",
+   "nome": "Vestido com mangas com babados",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa floral e quadriculada, mangas com babados e detalhe franzido no busto.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#e69498",
+     "fotos": [
+      "assets/produtos/v14-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

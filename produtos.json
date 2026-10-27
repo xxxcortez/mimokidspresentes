@@ -784,6 +784,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v09",
+   "codigo": "V09",
+   "nome": "Vestido com alças largas",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de frutas e flores, alças largas e delicada tiara com laço.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Laranja",
+     "hex": "#d8a37f",
+     "fotos": [
+      "assets/produtos/v09-laranja-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

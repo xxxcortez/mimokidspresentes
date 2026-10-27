@@ -934,6 +934,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v15",
+   "codigo": "V15",
+   "nome": "Vestido com estampa de borboletas",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de borboletas coloridas, mangas curtas com babados e detalhe franzido no peito.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Bege",
+     "hex": "#cfbcb1",
+     "fotos": [
+      "assets/produtos/v15-bege-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

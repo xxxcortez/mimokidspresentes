@@ -859,6 +859,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v12",
+   "codigo": "V12",
+   "nome": "Vestido com estampa de sorvetes",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de sorvetes e estrelas, saia em camadas com franzidos e mangas curtas com babado, puro charme.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#e2b6a7",
+     "fotos": [
+      "assets/produtos/v12-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

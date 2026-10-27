@@ -1059,6 +1059,36 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "c21",
+   "codigo": "C21",
+   "nome": "Macacão com estampa de maçãs",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Macacão com estampa de maçãs e flores, mangas curtas com caimento aberto e amarração com laço.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Bege",
+     "hex": "#c1b5a0",
+     "fotos": [
+      "assets/produtos/c21-bege-1.jpg",
+      "assets/produtos/c21-bege-2.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": [],
+     "ia": [
+      0,
+      1
+     ]
+    }
+   ]
   }
  ]
 }

@@ -1034,6 +1034,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v19",
+   "codigo": "V19",
+   "nome": "Vestido com laço no ombro",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido encantador com estampa de frutas estilizadas, laço no ombro e delicados babados na barra.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Cinza",
+     "hex": "#d3c4be",
+     "fotos": [
+      "assets/produtos/v19-cinza-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

@@ -759,6 +759,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v08",
+   "codigo": "V08",
+   "nome": "Vestido com estampa de morangos",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de morangos e flores, laços decorativos rosas e babado na barra.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#de9081",
+     "fotos": [
+      "assets/produtos/v08-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

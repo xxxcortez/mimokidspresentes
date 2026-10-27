@@ -1149,6 +1149,31 @@
      ]
     }
    ]
+  },
+  {
+   "id": "c24",
+   "codigo": "C24",
+   "nome": "Conjunto com estampa de borboletas",
+   "categoria": "Conjuntos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Conjunto com estampa de borboletas, mangas com babado e calça comprida, uma opção cheia de graça.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Bege",
+     "hex": "#b5a07e",
+     "fotos": [
+      "assets/produtos/c24-bege-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

@@ -734,6 +734,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v07",
+   "codigo": "V07",
+   "nome": "Vestido estampado com frutas",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa de frutas e flores, graciosa alça de amarrar com laço e saia em camadas com franzidos.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Rosa",
+     "hex": "#d58c80",
+     "fotos": [
+      "assets/produtos/v07-rosa-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

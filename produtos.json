@@ -984,6 +984,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v17",
+   "codigo": "V17",
+   "nome": "Vestido com laço no ombro",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa colorida de arco-íris, flores e nuvens, laço no ombro e barra com babado franzido.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#b0b59b",
+     "fotos": [
+      "assets/produtos/v17-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2 E 4"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

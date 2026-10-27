@@ -834,6 +834,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v11",
+   "codigo": "V11",
+   "nome": "Vestido com estampa multicolorida",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido alegre com estampa multicolorida com desenhos, saia em camadas franzidas e delicadas alças com amarração em laço.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#d0a68b",
+     "fotos": [
+      "assets/produtos/v11-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }

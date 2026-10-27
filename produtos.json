@@ -809,6 +809,31 @@
      "esgotados": []
     }
    ]
+  },
+  {
+   "id": "v10",
+   "codigo": "V10",
+   "nome": "Vestido com estampa floral colorida",
+   "categoria": "Vestidos",
+   "genero": null,
+   "publico": null,
+   "preco": 69.0,
+   "promo": null,
+   "descricao": "Vestido com estampa floral colorida, alças nos ombros e detalhe de barra franzida, uma composição cheia de charme.",
+   "criado": "2026-10-27",
+   "cores": [
+    {
+     "nome": "Estampado",
+     "hex": "#7b594a",
+     "fotos": [
+      "assets/produtos/v10-estampado-1.jpg"
+     ],
+     "tamanhos": [
+      "2"
+     ],
+     "esgotados": []
+    }
+   ]
   }
  ]
 }
